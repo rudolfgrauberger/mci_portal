@@ -1,0 +1,44 @@
+<!DOCTYPE HTML>
+<html lang="en-US">
+<head>
+<title>HTML5 localStorage</title>
+<meta charset="UTF-8">
+<script src="Storage.js"></script>
+<link rel="stylesheet" href="StoragedgStyle.css">
+<link rel="stylesheet" href="css/bootstrap.min.css">
+</head>
+<body onload="doShowAll()">
+	<form name=StudendList>
+
+		<div id="PlayArea">
+			<table class="table table-striped">
+				<tr>
+
+					<td><b>Matrikelnummer:</b><input type=text name=matr></td>
+					<td><b>Name:</b><input type=text name=name></td>
+					<td><b>Gültig bis:</b><input type=text name=datebis></td>
+
+				</tr>
+
+				<tr>
+					<td>
+					    <input type=button value="Save"   onclick="SaveItem()"> 
+					    <input type=button value="Modify" onclick="ModifyItem()"> 
+					    <input type=button value="Remove" onclick="RemoveItem()">
+					  </td>
+				</tr>
+			</table>
+		</div>
+
+		<div id="items_table">
+			<h2>Berechtigte</h2>
+			<table class="table table-striped" id=list></table>
+			<p>
+				<label><input type=button value="Clear" onclick="ClearAll()">
+					<i>* Removes all items</i></label>
+			</p>
+		</div>
+	</form>
+
+</body>
+</html>
