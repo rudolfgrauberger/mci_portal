@@ -17,10 +17,10 @@
             <div class="navblock btn-group-lg">
                     <button type="button" class="btn btn-default buttonclear" onclick="location.href = 'search.html';"><span class="glyphicon glyphicon-search" aria-hidden="true"></span> Suche</button>
                 </div>
-           <div class="navblockCurrent btn-group-lg">
+           <div class="navblock btn-group-lg">
                 <button type="button" class="btn btn-default buttonclear" onclick="location.href = 'persons.html';"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> Personen</button>
             </div>
-            <div class="navblock btn-group-lg">
+            <div class="navblockCurrent btn-group-lg">
                     <button type="button" class="btn btn-default buttonclear" onclick="location.href = 'rooms.html';"><span class="glyphicon glyphicon-credit-card" aria-hidden="true"> </span> Räume</button>
             </div>
             <div class="navblock btn-group-lg">
@@ -33,7 +33,11 @@
     </div>
     
     <div id="main">
-        <div id="searchfield">
+        <div id="detailNameBlock">
+                <span class="bigspan">0.503</span><br>
+                <span class="smallspan">Usabilty Studio</span>
+        </div>
+        <div id="searchfielddetail">
                 <div class="col-lg-6">
                     <div class="input-group">
                         <input type="text" id="searchInput" class="form-control" placeholder="Name">
@@ -45,12 +49,12 @@
         </div>
 
         <!--person table-->
-        <div id="resultfieldperson">
+        <div id="resultfielddetail">
                 <table class="table table-striped" id="personTable">
 						<thead>
 							<tr>
-								<th>Matrikelnummer</th>
-								<th>Name</th>
+								<th>Berechtigte Person</th>
+								<th>Berechtig durch</th>
 								<th></th>
 							</tr>
 					    </thead>

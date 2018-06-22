@@ -53,6 +53,14 @@ html,body {
     box-sizing: border-box;
 }
 
+#searchfielddetail{
+    height: 5%;
+    width: 80%;
+    margin-top: 3%;
+    margin-left: 4%;
+    box-sizing: border-box;
+}
+
 #resultfieldperson{
     height: 60%;
     width: 60%;
@@ -61,7 +69,6 @@ html,body {
     box-sizing: border-box;
     background-color: white;
     display: none;
-
 }
 
 #resultfieldroom{
@@ -82,8 +89,35 @@ html,body {
     box-sizing: border-box;
     background-color: white;
     display: none;
-
 }
+
+#resultfielddetail{
+    height: 60%;
+    width: 38%;
+    margin-top: 1%;
+    margin-left: 5%;
+    box-sizing: border-box;
+    background-color: white;
+}
+
+#persondetail{
+    height: 60%;
+    width: 60%;
+    margin-top: 1%;
+    margin-left: 20%;
+    box-sizing: border-box;
+    background-color: green;
+}
+
+#detailNameBlock{
+    height: 10%;
+    width: 38%;
+    margin-top: 1%;
+    margin-left: 5%;
+    box-sizing: border-box;
+    background-color: white;
+}
+
 
 #footer{
 	background-color: #2F4F4F;
@@ -140,6 +174,33 @@ a:hover{
     color: white;
     font-size: 130%;
      position: relative;
+  
+    -webkit-transform: translateY(-50%);
+    -ms-transform: translateY(-50%);
+    transform: translateY(-50%);
+  }
+
+  .bigspan{
+    display: inline-block;
+    color: #2F4F4F;
+    font-size: 180%;
+     position: relative;
+     margin-top: 2%;
+     margin-left: 1%;
+
+  
+    -webkit-transform: translateY(-50%);
+    -ms-transform: translateY(-50%);
+    transform: translateY(-50%);
+  }
+  .smallspan{
+    display: inline-block;
+    color: #2F4F4F;
+    font-size: 140%;
+     position: relative;
+     margin-top: 1%;
+     margin-left: 1%;
+
   
     -webkit-transform: translateY(-50%);
     -ms-transform: translateY(-50%);

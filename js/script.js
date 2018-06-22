@@ -29,6 +29,21 @@ $(document).ready( function() {
 
         $('#searchbuttonPersons').click(function () {
             $("#resultfieldperson").show();
+
+            // Example Data
+            $("#personTable").find('tbody')
+              .append($('<tr>')
+              .append($('<td>')
+              .text("11118686"))
+              .append($('<td>')
+              .text("Leopold Junkers"))
+              .append($('<button type="button" onclick="location.href = \'person-detail.html\';" class="btn btn-success delete" id=change>')
+              .text("Details"))
+            );
+
+            //var matr = document.getElementById("fname").value;
+           //$(change).attr('id',matr); 
+                       
         });
 
         $('#searchbuttonRooms').click(function () {
