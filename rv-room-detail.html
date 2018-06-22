@@ -1,0 +1,69 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+<title>Prototype</title>
+        <script type="text/javascript" src="js/jquery-3.3.1.min.js"></script>
+        <script type="text/javascript" src="js/script.js"></script>
+        <script type="text/javascript" src="js/bootstrap.js"></script>
+        <link rel="stylesheet" type="text/css" href="css/main.css">
+        <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+</head>
+        
+
+<body>
+    <div id="content">
+            <div id="header">
+                    <div class="navblockCurrent btn-group-lg">
+                            <button type="button" class="btn btn-default buttonclear" onclick="location.href = 'rv-start.html';"><span class="glyphicon glyphicon-credit-card" aria-hidden="true"> </span> Räume</button>
+                    </div>
+                    <div class="navblock btn-group-lg buttonright ">
+                            <button class="btn  btn-default btn-block buttonright buttonclear" onclick="location.href = 'login.html';" type="submit">Ausloggen</button>
+                    </div>       
+             </div>
+    
+    <div id="main">
+        <div id="detailNameBlock">
+                <span class="bigspan">3.106</span><br>
+                <span class="smallspan"></span>
+        </div>
+        <div id="searchfielddetail">
+                <div class="col-lg-6">
+                    <div class="input-group">
+                        <input type="text" id="searchInput" class="form-control" placeholder="Name">
+                            <span class="input-group-btn">
+                                <button id="searchbuttonPersons" class="btn btn-default" type="button">Suche</button>
+                            </span>
+                    </div><!-- /input-group -->
+                </div><!-- /.col-lg-6 -->
+        </div>
+
+        <!--person table-->
+        <div id="resultfielddetail">
+                <table class="table table-striped" id="rvpersonTable">
+						<thead>
+							<tr>
+                                <th>Matrikelnummer</th>
+                                <th>Name</th>
+                                <th>Gültig bis</th>
+								<th></th>
+							</tr>
+					    </thead>
+					<tbody>
+					</tbody>
+				</table>
+        </div>
+
+    </div>
+    
+    <div id="footer">
+        <div id="fakespace">
+                <center>
+                        <span class="copylink">Copyright TH Köln</span>
+                </center> 
+        </div>   
+    </div>
+
+</div>
+</body>
+</html>
