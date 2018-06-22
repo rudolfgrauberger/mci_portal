@@ -46,11 +46,33 @@ html,body {
 }
 
 #searchfield{
-    height: 30%;
+    height: 10%;
     width: 80%;
-    margin-top: 10%;
+    margin-top: 5%;
     margin-left: 30%;
     box-sizing: border-box;
+}
+
+#resultfieldperson{
+    height: 60%;
+    width: 60%;
+    margin-top: 1%;
+    margin-left: 20%;
+    box-sizing: border-box;
+    background-color: white;
+    display: none;
+
+}
+
+#resultfieldroom{
+    height: 60%;
+    width: 60%;
+    margin-top: 1%;
+    margin-left: 20%;
+    box-sizing: border-box;
+    background-color: white;
+    display: none;
+
 }
 
 #footer{
