@@ -72,6 +72,16 @@ html,body {
     box-sizing: border-box;
     background-color: white;
     display: none;
+}
+
+#resultfieldtransponder{
+    height: 60%;
+    width: 60%;
+    margin-top: 1%;
+    margin-left: 20%;
+    box-sizing: border-box;
+    background-color: white;
+    display: none;
 
 }
 
