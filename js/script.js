@@ -3,8 +3,7 @@ var searchfor = "Person";
 
 //search-by function
 $(document).ready( function() { 
-    $('#searchbutton').click(function () {
-        var input = (document.getElementById("searchInput").value);
+    $('#generalsearchbutton').click(function () {
 
         if(searchfor == "Person"){
             //alert("suche Person");
@@ -24,18 +23,13 @@ $(document).ready( function() {
             $("#resultfieldperson").hide();
             $("#resultfieldroom").hide();
             $("#resultfieldtransponder").show();
-        }
+        }      
+        });
 
+        $('#searchbuttonPersons').click(function () {
+           $("#resultfieldperson").show();
+         });
 
-
-
-        
-});
-
- $('body').on('click', 'button.delete', function() {
-        document.getElementById("dataTable").deleteRow(1);
-        
-    });
     });
 
 

@@ -100,6 +100,13 @@ html,body {
     height: 100%;
 }
 
+.navblockCurrent{
+    float: left;
+    background-color:whitesmoke;
+    width: 13%;
+    height: 100%;
+}
+
 a:hover{
     text-decoration: none;
     color: white !important;	

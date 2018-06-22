@@ -8,16 +8,16 @@
         <script type="text/javascript" src="js/bootstrap.js"></script>
         <link rel="stylesheet" type="text/css" href="css/main.css">
         <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
-        </head>
+</head>
         
 
 <body>
-<div id="content">
-    <div id="header">
-            <div class="navblockCurrent btn-group-lg">
+    <div id="content">
+      <div id="header">
+            <div class="navblock btn-group-lg">
                     <button type="button" class="btn btn-default buttonclear" onclick="location.href = 'search.html';"><span class="glyphicon glyphicon-search" aria-hidden="true"></span> Suche</button>
                 </div>
-           <div class="navblock btn-group-lg">
+           <div class="navblockCurrent btn-group-lg">
                 <button type="button" class="btn btn-default buttonclear" onclick="location.href = 'persons.html';"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> Personen</button>
             </div>
             <div class="navblock btn-group-lg">
@@ -28,35 +28,20 @@
             </div>
             <div class="navblock btn-group-lg buttonright ">
                     <button class="btn  btn-default btn-block buttonright buttonclear" onclick="location.href = 'login.html';" type="submit">Logout</button>
-            </div>
+        </div>
             
     </div>
     
     <div id="main">
         <div id="searchfield">
-            <div class="col-lg-6">
+                <div class="col-lg-6">
                     <div class="input-group">
-                            
-                         <div class="row">
-                            <div class="col-lg-12">
-                                <div class="input-group">
-                                <div class="input-group-btn">
-                                    <button type="button" id="dropdownbutton" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Person <span class="caret"></span></button>
-                                    <ul class="dropdown-menu">
-                                    <li><a href="#">Person</a></li>
-                                    <li><a href="#">Raum</a></li>
-                                    <li><a href="#">Transponder</a></li>
-                                    </ul>
-                                </div><!-- /btn-group -->
-                                <input type="text" id="searchInput" class="form-control" placeholder="Name">
-                                </div><!-- /input-group -->
-                            </div><!-- /.col-lg-6 -->
-                            </div><!-- /.row -->
-                        <span class="input-group-btn">
-                         <button class="btn btn-default" type="button" id="generalsearchbutton">Search</button>
-                        </span>
+                        <input type="text" id="searchInput" class="form-control" placeholder="Name">
+                            <span class="input-group-btn">
+                                <button id="searchbuttonPersons" class="btn btn-default" type="button">Search</button>
+                            </span>
                     </div><!-- /input-group -->
-            </div><!-- /.col-lg-6 -->
+                </div><!-- /.col-lg-6 -->
         </div>
 
         <!--person table-->
@@ -75,39 +60,6 @@
 				</table>
         </div>
 
-        <!--room table-->
-        <div id="resultfieldroom">
-                <table class="table table-striped" id="roomTable">
-						<thead>
-							<tr>
-								<th>Raum</th>
-								<th>Namename</th>
-								<th>(Button)</th>
-							</tr>
-					    </thead>
-					<tbody>
-					</tbody>
-				</table>
-        </div>
-
-        <!--transponder table-->
-        <div id="resultfieldtransponder">
-                <table class="table table-striped" id="roomTable">
-						<thead>
-							<tr>
-								<th>Transponder</th>
-								<th>Nummer</th>
-								<th>(Button)</th>
-							</tr>
-					    </thead>
-					<tbody>
-					</tbody>
-				</table>
-        </div>
-
-        
-
-
     </div>
     
     <div id="footer">
@@ -115,14 +67,9 @@
                 <center>
                         <span class="copylink">Copyright TH Köln</span>
                 </center> 
-        </div>
-
-      
+        </div>   
     </div>
 
 </div>
-
-
 </body>
-
 </html>
