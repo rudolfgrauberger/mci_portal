@@ -78,6 +78,19 @@ $(document).ready( function() {
         $('#searchbuttonroomdetail').click(function () {
     
         });
+
+        $('#loginbutton').click(function () {
+             
+            //login name rv = go to RV | login name = pf go to search 
+            
+            if(document.getElementById("inputName").value == "rv"){
+                window.location.href = 'rv-start.html';
+            }
+            if(document.getElementById("inputName").value == "pf"){
+                window.location.href = 'rv-start.html';
+            }
+
+        });
     });
     
 
