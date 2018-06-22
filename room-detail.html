@@ -42,7 +42,7 @@
                     <div class="input-group">
                         <input type="text" id="searchInput" class="form-control" placeholder="Name">
                             <span class="input-group-btn">
-                                <button id="searchbuttonPersons" class="btn btn-default" type="button">Suche</button>
+                                <button id="searchbuttonroomdetail" class="btn btn-default" type="button">Suche</button>
                             </span>
                     </div><!-- /input-group -->
                 </div><!-- /.col-lg-6 -->
@@ -50,7 +50,7 @@
 
         <!--person table-->
         <div id="resultfielddetail">
-                <table class="table table-striped" id="personTable">
+                <table class="table table-striped" id="roomdetailTable">
 						<thead>
 							<tr>
 								<th>Berechtigte Person</th>
@@ -62,6 +62,35 @@
 					</tbody>
 				</table>
         </div>
+
+        <!-- Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h3 class="modal-title" id="exampleModalLabel">Berechtigung eintragen</h3>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                        <div class="input-group-btn">
+                                <button type="button" id="dropdownbutton" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Transponder <span class="caret"></span></button>
+                                <ul class="dropdown-menu">
+                                <li><a href="#">Transponder T35</a></li>
+                                <li><a href="#">Transponder F06</a></li>
+                                <li><a href="#">Transponder H09</a></li>
+                                </ul>
+                            </div><!-- /btn-group -->
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Abbrechen</button>
+                  <button type="button" id="rvaddbuttonsave" class="btn btn-primary">Speichern</button>
+                </div>
+              </div>
+            </div>
+          </div>
+
 
     </div>
     

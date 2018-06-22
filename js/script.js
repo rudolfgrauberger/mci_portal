@@ -3,6 +3,18 @@ var searchfor = "Person";
 
 //search-by function
 $(document).ready( function() { 
+
+            // Example Data
+            $("#roomdetailTable").find('tbody')
+            .append($('<tr>')
+            .append($('<td>')
+            .text("Leopold Junkers"))
+            .append($('<td>')
+            .text("Prof. Dr. Bente"))
+            .append($('<button type="button" data-toggle="modal" data-target="#exampleModal" class="btn btn-success delete" id=DYNAMIC>')
+            .text("Ausleihen"))
+          );
+
     $('#generalsearchbutton').click(function () {
 
         if(searchfor == "Person"){
@@ -48,10 +60,23 @@ $(document).ready( function() {
 
         $('#searchbuttonRooms').click(function () {
             $("#resultfieldroom").show();
+             // Example Data
+             $("#roomTable").find('tbody')
+             .append($('<tr>')
+             .append($('<td>')
+             .text("3106"))
+             .append($('<td>')
+             .text(""))
+             .append($('<button type="button" onclick="location.href = \'room-detail.html\';" class="btn btn-success delete" id=change>')
+             .text("Details"))
+           );
         });
-
         $('#searchbuttonTransponder').click(function () {
             $("#resultfieldtransponder").show();
+        });
+
+        $('#searchbuttonroomdetail').click(function () {
+    
         });
     });
     
