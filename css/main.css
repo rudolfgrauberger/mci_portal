@@ -100,6 +100,15 @@ html,body {
     background-color: white;
 }
 
+#resultfieldrvstart{
+    height: 60%;
+    width: 60%;
+    margin-top: 1%;
+    margin-left: 20%;
+    box-sizing: border-box;
+    background-color: white;
+}
+
 #persondetail{
     height: 60%;
     width: 60%;
@@ -202,6 +211,18 @@ a:hover{
      margin-left: 1%;
 
   
+    -webkit-transform: translateY(-50%);
+    -ms-transform: translateY(-50%);
+    transform: translateY(-50%);
+  }
+
+  .verantwortlichspan{
+    display: inline-block;
+    color: black;
+    font-size: 130%;
+     position: relative;
+     margin-top: 3%;
+     margin-left: 1%;
     -webkit-transform: translateY(-50%);
     -ms-transform: translateY(-50%);
     transform: translateY(-50%);
