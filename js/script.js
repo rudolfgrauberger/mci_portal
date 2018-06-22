@@ -87,7 +87,7 @@ $(document).ready( function() {
                 window.location.href = 'rv-start.html';
             }
             if(document.getElementById("inputName").value == "pf"){
-                window.location.href = 'rv-start.html';
+                window.location.href = 'search.html';
             }
 
         });
