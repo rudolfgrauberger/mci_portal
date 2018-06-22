@@ -1,9 +1,10 @@
-/* ----------- Destop -----------*/
+
 
 html,body {
     margin:0;
     padding:0;
     height:100%; /* needed for container min-height */
+    overflow: hidden;
 }
 
 #content{
@@ -39,19 +40,34 @@ html,body {
 #loginfield{
     height: 30%;
     width: 20%;
-    margin-left: 40%;
     margin-top: 10%;
+    margin-left: 40%;
     box-sizing: border-box;
 }
 
+#searchfield{
+    height: 30%;
+    width: 80%;
+    margin-top: 10%;
+    margin-left: 30%;
+    box-sizing: border-box;
+}
 
 #footer{
-	background-color: 		#2F4F4F;
+	background-color: #2F4F4F;
 	width: 100%;
     height: 5%;
     box-sizing: border-box;
     float: left;
 }
+
+.navblock{
+    float: left;
+    background-color:lightgray;
+    width: 13%;
+    height: 100%;
+}
+
 a:hover{
     text-decoration: none;
     color: white !important;	
@@ -67,6 +83,34 @@ a:hover{
     -webkit-transform: translateY(-50%);
     -ms-transform: translateY(-50%);
     transform: translateY(-50%);
-    
+  }
+
+.buttonclear{
+    height: 100%;
+    border: none !important;
+    background: none !important;    
+}
+
+.buttonright{
+   float: right;
+   background-color:  #C0C0C0;
+}
+
+.copylink{
+    display: inline;
+    color: white;
+    font-size: 130%;
+     position: relative;
+  
+    -webkit-transform: translateY(-50%);
+    -ms-transform: translateY(-50%);
+    transform: translateY(-50%);
+  }
+
+  .fakespace{
+      height: 50%;
+      width: 100%;
+      min-height: 5%;
+      margin-top: 33%;
   }
 
