@@ -1,0 +1,74 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+<title>Prototype</title>
+        <script type="text/javascript" src="js/jquery-3.3.1.min.js"></script>
+        <script type="text/javascript" src="js/script.js"></script>
+        <script type="text/javascript" src="js/bootstrap.js"></script>
+        <link rel="stylesheet" type="text/css" href="css/main.css">
+        <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+</head>
+        
+
+<body>
+    <div id="content">
+      <div id="header">
+            <div class="navblock btn-group-lg">
+                    <button type="button" class="btn btn-default buttonclear" onclick="location.href = 'search.html';"><span class="glyphicon glyphicon-search" aria-hidden="true"></span> Suche</button>
+                </div>
+           <div class="navblock btn-group-lg">
+                <button type="button" class="btn btn-default buttonclear" onclick="location.href = 'persons.html';"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> Personen</button>
+            </div>
+            <div class="navblockCurrent btn-group-lg">
+                    <button type="button" class="btn btn-default buttonclear" onclick="location.href = 'rooms.html';"><span class="glyphicon glyphicon-credit-card" aria-hidden="true"> </span> Räume</button>
+            </div>
+            <div class="navblock btn-group-lg">
+                    <button type="button" class="btn btn-default buttonclear" onclick="location.href = 'transponders.html';"><span class="glyphicon glyphicon-link" aria-hidden="true"></span> Transponder</button>
+            </div>
+            <div class="navblock btn-group-lg buttonright ">
+                    <button class="btn  btn-default btn-block buttonright buttonclear" onclick="location.href = 'login.html';" type="submit">Logout</button>
+        </div>
+            
+    </div>
+    
+    <div id="main">
+        <div id="searchfield">
+                <div class="col-lg-6">
+                    <div class="input-group">
+                        <input type="text" id="searchInput" class="form-control" placeholder="Raumnummer">
+                            <span class="input-group-btn">
+                                <button id="searchbuttonRooms" class="btn btn-default" type="button">Search</button>
+                            </span>
+                    </div><!-- /input-group -->
+                </div><!-- /.col-lg-6 -->
+        </div>
+
+        <!--room table-->
+        <div id="resultfieldroom">
+                <table class="table table-striped" id="roomTable">
+						<thead>
+							<tr>
+								<th>Raum</th>
+								<th>Namename</th>
+								<th>(Button)</th>
+							</tr>
+					    </thead>
+					<tbody>
+					</tbody>
+				</table>
+        </div>
+
+    </div>
+    
+    <div id="footer">
+        <div id="fakespace">
+                <center>
+                        <span class="copylink">Copyright TH Köln</span>
+                </center> 
+        </div>   
+    </div>
+
+</div>
+</body>
+</html>

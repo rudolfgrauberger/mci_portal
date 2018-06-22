@@ -25,12 +25,17 @@ $(document).ready( function() {
             $("#resultfieldtransponder").show();
         }      
         });
+  
 
         $('#searchbuttonPersons').click(function () {
-           $("#resultfieldperson").show();
-         });
+            $("#resultfieldperson").show();
+        });
 
+        $('#searchbuttonRooms').click(function () {
+            $("#resultfieldroom").show();
+        });
     });
+    
 
 
     $(function(){
