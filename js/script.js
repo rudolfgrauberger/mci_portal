@@ -34,6 +34,10 @@ $(document).ready( function() {
         $('#searchbuttonRooms').click(function () {
             $("#resultfieldroom").show();
         });
+
+        $('#searchbuttonTransponder').click(function () {
+            $("#resultfieldtransponder").show();
+        });
     });
     
 
