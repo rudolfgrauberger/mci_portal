@@ -19,23 +19,41 @@ $(document).ready( function() {
         }
     });
 
-    var session = SessionService.getCurrentSession();
-    var currentUser = session.user;
-    var rooms = RoomService.getAllAssignedRoomsForUser(currentUser);
-
-    var table = document.getElementById("rvroomTable");
-
-    for (i = 0; i < rooms.length; i++) {
-        var row = table.insertRow(2);
-        var cell1 = row.insertCell(0);
-        var cell2 = row.insertCell(1);
-        var cell3 = row.insertCell(2);
-        cell1.innerHTML = rooms[i].number;
-        cell2.innerHTML = rooms[i].name;
-  }
+    refreshOutputTable();
 
 
   $("#searchbuttonrvstart").click(function() {
-      alert("Button click");
+      refreshOutputTable();
   });
+
+  function getRoomsToDisplay() {
+      var searchValue = document.getElementById("searchInput").value;
+
+      return RoomService.filterAssignedRoomsForUser(SessionService.getCurrentSession().user, searchValue);
+    }
+
+  function cleanOutputTable() {
+    var table = document.getElementById('rvroomTable');
+    var rowCount = table.rows.length;
+
+    for (var index = 2; index < rowCount; ++index) {
+        table.deleteRow(2);
+    }
+  }
+
+  function refreshOutputTable() {
+      cleanOutputTable();
+      var rooms = getRoomsToDisplay();
+
+      var table = document.getElementById("rvroomTable");
+
+      for (i = 0; i < rooms.length; i++) {
+          var row = table.insertRow(2);
+          var cell1 = row.insertCell(0);
+          var cell2 = row.insertCell(1);
+          var cell3 = row.insertCell(2);
+          cell1.innerHTML = rooms[i].number;
+          cell2.innerHTML = rooms[i].name;
+    }
+  }
 });
