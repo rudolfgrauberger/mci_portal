@@ -46,4 +46,16 @@ class UserRepository {
     static save(users) {
         sessionStorage.setItem(USER_TABLE, JSON.stringify(users));
     }
+
+    static findByUserName(username) {
+        var users = this.getAll();
+
+        for (var index = 0; index <  users.length; ++index) {
+            if (users[index].username == username) {
+                return users[index];
+            }
+        }
+
+        return null;
+    }
 }
