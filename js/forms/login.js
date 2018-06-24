@@ -1,4 +1,3 @@
-//search-by function
 $(document).ready( function() {
 
     if (SessionService.getCurrentSession() != null) {

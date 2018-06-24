@@ -5,7 +5,10 @@
 <title>Prototype</title>
         <script type="text/javascript" src="js/jquery-3.3.1.min.js"></script>
         <script type="text/javascript" src="js/script.js"></script>
+        <script type="text/javascript" src="js/forms/global.js"></script>
         <script type="text/javascript" src="js/bootstrap.js"></script>
+        <script type="text/javascript" src="js/services/SessionService.js"></script>
+        <script type="text/javascript" src="js/repositories/SessionRepository.js"></script>
         <link rel="stylesheet" type="text/css" href="css/main.css">
         <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
         </head>
@@ -27,7 +30,7 @@
                     <button type="button" class="btn btn-default buttonclear" onclick="location.href = 'transponders.html';"><span class="glyphicon glyphicon-link" aria-hidden="true"></span> Transponder</button>
             </div>
             <div class="navblock btn-group-lg buttonright ">
-                    <button class="btn  btn-default btn-block buttonright buttonclear" onclick="location.href = 'login.html';" type="submit">Ausloggen</button>
+                    <button class="btn  btn-default btn-block buttonright buttonclear" id="logoutButton" type="submit">Ausloggen</button>
             </div>
             
     </div>
