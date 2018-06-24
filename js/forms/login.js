@@ -1,6 +1,13 @@
 //search-by function
 $(document).ready( function() {
 
+    if (SessionService.getCurrentSession() != null) {
+        var session = SessionService.getCurrentSession();
+        var userService = new UserService();
+        window.location.href = userService.getSuccessLoginRedirectPage(session.user);
+        return;
+    }
+
     $("form").submit(function(e) {
         e.preventDefault();
         var userService = new UserService();
@@ -11,6 +18,8 @@ $(document).ready( function() {
             return;
         }
 
+        var session = SessionFactory.create(currentUser);
+        SessionService.setCurrentSession(session);
         window.location.href = userService.getSuccessLoginRedirectPage(currentUser);
     });
 
