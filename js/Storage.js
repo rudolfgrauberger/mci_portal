@@ -17,8 +17,8 @@ function initDatabase() {
       if (sessionStorage.getItem("isInit") == null) {
 
          // Benutzer
-         var userImmanuelPforte = User.getGateKeeperUser("Immanuel", "Pforte", "pf", "");
-         var userManfredMustermi = User.getRoomManagerUser("Manfred", "Mustermi", "rv", "");
+         var userImmanuelPforte = User.getGateKeeperUser("Immanuel", "Pforte", "pf", "pf");
+         var userManfredMustermi = User.getRoomManagerUser("Manfred", "Mustermi", "rv", "rv");
 
          // Ausleihende
          var ausleihendeExternHaraldHardWorker = Person.getExternalPerson("Harald", "Hardworker", "HH Dienstleistungen");

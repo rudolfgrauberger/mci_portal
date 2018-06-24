@@ -47,11 +47,11 @@ class UserRepository {
         sessionStorage.setItem(USER_TABLE, JSON.stringify(users));
     }
 
-    static findByUserName(username) {
+    static findByUsernameAndPassword(username, password) {
         var users = this.getAll();
 
-        for (var index = 0; index <  users.length; ++index) {
-            if (users[index].username == username) {
+        for (var index = 0; index < users.length; ++index) {
+            if (users[index].username == username && users[index].pw == password) {
                 return users[index];
             }
         }
