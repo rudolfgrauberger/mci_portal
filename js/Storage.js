@@ -1,69 +1,86 @@
-function SaveItem() {
-			
-	var matr = document.forms.StudendList.matr.value;
-	var name = document.forms.StudendList.name.value;
-	var datebis = document.forms.StudendList.datebis.value;
-	localStorage.setItem(matr, name);
-	//localStorage.setItem(datebis);
-	doShowAll();
-	
+function guid() {
+   return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+      var r = Math.random()*16|0, v = c == 'x' ? r : (r&0x3|0x8);
+      return v.toString(16);
+   });
 }
 
-function ModifyItem() {
-	var name = document.forms.StudendList.name.value;
-	document.forms.StudendList.data.value = localStorage.getItem(name);
-	doShowAll();
-}
+$(document).ready( function() { 
+   initDatabase();
+});
 
-function RemoveItem() {
-	var name = document.forms.StudendList.name.value;
-	document.forms.StudendList.name.value = localStorage.removeItem(name);
-	doShowAll();
-}
 
-function ClearAll() {
-	localStorage.clear();
-	doShowAll();
-}
+function initDatabase() {
 
-// dynamically draw the table
+   if(typeof(Storage) !== "undefined") {
 
-function doShowAll() {
-	if (CheckBrowser()) {
-		var key = "";
-		var list = "<tr><th>Matrikelnummer</th><th>Name</th><th>Gültig bis</th></tr>\n";
-		var i = 0;
-		for (i = 0; i <= localStorage.length - 1; i++) {
-			key = localStorage.key(i);
-			
-			list += "<tr><td>" + key + "</td>\n<td>" 
-					+ localStorage.getItem(key) + localStorage.getItem(key) + "</td></tr>\n";
-		}
-		if (list == "<tr><th>Name</th><th>Value</th></tr>\n") {
-			list += "<tr><td><i>empty</i></td>\n<td><i>empty</i></td></tr>\n";
-		}
-		document.getElementById('list').innerHTML = list;
-	} else {
-		alert('Cannot student list as your browser do not support local storage');
-	}
-}
+      if (sessionStorage.getItem("isInit") == null) {
 
-/*
- * Checking the browser compatibility.
- * 
- * Alternately can use Modernizr scripts- JavaScript library that helps us to
- * detect the browser support for HTML5 and CSS features Example - <script
- * type="text/javascript" src="modernizr.min.js"></script>
- * 
- * if (Modernizr.localstorage) { //use localStorage object to store data } else {
- * alert('Cannot store user preferences as your browser do not support local
- * storage'); }
- */
-function CheckBrowser() {
-	if ('localStorage' in window && window['localStorage'] !== null) {
-		// we can use localStorage object to store data
-		return true;
-	} else {
-			return false;
-	}
+         // Benutzer
+         var userImmanuelPforte = User.getGateKeeperUser("Immanuel", "Pforte", "pf", "");
+         var userManfredMustermi = User.getRoomManagerUser("Manfred", "Mustermi", "rv", "");
+
+         // Ausleihende
+         var ausleihendeExternHaraldHardWorker = Person.getExternalPerson("Harald", "Hardworker", "HH Dienstleistungen");
+         var studentSvenMueller = Person.getStudent("Sven", "Müller", "11145031");
+         var studentTimoMueller = Person.getStudent("Timo", "Müller", "11155701");
+         var studentStefanieStudia = Person.getStudent("Stefanie", "Studia", "11111111");
+
+         // Räume
+         var usabilityStudio = new Room("0.503", "Usability Studio");
+         var dreieinsnullsechs = new Room("3.106", "");
+         var kienbaumSaal = new Room("0.402", "Kienbaum Saal");
+         var zweidreinullzwei = new Room("2.302", "");
+         var einsnulleinisdrei = new Room("1.013", "");
+         var dreizweizweizwei = new Room("3.222", "");
+         
+         // Transponder
+         var t35 = new Transponder("T35");
+         var f06 = new Transponder("F06");
+         var h09 = new Transponder("H09");
+
+         var perDreiEinsNullSechs1 = PermissionFactory.create(dreieinsnullsechs, studentSvenMueller, new Date("2020-01-01"));
+         var perDreiEinsNullSechs2 = PermissionFactory.create(dreieinsnullsechs, studentTimoMueller, null);
+         var perStefanie1 = PermissionFactory.create(zweidreinullzwei, studentStefanieStudia, null);
+         var perStefanie2 = PermissionFactory.create(einsnulleinisdrei, studentStefanieStudia, null);
+         var perStefanie3 = PermissionFactory.create(dreizweizweizwei, studentStefanieStudia, null);
+
+         // Einfache 1:n-/n:1- und n:m-Verknüpfungen müssen vor dem Speichern den Objekten zugewiesen werden,
+         // damit beim Speichern diese direkt in den Objekten mitgespeichert werden.
+         RoomManagerRelationManager.addLinkBetweenRoomManagerAndRoom(userManfredMustermi, usabilityStudio);
+         RoomManagerRelationManager.addLinkBetweenRoomManagerAndRoom(userManfredMustermi, dreieinsnullsechs);
+         RoomManagerRelationManager.addLinkBetweenRoomManagerAndRoom(userManfredMustermi, kienbaumSaal);
+
+         TransponderRelationManager.addLinkBetweenTransponderAndRoom(t35, zweidreinullzwei);
+         TransponderRelationManager.addLinkBetweenTransponderAndRoom(f06, zweidreinullzwei);
+         TransponderRelationManager.addLinkBetweenTransponderAndRoom(h09, zweidreinullzwei);
+
+         PermissionRepository.add(perDreiEinsNullSechs1);
+         PermissionRepository.add(perDreiEinsNullSechs2);
+         PermissionRepository.add(perStefanie1);
+         PermissionRepository.add(perStefanie2);
+         PermissionRepository.add(perStefanie3);
+         
+         // Entities
+         UserRepository.add(userImmanuelPforte);
+         UserRepository.add(userManfredMustermi);
+
+         RoomRepository.add(usabilityStudio);
+         RoomRepository.add(dreieinsnullsechs);
+         RoomRepository.add(kienbaumSaal);
+
+         PersonRepository.add(studentStefanieStudia);
+         PersonRepository.add(studentSvenMueller);
+         PersonRepository.add(studentTimoMueller);
+         PersonRepository.add(ausleihendeExternHaraldHardWorker);
+
+         TransponderRepository.add(t35);
+         TransponderRepository.add(f06);
+         TransponderRepository.add(h09);
+
+         sessionStorage.setItem("isInit", "true");
+      }
+   } else {
+       alert("Sorry, your browser does not support web storage...");
+    }
 }
