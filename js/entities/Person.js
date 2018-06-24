@@ -1,7 +1,7 @@
 class Person {
 
     constructor (firstname, lastname, matrikelno, company) {
-        this.id = guid();
+        this.id = newGuid();
         this.firstname = firstname;
         this.lastname = lastname;
         this.matrikelno = matrikelno;
@@ -13,7 +13,7 @@ class Person {
         this.permissions.push(roomPermission.id);
     }
 
-    removePermission() {
+    removePermission(room) {
         var index = this.permissions.indexOf(room.id);
 
         if (index != -1) {

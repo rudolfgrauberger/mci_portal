@@ -22,11 +22,23 @@ class RoomRepository {
         this.save(rooms);
     }
 
+    static update(room) {
+        var rooms = this.getAll();
+
+        var index = this.getIndexByRoomId(room.id);
+
+        if (index != -1) {
+            rooms[index] = room;
+        }
+
+        this.save(rooms);
+    }
+
     static getIndexByRoomId(roomId) {
         var rooms = this.getAll();
 
         for (var i = 0; i < rooms.length; ++i) {
-            if (rooms[index].room == roomId)
+            if (rooms[i].id == roomId)
                 return i;
         }
 
@@ -36,11 +48,15 @@ class RoomRepository {
     static getAll() {
         var rooms = JSON.parse(sessionStorage.getItem(ROOM_TABLE));
 
-        if (rooms == null) {
-            rooms = [];
+        var r = [];
+
+        if (rooms != null) {
+            for (var i = 0; i < rooms.length; ++i) {
+                r.push(Object.assign(new Room, rooms[i]));
+            }
         }
         
-        return rooms;
+        return r;
     }
 
     static save(rooms) {

@@ -1,6 +1,6 @@
 class User {
     constructor(firstname, lastname, username, pw, role) {
-        this.id = guid();
+        this.id = newGuid();
         this.firstname =  firstname,
         this.lastname =  lastname,
         this.username =  username,

@@ -26,7 +26,7 @@ class PermissionRepository {
         var permissions = this.getAll();
 
         for (var i = 0; i < permissions.length; ++i) {
-            if (permissions[index].id == permissionId)
+            if (permissions[i].id == permissionId)
             return i;
         }
 
@@ -45,6 +45,16 @@ class PermissionRepository {
 
     static save(permissions) {
         sessionStorage.setItem(PERMISSION_TABLE, JSON.stringify(permissions));
+    }
+
+    static findById(permissionId) {
+        var permissionIndex = this.getIndexById(permissionId);
+
+        if (permissionIndex == -1) {
+            return null;
+        }
+
+        return this.getAll()[permissionIndex];
     }
 
     static getPermissionsByRoomId(roomId) {

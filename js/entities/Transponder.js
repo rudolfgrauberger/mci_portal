@@ -1,13 +1,15 @@
-function Transponder (number) {
-    this.id = guid();
-    this.no = number;
-    this.rooms = [];
+class Transponder {
+    constructor(number) {
+        this.id = newGuid();
+        this.no = number;
+        this.rooms = [];
+    }
 
-    this.addRoom = function (newRoom) {
+    addRoom(newRoom) {
         this.rooms.push(newRoom.id);
     };
 
-    this.removeRoom = function(rRoom) {
+    removeRoom(rRoom) {
         var index = this.rooms.indexOf(rRoom.id);
 
         if (index != -1) {

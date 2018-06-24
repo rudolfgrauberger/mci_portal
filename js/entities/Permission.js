@@ -1,7 +1,7 @@
 class Permission {
 
     constructor (person, room, expires) {
-        this.id = guid();
+        this.id = newGuid();
         this.person = person.id;
         this.room = room.id;
         this.expires = expires;

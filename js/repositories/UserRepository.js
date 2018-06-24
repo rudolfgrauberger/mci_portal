@@ -36,11 +36,15 @@ class UserRepository {
     static getAll() {
         var users = JSON.parse(sessionStorage.getItem(USER_TABLE));
 
-        if (users == null) {
-            users = [];
+        var u = [];
+
+        if (users != null) {
+            for (var i = 0; i < users.length; ++i) {
+                t.push(Object.assign(new User, users[i]));
+            }
         }
         
-        return users;
+        return u;
     }
 
     static save(users) {

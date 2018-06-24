@@ -7,7 +7,7 @@ class PermissionService {
         var selectedPermissions = [];
         for (var i = 0; i < permissions.length; ++i) {
             var person = PersonService.getPersonById(permissions[i].person);
-            
+
             if (filterOn == false) {
                 selectedPermissions.push(permissions[i]);
                 continue;
@@ -25,5 +25,18 @@ class PermissionService {
         }
 
         return selectedPermissions;
+    }
+
+    static removePermissionById(permissionId) {
+        var permission = PermissionRepository.findById(permissionId);
+        var person = PersonRepository.findById(permission.person);
+        var room = RoomRepository.findById(permission.room);
+
+        person.removePermission(permission);
+        room.removePermission(permission);
+
+        PersonRepository.update(person);
+        RoomRepository.update(room);
+        PermissionRepository.remove(permission);
     }
 }

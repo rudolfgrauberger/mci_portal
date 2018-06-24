@@ -1,23 +1,25 @@
-function Room (number, name) {
-    this.id = guid();
-    this.number = number;
-    this.name = name;
-    this.roomManager = "";
-    this.transponders = [];
-    this.permissions = [];
+class Room {
+    constructor(number, name) {
+        this.id = newGuid();
+        this.number = number;
+        this.name = name;
+        this.roomManager = "";
+        this.transponders = [];
+        this.permissions = [];
+    }
 
-    this.setRoomManager = function(roomManager) {
+    setRoomManager(roomManager) {
         this.roomManager = roomManager.id;
     }
-    this.getRoomManager = function() {
+    getRoomManager() {
         return this.roomManager.id;
     }
 
-    this.addTransponder = function(transponder) {
+    addTransponder(transponder) {
         this.transponders.push(transponder.id);
     }
 
-    this.removeTransponder = function(transponder) {
+    removeTransponder(transponder) {
         var index = this.transponders.indexOf(transponder.id);
 
         if (index != -1) {
@@ -25,11 +27,11 @@ function Room (number, name) {
         }
     }
 
-    this.addPermission = function(personPermission) {
+    addPermission(personPermission) {
         this.permissions.push(personPermission.id);
     }
 
-    this.removePermission = function(personPermission) {
+    removePermission(personPermission) {
         var index = this.permissions.indexOf(personPermission.id);
         
         if (index != -1) {

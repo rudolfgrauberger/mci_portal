@@ -73,8 +73,9 @@ $(document).ready( function() {
     }
   }
 
-  function remove_permission(guid) {
-      alert("Permission-ID: " + guid);
+  function remove_permission(newGuid) {
+      PermissionService.removePermissionById(newGuid);
+      refreshOutputTable();
   }
 
 });

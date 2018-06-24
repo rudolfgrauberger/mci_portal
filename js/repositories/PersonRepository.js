@@ -22,8 +22,20 @@ class PersonRepository {
         this.save(peoples);
     }
 
+    static update(person) {
+        var persons = this.getAll();
+
+        var index = this.getIndexByPersonId(person.id);
+
+        if (index != -1) {
+            persons[index] = person;
+        }
+
+        this.save(persons);
+    }
+
     static getIndexByPersonId(personID) {
-        var peoples = this.getAll();
+        var persons = this.getAll();
 
         for (var i = 0; i < persons.length; ++i) {
             if (persons[i].id == personID)
@@ -36,11 +48,15 @@ class PersonRepository {
     static getAll() {
         var persons = JSON.parse(sessionStorage.getItem(PERSON_TABLE));
 
-        if (persons == null) {
-            persons = [];
+        var p = [];
+
+        if (persons != null) {
+            for (var i = 0; i < persons.length; ++i) {
+                p.push(Object.assign(new Person, persons[i]));
+            }
         }
 
-        return persons;
+        return p;
     }
 
     static save(persons) {

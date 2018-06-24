@@ -36,11 +36,15 @@ class TransponderRepository {
     static getAll() {
         var transponders = JSON.parse(sessionStorage.getItem(TRANSPONDER_TABLE));
 
-        if (transponders == null) {
-            transponders = [];
+        var t = [];
+
+        if (transponders != null) {
+            for (var i = 0; i < transponders.length; ++i) {
+                t.push(Object.assign(new Transponder, transponders[i]));
+            }
         }
-        
-        return transponders;
+
+        return t;
     }
 
     static save(transponders) {
