@@ -5,10 +5,19 @@
 <title>Prototype</title>
         <script type="text/javascript" src="js/jquery-3.3.1.min.js"></script>
         <script type="text/javascript" src="js/script.js"></script>
+        <script type="text/javascript" src="js/forms/rv-room-detail.js"></script>
         <script type="text/javascript" src="js/forms/global.js"></script>
         <script type="text/javascript" src="js/bootstrap.js"></script>
+        <script type="text/javascript" src="js/entities/Room.js"></script>
+        <script type="text/javascript" src="js/entities/Permission.js"></script>
         <script type="text/javascript" src="js/services/SessionService.js"></script>
+        <script type="text/javascript" src="js/services/RoomService.js"></script>
+        <script type="text/javascript" src="js/services/PersonService.js"></script>
+        <script type="text/javascript" src="js/services/PermissionService.js"></script>
         <script type="text/javascript" src="js/repositories/SessionRepository.js"></script>
+        <script type="text/javascript" src="js/repositories/PersonRepository.js"></script>
+        <script type="text/javascript" src="js/repositories/RoomRepository.js"></script>
+        <script type="text/javascript" src="js/repositories/PermissionRepository.js"></script>
         <link rel="stylesheet" type="text/css" href="css/main.css">
         <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
 </head>
@@ -27,13 +36,13 @@
     
     <div id="main">
         <div id="detailNameBlock">
-                <span class="bigspan">3.106</span><br>
-                <span class="smallspan"></span>
+            <span class="bigspan" id="roomDetailNumber"></span><br>
+            <span class="smallspan" id="roomDetailName"></span>
         </div>
         <div id="searchfielddetail">
                 <div class="col-lg-6">
                     <div class="input-group">
-                        <input type="text" id="searchInput" class="form-control" placeholder="Name">
+                        <input type="text" id="searchInput" class="form-control" placeholder="Name" autofocus>
                             <span class="input-group-btn">
                                 <button id="searchbuttonrvroom" class="btn btn-default" type="button">Suche</button>
                             </span>
@@ -44,18 +53,18 @@
         <!--person table-->
         <div id="resultfielddetail">
                 <table class="table table-striped" id="rvpersonTable">
-						<thead>
-                                <tr><th><button id="addbuttonrvroom" class="btn btn-success" data-toggle="modal" data-target="#exampleModal"  type="button">Hinzufügen</button></th></tr>
-							<tr>
-                                <th>Matrikelnummer</th>
-                                <th>Name</th>
-                                <th>Gültig bis</th>
-								<th></th>
-							</tr>
-					    </thead>
-					<tbody>
-					</tbody>
-				</table>
+                    <thead>
+                        <tr><th><button id="addbuttonrvroom" class="btn btn-success" data-toggle="modal" data-target="#exampleModal"  type="button">Hinzufügen</button></th></tr>
+                        <tr>
+                            <th>Matrikelnummer</th>
+                            <th>Name</th>
+                            <th>Gültig bis</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table>
         </div>
     <!-- Modal -->
     <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">

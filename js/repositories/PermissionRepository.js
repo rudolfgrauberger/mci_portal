@@ -46,4 +46,17 @@ class PermissionRepository {
     static save(permissions) {
         sessionStorage.setItem(PERMISSION_TABLE, JSON.stringify(permissions));
     }
+
+    static getPermissionsByRoomId(roomId) {
+        var permissions = this.getAll();
+
+        var perm = []
+        for (var i = 0; i < permissions.length; ++i) {
+            if (permissions[i].room == roomId) {
+                perm.push(permissions[i]);
+            }
+        }
+
+        return perm;
+    }
 }

@@ -1,4 +1,3 @@
-//search-by function
 $(document).ready( function() {
 
     if (SessionService.getCurrentSession() == null) {
@@ -48,12 +47,25 @@ $(document).ready( function() {
       var table = document.getElementById("rvroomTable");
 
       for (i = 0; i < rooms.length; i++) {
+          var id = rooms[i].id;
           var row = table.insertRow(2);
           var cell1 = row.insertCell(0);
           var cell2 = row.insertCell(1);
           var cell3 = row.insertCell(2);
           cell1.innerHTML = rooms[i].number;
           cell2.innerHTML = rooms[i].name;
+          var x = document.createElement("INPUT");
+          x.setAttribute("type", "button");
+          x.setAttribute("value", "Details");
+          x.setAttribute("class", "btn btn-success");
+          x.setAttribute("id", "details_" + id);
+          x.onclick = (function(interne_id) {room_details(interne_id) }).bind(this, id);
+          cell3.appendChild(x);
     }
   }
+
+  function room_details(guid) {
+      window.location.href = 'rv-room-detail.html?roomid=' + guid;
+  }
+
 });

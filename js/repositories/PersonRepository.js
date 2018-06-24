@@ -47,4 +47,16 @@ class PersonRepository {
         sessionStorage.setItem(PERSON_TABLE, JSON.stringify(persons));
     }
 
+    static findById(personId) {
+        var persons = this.getAll();
+
+        for (var i = 0; i < persons.length; ++i) {
+            if (persons[i].id == personId) {
+                return persons[i];
+            }
+        }
+
+        return null;
+    }
+
 }
