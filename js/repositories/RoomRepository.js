@@ -46,4 +46,16 @@ class RoomRepository {
     static save(rooms) {
         sessionStorage.setItem(ROOM_TABLE, JSON.stringify(rooms));
     }
+
+    static findById(roomId) {
+        var rooms = this.getAll();
+
+        for (var i = 0; i < rooms.length; ++i) {
+            if (rooms[i].id == roomId) {
+                return rooms[i];
+            }
+        }
+
+        return null;
+    }
 }

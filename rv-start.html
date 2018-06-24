@@ -1,13 +1,22 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
 
 <head>
-<title>Prototype</title>
-        <script type="text/javascript" src="js/jquery-3.3.1.min.js"></script>
-        <script type="text/javascript" src="js/script.js"></script>
-        <script type="text/javascript" src="js/bootstrap.js"></script>
-        <link rel="stylesheet" type="text/css" href="css/main.css">
-        <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+   <title>Prototype</title>
+   <meta charset="UTF-8">
+   <script type="text/javascript" src="js/jquery-3.3.1.min.js"></script>
+   <script type="text/javascript" src="js/script.js"></script>
+   <script type="text/javascript" src="js/entities/User.js"></script>
+   <script type="text/javascript" src="js/entities/Session.js"></script>
+   <script type="text/javascript" src="js/entities/Room.js"></script>
+   <script type="text/javascript" src="js/repositories/SessionRepository.js"></script>
+   <script type="text/javascript" src="js/repositories/RoomRepository.js"></script>
+   <script type="text/javascript" src="js/services/SessionService.js"></script>
+   <script type="text/javascript" src="js/services/RoomService.js"></script>
+   <script type="text/javascript" src="js/forms/rv-start.js"></script>
+   <script type="text/javascript" src="js/bootstrap.js"></script>
+   <link rel="stylesheet" type="text/css" href="css/main.css">
+   <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
 </head>
         
 
@@ -26,7 +35,7 @@
         <div id="searchfield">
                 <div class="col-lg-6">
                     <div class="input-group">
-                        <input type="text" id="searchInput" class="form-control" placeholder="Raumnummer">
+                        <input type="text" id="searchInput" class="form-control" placeholder="Raumnummer" autofocus />
                             <span class="input-group-btn">
                                 <button id="searchbuttonrvstart" class="btn btn-default" type="button">Suche</button>
                             </span>
@@ -37,17 +46,17 @@
         <!--room table-->
         <div id="resultfieldrvstart">
                 <table class="table table-striped" id="rvroomTable">
-						<thead>
-                                <tr><th><span class="verantwortlichspan">Verantwortlich für </span></th></tr>
-							<tr>
-								<th>Raum</th>
-								<th>Namename</th>
-								<th></th><!--Button-->
-							</tr>
-					    </thead>
-					<tbody>
-					</tbody>
-				</table>
+                        <thead>
+                            tr><th><span class="verantwortlichspan">Verantwortlich für </span></th></tr>
+                            <tr>
+                                <th>Raum</th>
+                                <th>Raumname</th>
+                                <th></th><!--Button-->
+                            </tr>
+                        </thead>
+                    <tbody>
+                    </tbody>
+                </table>
         </div>
 
     </div>
