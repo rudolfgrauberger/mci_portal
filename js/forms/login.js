@@ -19,7 +19,7 @@ $(document).ready( function() {
 
         var session = SessionFactory.create(currentUser);
         SessionService.setCurrentSession(session);
-        window.location.href = userService.getSuccessLoginRedirectPage(currentUser);
+        window.location.assign(userService.getSuccessLoginRedirectPage(currentUser));
     });
 
 });
