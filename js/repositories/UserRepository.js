@@ -40,7 +40,7 @@ class UserRepository {
 
         if (users != null) {
             for (var i = 0; i < users.length; ++i) {
-                t.push(Object.assign(new User, users[i]));
+                u.push(Object.assign(new User, users[i]));
             }
         }
         
