@@ -61,6 +61,9 @@ function initDatabase() {
          RoomRepository.add(usabilityStudio);
          RoomRepository.add(dreieinsnullsechs);
          RoomRepository.add(kienbaumSaal);
+         RoomRepository.add(zweidreinullzwei);
+         RoomRepository.add(einsnulleinisdrei);
+         RoomRepository.add(dreizweizweizwei);
 
          PersonRepository.add(studentStefanieStudia);
          PersonRepository.add(studentSvenMueller);

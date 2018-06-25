@@ -14,25 +14,32 @@ $(document).ready( function() {
         // Number 13 is the "Enter" key on the keyboard
         if (event.keyCode === 13) {
             // Trigger the button element with a click
-            document.getElementById("searchbuttonPersons").click();
+            document.getElementById("searchbuttonRoom").click();
         }
     });
 
+    let searchParams = new URLSearchParams(window.location.search);
+
+    var currentPerson = PersonService.getPersonById(searchParams.get("personid"));
+
+    $("#personDetailName").text(currentPerson.firstname + " " + currentPerson.lastname);
+    $("#personDetailNumber").text(currentPerson.matrikelno ? currentPerson.matrikelno : currentPerson.company);
 
     refreshOutputTable();
 
-    $('#searchbuttonPersons').click(function () {
+    $('#searchbuttonRoom').click(function () {
         refreshOutputTable();
     });
 
-    function getPersonsToDisplay() {
+    function getPermissionToDisplay() {
         var searchValue = document.getElementById("searchInput").value;
   
-        return PersonService.filterPersonsBySearchString(searchValue);
+        return PermissionService.filterPermissionsForPerson(currentPerson, searchValue);
     }
 
+
     function cleanOutputTable() {
-        var table = document.getElementById('personTable');
+        var table = document.getElementById('permissionTable');
         var rowCount = table.rows.length;
     
         for (var index = 1; index < rowCount; ++index) {
@@ -43,29 +50,23 @@ $(document).ready( function() {
     function refreshOutputTable() {
         $("#resultfieldperson").show();
         cleanOutputTable();
-        var persons = getPersonsToDisplay();
+        var permissions = getPermissionToDisplay();
   
-        var table = document.getElementById("personTable");
+        var table = document.getElementById("permissionTable");
   
-        for (i = 0; i < persons.length; i++) {
-            var id = persons[i].id;
+        for (i = 0; i < permissions.length; i++) {
+            var room = RoomService.getRoomById(permissions[i].room);
+            var roomManager =  UserService.getUserById(room.getRoomManager())
             var row = table.insertRow(1);
             var cell1 = row.insertCell(0);
             var cell2 = row.insertCell(1);
             var cell3 = row.insertCell(2);
-            cell1.innerHTML = persons[i].matrikelno ? persons[i].matrikelno : persons[i].company;
-            cell2.innerHTML = persons[i].firstname + " " + persons[i].lastname;
-            var x = document.createElement("INPUT");
-            x.setAttribute("type", "button");
-            x.setAttribute("value", "Details");
-            x.setAttribute("class", "btn btn-success");
-            x.setAttribute("id", "details_" + id);
-            x.onclick = (function(interne_id) {person_details(interne_id) }).bind(this, id);
-            cell3.appendChild(x);
+            cell1.innerHTML = room.number;
+            cell2.innerHTML = room.name;
+
+            if (roomManager) {
+                cell3.innerHTML = roomManager.firstname + " " + roomManager.lastname;
+            }
         }
-    }
-    
-    function person_details(guid) {
-        window.location.href = 'person-detail.html?personid=' + guid;
     }
 });

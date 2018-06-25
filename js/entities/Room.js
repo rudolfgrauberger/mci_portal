@@ -12,7 +12,7 @@ class Room {
         this.roomManager = roomManager.id;
     }
     getRoomManager() {
-        return this.roomManager.id;
+        return this.roomManager;
     }
 
     addTransponder(transponder) {

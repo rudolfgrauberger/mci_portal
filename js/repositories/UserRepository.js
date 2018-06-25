@@ -62,4 +62,16 @@ class UserRepository {
 
         return null;
     }
+
+    static findById(userId) {
+        var users = this.getAll();
+
+        for (var i = 0; i < users.length; ++i) {
+            if (users[i].id == userId) {
+                return users[i];
+            }
+        }
+
+        return null;
+    }
 }

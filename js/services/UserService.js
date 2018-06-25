@@ -13,4 +13,8 @@ class UserService {
 
         return '';
     }
+
+    static getUserById(userid) {
+        return UserRepository.findById(userid);
+    }
 }

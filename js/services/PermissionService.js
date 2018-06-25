@@ -27,6 +27,37 @@ class PermissionService {
         return selectedPermissions;
     }
 
+    static filterPermissionsForPerson(currentPerson, searchValue) {
+        var permissions = PermissionRepository.getPermissionsByPersonId(currentPerson.id);
+        var filterOn = !(searchValue == null || searchValue == "");
+
+        var selectedPermissions = [];
+        
+        for (var i = 0; i < permissions.length; ++i) {
+            if (filterOn == false) {
+                selectedPermissions.push(permissions[i]);
+                continue;
+            }
+
+            var room = RoomService.getRoomById(permissions[i].room);
+            var manager = UserService.getUserById(room.roomManager);
+
+            var searchReg = new RegExp(searchValue, 'i');
+
+            if (room.number.search(searchReg) != -1 ||
+                room.name.search(searchReg) != -1 ||
+                manager.firstname.search(searchReg) != -1 ||
+                manager.lastname.search(searchReg) != -1 ||
+                manager.username.search(searchReg) != -1)
+            {
+                selectedPermissions.push(permissions[i]);
+            }
+        }
+
+        return selectedPermissions;
+
+    }
+
     static removePermissionById(permissionId) {
         var permission = PermissionRepository.findById(permissionId);
         var person = PersonRepository.findById(permission.person);

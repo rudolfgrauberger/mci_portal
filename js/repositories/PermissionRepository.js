@@ -69,4 +69,17 @@ class PermissionRepository {
 
         return perm;
     }
+
+    static getPermissionsByPersonId(personId) {
+        var permissions = this.getAll();
+
+        var perm = []
+        for (var i = 0; i < permissions.length; ++i) {
+            if (permissions[i].person == personId) {
+                perm.push(permissions[i]);
+            }
+        }
+
+        return perm;
+    }
 }
