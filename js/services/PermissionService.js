@@ -41,6 +41,16 @@ class PermissionService {
     }
 
     static addPermissionForPersonToRoom(person, room, expires) {
+
+        var permissionsForRoom = this.filterPermissionsForRoom(room);
+
+        for (var i = 0; i < permissionsForRoom.length; ++i) {
+            var personWithPermission = PersonRepository.findById(permissionsForRoom[i].person);
+            if (personWithPermission.id == person.id) {
+                return;
+            }
+        }
+
         var permission = PermissionFactory.create(room, person, expires);
         PersonRepository.update(person);
         RoomRepository.update(room);

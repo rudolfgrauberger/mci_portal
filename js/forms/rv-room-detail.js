@@ -30,6 +30,10 @@ $(document).ready( function() {
 
         var person = PersonService.getPersonByFirstNameLastNameAndAdditionalInformation(personString);
 
+        if (!person) {
+            return;
+        }
+
         PermissionService.addPermissionForPersonToRoom(person, currentRoom, expires ? new Date(expires) : null);
         refreshOutputTable();
         document.getElementById("student-name").value = '';
