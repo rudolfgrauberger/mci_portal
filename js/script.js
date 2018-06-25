@@ -36,20 +36,6 @@ $(document).ready( function() {
             $("#resultfieldtransponder").show();
         }      
         });
-
-        $('#searchbuttonRooms').click(function () {
-            $("#resultfieldroom").show();
-             // Example Data
-             $("#roomTable").find('tbody')
-             .append($('<tr>')
-             .append($('<td>')
-             .text("3106"))
-             .append($('<td>')
-             .text(""))
-             .append($('<button type="button" onclick="location.href = \'room-detail.html\';" class="btn btn-success delete" id=change>')
-             .text("Details"))
-           );
-        });
         $('#searchbuttonTransponder').click(function () {
             $("#resultfieldtransponder").show();
         });

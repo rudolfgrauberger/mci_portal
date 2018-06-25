@@ -4,11 +4,14 @@
 <head>
 <title>Prototype</title>
         <script type="text/javascript" src="js/jquery-3.3.1.min.js"></script>
-        <script type="text/javascript" src="js/script.js"></script>
+        <script type="text/javascript" src="js/forms/rooms.js"></script>
         <script type="text/javascript" src="js/forms/global.js"></script>
         <script type="text/javascript" src="js/bootstrap.js"></script>
+        <script type="text/javascript" src="js/entities/Room.js"></script>
         <script type="text/javascript" src="js/services/SessionService.js"></script>
+        <script type="text/javascript" src="js/services/RoomService.js"></script>
         <script type="text/javascript" src="js/repositories/SessionRepository.js"></script>
+        <script type="text/javascript" src="js/repositories/RoomRepository.js"></script>
         <link rel="stylesheet" type="text/css" href="css/main.css">
         <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
 </head>
@@ -32,14 +35,14 @@
             <div class="navblock btn-group-lg buttonright ">
                     <button class="btn  btn-default btn-block buttonright buttonclear" id="logoutButton" type="submit">Ausloggen</button>
         </div>
-            
+
     </div>
-    
+
     <div id="main">
         <div id="searchfield">
                 <div class="col-lg-6">
                     <div class="input-group">
-                        <input type="text" id="searchInput" class="form-control" placeholder="Raumnummer">
+                        <input type="text" id="searchInput" class="form-control" placeholder="Raumnummer" autofocus>
                             <span class="input-group-btn">
                                 <button id="searchbuttonRooms" class="btn btn-default" type="button">Suche</button>
                             </span>
@@ -49,27 +52,27 @@
 
         <!--room table-->
         <div id="resultfieldroom">
-                <table class="table table-striped" id="roomTable">
-						<thead>
-							<tr>
-								<th>Raum</th>
-								<th>Namename</th>
-								<th>(Button)</th>
-							</tr>
-					    </thead>
-					<tbody>
-					</tbody>
-				</table>
+            <table class="table table-striped" id="roomTable">
+                <thead>
+                    <tr>
+                        <th>Raum</th>
+                        <th>Raumname</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                </tbody>
+            </table>
         </div>
 
     </div>
-    
+
     <div id="footer">
         <div id="fakespace">
                 <center>
                         <span class="copylink">Copyright TH Köln</span>
                 </center> 
-        </div>   
+        </div>
     </div>
 
 </div>
