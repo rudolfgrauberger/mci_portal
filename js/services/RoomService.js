@@ -17,17 +17,18 @@ class RoomService {
     static filterAssignedRoomsForUser(user, searchValue) {
         var allAssingedRooms = this.getAllAssignedRoomsForUser(user);
 
-        return this.filterRoomsForUserBySearchValue(allAssingedRooms, searchValue);
+        return this.filterRoomsBySearchValue(allAssingedRooms, searchValue);
     }
 
-    static filterRoomsForUserBySearchValue(roomlist, searchValue) {
+    static filterRoomsBySearchValue(roomlist, searchValue) {
         var filterOn = !(searchValue == null || searchValue == "");
         var selectedRooms = [];
         for (var i = 0; i < roomlist.length; ++i) {
             if (filterOn == true) {
                 if (roomlist[i].number.search(new RegExp(searchValue, 'i')) != -1 ||
-                roomlist[i].name.search(new RegExp(searchValue, 'i')) != -1) {
-                selectedRooms.push(roomlist[i]);
+                    roomlist[i].name.search(new RegExp(searchValue, 'i')) != -1) 
+                {
+                    selectedRooms.push(roomlist[i]);
                 }
             } else {
                 selectedRooms.push(roomlist[i]);
@@ -35,6 +36,10 @@ class RoomService {
         }
         
         return selectedRooms;
+    }
+
+    static filterRoomsBySearchString(searchValue) {
+        return this.filterRoomsBySearchValue(RoomRepository.getAll(), searchValue);
     }
 
     static getRoomById(roomid) {
