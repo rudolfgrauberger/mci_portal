@@ -75,4 +75,18 @@ class PersonRepository {
         return null;
     }
 
+    static findByFirstNameAndLastName(firstname, lastname) {
+        var persons = this.getAll();
+
+        for (var i = 0; i < persons.length; ++i) {
+            if (persons[i].firstname == firstname &&
+                persons[i].lastname == lastname)
+                {
+                    return persons[i];
+                }
+        }
+
+        return null;
+    }
+
 }

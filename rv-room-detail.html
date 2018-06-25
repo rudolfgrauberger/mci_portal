@@ -11,6 +11,7 @@
         <script type="text/javascript" src="js/entities/Room.js"></script>
         <script type="text/javascript" src="js/entities/Person.js"></script>
         <script type="text/javascript" src="js/entities/Permission.js"></script>
+        <script type="text/javascript" src="js/factories/PermissionFactory.js"></script>
         <script type="text/javascript" src="js/services/SessionService.js"></script>
         <script type="text/javascript" src="js/services/RoomService.js"></script>
         <script type="text/javascript" src="js/services/PersonService.js"></script>
@@ -21,9 +22,8 @@
         <script type="text/javascript" src="js/repositories/PermissionRepository.js"></script>
         <link rel="stylesheet" type="text/css" href="css/main.css">
         <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+        <link rel="stylesheet" type="text/css" href="css/autocomplete.css">
 </head>
-        
-
 <body>
     <div id="content">
             <div id="header">
@@ -81,18 +81,18 @@
                   <form>
                     <div class="form-group">
                       <label for="student-name" class="col-form-label">Name:</label>
-                      <input type="text" class="form-control" id="student-name">
+                      <input type="text" class="form-control" id="student-name" />
                     </div>
                     <div class="form-group">
                       <label for="date-text" class="col-form-label">Gültig bis:</label>
-                      <input type="text" class="form-control" id="date-tex">
+                      <input type="date" class="form-control" id="date-tex" />
                     </div>
                   </form>
                   
                 </div>
                 <div class="modal-footer">
                   <button type="button" class="btn btn-secondary" data-dismiss="modal">Abbrechen</button>
-                  <button type="button" id="rvaddbuttonsave" class="btn btn-primary">Speichern</button>
+                  <button type="submit" id="rvaddbuttonsave" class="btn btn-primary">Speichern</button>
                 </div>
               </div>
             </div>

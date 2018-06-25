@@ -39,4 +39,11 @@ class PermissionService {
         RoomRepository.update(room);
         PermissionRepository.remove(permission);
     }
+
+    static addPermissionForPersonToRoom(person, room, expires) {
+        var permission = PermissionFactory.create(room, person, expires);
+        PersonRepository.update(person);
+        RoomRepository.update(room);
+        PermissionRepository.add(permission);
+    }
 }
