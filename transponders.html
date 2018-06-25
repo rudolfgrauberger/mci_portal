@@ -2,15 +2,19 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 
 <head>
-<title>Prototype</title>
-        <script type="text/javascript" src="js/jquery-3.3.1.min.js"></script>
-        <script type="text/javascript" src="js/script.js"></script>
-        <script type="text/javascript" src="js/bootstrap.js"></script>
-        <script type="text/javascript" src="js/services/SessionService.js"></script>
-        <script type="text/javascript" src="js/repositories/SessionRepository.js"></script>
-        <script type="text/javascript" src="js/forms/global.js"></script>
-        <link rel="stylesheet" type="text/css" href="css/main.css">
-        <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+    <title>Prototype</title>
+    <meta charset="UTF-8">
+    <script type="text/javascript" src="js/jquery-3.3.1.min.js"></script>
+    <script type="text/javascript" src="js/bootstrap.js"></script>
+    <script type="text/javascript" src="js/forms/transponders.js"></script>
+    <script type="text/javascript" src="js/entities/Transponder.js"></script>
+    <script type="text/javascript" src="js/services/SessionService.js"></script>
+    <script type="text/javascript" src="js/services/TransponderService.js"></script>
+    <script type="text/javascript" src="js/repositories/SessionRepository.js"></script>
+    <script type="text/javascript" src="js/repositories/TransponderRepository.js"></script>
+    <script type="text/javascript" src="js/forms/global.js"></script>
+    <link rel="stylesheet" type="text/css" href="css/main.css">
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
 </head>
         
 
@@ -39,7 +43,7 @@
         <div id="searchfield">
                 <div class="col-lg-6">
                     <div class="input-group">
-                        <input type="text" id="searchInput" class="form-control" placeholder="Tansponder">
+                        <input type="text" id="searchInput" class="form-control" placeholder="Tansponder" autofocus />
                             <span class="input-group-btn">
                                 <button id="searchbuttonTransponder" class="btn btn-default" type="button">Suche</button>
                             </span>
@@ -49,26 +53,25 @@
 
         <!--transponder table-->
         <div id="resultfieldtransponder">
-                <table class="table table-striped" id="roomTable">
-						<thead>
-							<tr>
-								<th>Transponder</th>
-								<th>Nummer</th>
-								<th>(Button)</th>
-							</tr>
-					    </thead>
-					<tbody>
-					</tbody>
-				</table>
+            <table class="table table-striped" id="transponderTable">
+                <thead>
+                    <tr>
+                        <th>Transponder</th>
+                        <th>Räume</th>
+                    </tr>
+                </thead>
+                <tbody>
+                </tbody>
+            </table>
         </div>
     </div>
-    
+
     <div id="footer">
         <div id="fakespace">
                 <center>
                         <span class="copylink">Copyright TH Köln</span>
-                </center> 
-        </div>   
+                </center>
+        </div>
     </div>
 
 </div>

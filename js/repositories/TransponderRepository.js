@@ -50,4 +50,16 @@ class TransponderRepository {
     static save(transponders) {
         sessionStorage.setItem(TRANSPONDER_TABLE, JSON.stringify(transponders));
     }
+
+    static findById(transponderId) {
+        var transponders = this.getAll();
+
+        for (var i = 0; i < transponders.length; ++i) {
+            if (transponders[i].id == transponderId) {
+                return transponders[i];
+            }
+        }
+
+        return null;
+    }
 }

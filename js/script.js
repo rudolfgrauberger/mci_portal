@@ -3,16 +3,6 @@ var searchfor = "Person";
 
 //search-by function
 $(document).ready( function() { 
-            // Example Data
-            $("#roomdetailTable").find('tbody')
-            .append($('<tr>')
-            .append($('<td>')
-            .text("Leopold Junkers"))
-            .append($('<td>')
-            .text("Prof. Dr. Bente"))
-            .append($('<button type="button" data-toggle="modal" data-target="#exampleModal" class="btn btn-success delete" id=DYNAMIC>')
-            .text("Ausleihen"))
-          );
 
     $('#generalsearchbutton').click(function () {
 
@@ -35,13 +25,6 @@ $(document).ready( function() {
             $("#resultfieldroom").hide();
             $("#resultfieldtransponder").show();
         }      
-        });
-        $('#searchbuttonTransponder').click(function () {
-            $("#resultfieldtransponder").show();
-        });
-
-        $('#searchbuttonroomdetail').click(function () {
-    
         });
     });
     
