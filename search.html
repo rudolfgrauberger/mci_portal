@@ -5,11 +5,17 @@
     <title>Prototype</title>
     <meta charset="UTF-8">
     <script type="text/javascript" src="js/jquery-3.3.1.min.js"></script>
-    <script type="text/javascript" src="js/script.js"></script>
+    <script type="text/javascript" src="js/forms/search.js"></script>
     <script type="text/javascript" src="js/forms/global.js"></script>
     <script type="text/javascript" src="js/bootstrap.js"></script>
+    <script type="text/javascript" src="js/entities/Room.js"></script>
+    <script type="text/javascript" src="js/entities/Person.js"></script>
     <script type="text/javascript" src="js/services/SessionService.js"></script>
+    <script type="text/javascript" src="js/services/RoomService.js"></script>
+    <script type="text/javascript" src="js/services/PersonService.js"></script>
     <script type="text/javascript" src="js/repositories/SessionRepository.js"></script>
+    <script type="text/javascript" src="js/repositories/RoomRepository.js"></script>
+    <script type="text/javascript" src="js/repositories/PersonRepository.js"></script>
     <link rel="stylesheet" type="text/css" href="css/main.css">
     <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
 </head>
@@ -17,7 +23,7 @@
 
 <body>
 <div id="content">
-    <div id="header">
+    <div id="header" class="navbar navbar-default navbar-fixed-top">
             <div class="navblockCurrent btn-group-lg">
                     <button type="button" class="btn btn-default buttonclear" onclick="location.href = 'search.html';"><span class="glyphicon glyphicon-search" aria-hidden="true"></span> Suche</button>
                 </div>
@@ -36,26 +42,11 @@
 
     </div>
 
-    <div id="main">
+    <div id="main" class="container">
         <div id="searchfield">
             <div class="col-lg-6">
                     <div class="input-group">
-
-                         <div class="row">
-                            <div class="col-lg-12">
-                                <div class="input-group">
-                                <div class="input-group-btn">
-                                    <button type="button" id="dropdownbutton" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Person <span class="caret"></span></button>
-                                    <ul class="dropdown-menu">
-                                    <li><a href="#">Person</a></li>
-                                    <li><a href="#">Raum</a></li>
-                                    <li><a href="#">Transponder</a></li>
-                                    </ul>
-                                </div><!-- /btn-group -->
-                                <input type="text" id="searchInput" class="form-control" placeholder="Name">
-                                </div><!-- /input-group -->
-                            </div><!-- /.col-lg-6 -->
-                            </div><!-- /.row -->
+                        <input type="text" id="searchInput" class="form-control" placeholder="Vorname, Nachname, Matrikelnummer, Firma, Raumnummer oder Raumname" />
                         <span class="input-group-btn">
                          <button class="btn btn-default" type="button" id="generalsearchbutton">Suche</button>
                         </span>
@@ -65,13 +56,13 @@
 
         <!--person table-->
         <div id="resultfieldperson">
-            <table class="table table-striped" id="personTable">
+            <h3>Personen</h3>
+            <table class="table table-striped" id="personTable" >
                 <thead>
                     <tr>
-                        <th>Matrikelnummer</th>
+                        <th>Matrikelnummer oder Firma</th>
                         <th>Name</th>
-                        <th>Gültig bis</th>
-                        <th>(Button)</th>
+                        <th></th>
                     </tr>
                 </thead>
                 <tbody>
@@ -81,12 +72,13 @@
 
         <!--room table-->
         <div id="resultfieldroom">
+            <h3>Räume</h3>
             <table class="table table-striped" id="roomTable">
                 <thead>
                     <tr>
                         <th>Raum</th>
-                        <th>Namename</th>
-                        <th>(Button)</th>
+                        <th>Raumname</th>
+                        <th></th>
                     </tr>
                 </thead>
                 <tbody>
@@ -96,7 +88,8 @@
 
         <!--transponder table-->
         <div id="resultfieldtransponder">
-            <table class="table table-striped" id="roomTable">
+            <h2>Transponder</h2>
+            <table class="table table-striped" id="transponderTable">
                 <thead>
                     <tr>
                         <th>Transponder</th>
@@ -112,14 +105,13 @@
 
     </div>
 
-    <div id="footer">
+    <footer id="footer" class="navbar navbar-fixed-bottom">
         <div id="fakespace">
-                <center>
-                        <span class="copylink">Copyright TH Köln</span>
-                </center>
+            <center>
+               <span class="copylink">Copyright TH Köln</span>
+            </center>
         </div>
-
-    </div>
+    </footer>
 
 </div>
 

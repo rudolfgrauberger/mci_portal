@@ -5,7 +5,7 @@ Dieses Projekt ist im Zuge des MCI (Mensch Computer Interaktion) bei Herrn Prof.
 Dieses Portal ist ein Prototyp der nach dem Feedback aus dem Paperprototype entwickelt wurde.
 
 ## In Betriebnahme
-Die Date "login.html" im Browser öffnen!
+Die Datei "index.html" im Browser zum Starten der Anwendung öffnen!
 
 Login mit den Demo-Daten:
 

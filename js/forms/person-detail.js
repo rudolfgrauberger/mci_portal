@@ -54,7 +54,7 @@ $(document).ready( function() {
   
         var table = document.getElementById("permissionTable");
   
-        for (i = 0; i < permissions.length; i++) {
+        for (var i = 0; i < permissions.length; i++) {
             var room = RoomService.getRoomById(permissions[i].room);
             var roomManager =  UserService.getUserById(room.getRoomManager())
             var row = table.insertRow(1);

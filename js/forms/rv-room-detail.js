@@ -71,7 +71,7 @@ $(document).ready( function() {
 
       var table = document.getElementById("rvpersonTable");
 
-      for (i = 0; i < permissions.length; i++) {
+      for (var i = 0; i < permissions.length; i++) {
           var id = permissions[i].id;
           var person = PersonService.getPersonById(permissions[i].person);
           var row = table.insertRow(2);

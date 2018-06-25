@@ -54,7 +54,7 @@ $(document).ready( function() {
 
         var table = document.getElementById("roomdetailTable");
 
-        for (i = 0; i < permissions.length; i++) {
+        for (var i = 0; i < permissions.length; i++) {
             var id = permissions[i].id;
             var room = RoomService.getRoomById(permissions[i].room);
             var person = PersonService.getPersonById(permissions[i].person);

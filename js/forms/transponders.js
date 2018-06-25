@@ -47,7 +47,7 @@ $(document).ready( function() {
   
         var table = document.getElementById("transponderTable");
   
-        for (i = 0; i < transponders.length; i++) {
+        for (var i = 0; i < transponders.length; i++) {
             var id = transponders[i].id;
             var row = table.insertRow(1);
             var cell1 = row.insertCell(0);

@@ -46,7 +46,7 @@ $(document).ready( function() {
 
       var table = document.getElementById("rvroomTable");
 
-      for (i = 0; i < rooms.length; i++) {
+      for (var i = 0; i < rooms.length; i++) {
           var id = rooms[i].id;
           var row = table.insertRow(2);
           var cell1 = row.insertCell(0);

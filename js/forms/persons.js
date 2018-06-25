@@ -47,7 +47,7 @@ $(document).ready( function() {
   
         var table = document.getElementById("personTable");
   
-        for (i = 0; i < persons.length; i++) {
+        for (var i = 0; i < persons.length; i++) {
             var id = persons[i].id;
             var row = table.insertRow(1);
             var cell1 = row.insertCell(0);
