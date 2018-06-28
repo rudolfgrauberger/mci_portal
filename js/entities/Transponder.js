@@ -1,3 +1,5 @@
+'use strict'
+
 class Transponder {
     constructor(number) {
         this.id = newGuid();
@@ -7,12 +9,12 @@ class Transponder {
 
     addRoom(newRoom) {
         this.rooms.push(newRoom.id);
-    };
+    }
 
     removeRoom(rRoom) {
         var index = this.rooms.indexOf(rRoom.id);
 
-        if (index != -1) {
+        if (index !== -1) {
             this.roomms.splice(index, 1);
         }
     }

@@ -1,3 +1,5 @@
+'use strict'
+
 class RoomService {
 
     static getAllAssignedRoomsForUser(user) {
@@ -21,12 +23,12 @@ class RoomService {
     }
 
     static filterRoomsBySearchValue(roomlist, searchValue) {
-        var filterOn = !(searchValue == null || searchValue == "");
+        var filterOn = !(searchValue === null || searchValue === '');
         var selectedRooms = [];
         for (var i = 0; i < roomlist.length; ++i) {
-            if (filterOn == true) {
-                if (roomlist[i].number.search(new RegExp(searchValue, 'i')) != -1 ||
-                    roomlist[i].name.search(new RegExp(searchValue, 'i')) != -1) 
+            if (filterOn === true) {
+                if (roomlist[i].number.search(new RegExp(searchValue, 'i')) !== -1 ||
+                    roomlist[i].name.search(new RegExp(searchValue, 'i')) !== -1)
                 {
                     selectedRooms.push(roomlist[i]);
                 }
@@ -34,7 +36,7 @@ class RoomService {
                 selectedRooms.push(roomlist[i]);
             }
         }
-        
+
         return selectedRooms;
     }
 

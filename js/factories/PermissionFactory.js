@@ -1,3 +1,5 @@
+'use strict'
+
 class PermissionFactory {
 
     static create(room, person, expires) {

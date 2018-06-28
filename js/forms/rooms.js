@@ -1,3 +1,5 @@
+'use strict'
+
 $(document).ready( function() {
 
     if (SessionService.getCurrentSession() == null) {
@@ -5,17 +7,16 @@ $(document).ready( function() {
         return;
     }
 
-    
-    var searchInput = document.getElementById("searchInput");
+    var searchInput = document.getElementById('searchInput');
 
     // Execute a function when the user releases a key on the keyboard
-    searchInput.addEventListener("keyup", function(event) {
+    searchInput.addEventListener('keyup', function(event) {
         // Cancel the default action, if needed
         event.preventDefault();
         // Number 13 is the "Enter" key on the keyboard
         if (event.keyCode === 13) {
             // Trigger the button element with a click
-            document.getElementById("searchbuttonRooms").click();
+            document.getElementById('searchbuttonRooms').click();
         }
     });
 
@@ -26,8 +27,7 @@ $(document).ready( function() {
     });
 
     function getRoomsToDisplay() {
-        var searchValue = document.getElementById("searchInput").value;
-
+        var searchValue = document.getElementById('searchInput').value;
 
         return RoomService.filterRoomsBySearchString(searchValue);
     }
@@ -35,19 +35,19 @@ $(document).ready( function() {
     function cleanOutputTable() {
         var table = document.getElementById('roomTable');
         var rowCount = table.rows.length;
-    
+
         for (var index = 1; index < rowCount; ++index) {
             table.deleteRow(1);
         }
     }
 
     function refreshOutputTable() {
-        $("#resultfieldroom").show();
+        $('#resultfieldroom').show();
         cleanOutputTable();
         var rooms = getRoomsToDisplay();
-  
-        var table = document.getElementById("roomTable");
-  
+
+        var table = document.getElementById('roomTable');
+
         for (var i = 0; i < rooms.length; i++) {
             var id = rooms[i].id;
             var row = table.insertRow(1);
@@ -56,16 +56,16 @@ $(document).ready( function() {
             var cell3 = row.insertCell(2);
             cell1.innerHTML = rooms[i].number;
             cell2.innerHTML = rooms[i].name;
-            var x = document.createElement("INPUT");
-            x.setAttribute("type", "button");
-            x.setAttribute("value", "Details");
-            x.setAttribute("class", "btn btn-success");
-            x.setAttribute("id", "details_" + id);
+            var x = document.createElement('INPUT');
+            x.setAttribute('type', 'button');
+            x.setAttribute('value', 'Details');
+            x.setAttribute('class', 'btn btn-success');
+            x.setAttribute('id', 'details_' + id);
             x.onclick = (function(interne_id) {room_details(interne_id) }).bind(this, id);
             cell3.appendChild(x);
         }
     }
-    
+
     function room_details(guid) {
         window.location.href = 'room-detail.html?roomid=' + guid;
     }

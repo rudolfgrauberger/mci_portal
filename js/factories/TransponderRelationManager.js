@@ -1,3 +1,5 @@
+'use strict'
+
 class TransponderRelationManager {
 
     static addLinkBetweenTransponderAndRoom(transponder, room) {
@@ -5,7 +7,7 @@ class TransponderRelationManager {
         room.addTransponder(transponder);
     }
 
-    static removeLinkBetweenTransponderAndRoom(transponder, roome) {
+    static removeLinkBetweenTransponderAndRoom(transponder, room) {
         transponder.removeRoom(room);
         room.removeTransponder(transponder);
     }

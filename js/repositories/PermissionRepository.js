@@ -1,4 +1,6 @@
-const PERMISSION_TABLE = "PERMISSION";
+'use strict'
+
+const PERMISSION_TABLE = 'PERMISSION';
 
 class PermissionRepository {
 
@@ -15,7 +17,7 @@ class PermissionRepository {
 
         var index = this.getIndexById(permission.id);
 
-        if (index != -1) {
+        if (index !== -1) {
             permissions.splice(index, 1);
         }
 
@@ -26,7 +28,7 @@ class PermissionRepository {
         var permissions = this.getAll();
 
         for (var i = 0; i < permissions.length; ++i) {
-            if (permissions[i].id == permissionId)
+            if (permissions[i].id === permissionId)
             return i;
         }
 
@@ -36,7 +38,7 @@ class PermissionRepository {
     static getAll() {
         var permissions = JSON.parse(sessionStorage.getItem(PERMISSION_TABLE));
 
-        if (permissions == null) {
+        if (permissions === null) {
             permissions = [];
         }
 
@@ -50,7 +52,7 @@ class PermissionRepository {
     static findById(permissionId) {
         var permissionIndex = this.getIndexById(permissionId);
 
-        if (permissionIndex == -1) {
+        if (permissionIndex === -1) {
             return null;
         }
 
@@ -62,7 +64,7 @@ class PermissionRepository {
 
         var perm = []
         for (var i = 0; i < permissions.length; ++i) {
-            if (permissions[i].room == roomId) {
+            if (permissions[i].room === roomId) {
                 perm.push(permissions[i]);
             }
         }
@@ -75,7 +77,7 @@ class PermissionRepository {
 
         var perm = []
         for (var i = 0; i < permissions.length; ++i) {
-            if (permissions[i].person == personId) {
+            if (permissions[i].person === personId) {
                 perm.push(permissions[i]);
             }
         }

@@ -1,3 +1,5 @@
+'use strict'
+
 class RoomManagerRelationManager {
 
     static addLinkBetweenRoomManagerAndRoom(manager, room) {

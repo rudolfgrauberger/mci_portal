@@ -1,3 +1,5 @@
+'use strict'
+
 class SessionFactory {
 
     static create(user) {

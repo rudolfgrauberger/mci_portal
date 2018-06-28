@@ -1,3 +1,5 @@
+'use strict'
+
 class User {
     constructor(firstname, lastname, username, pw, role) {
         this.id = newGuid();
@@ -11,23 +13,23 @@ class User {
 
     addRoom(newRoom) {
         this.rooms.push(newRoom.id);
-    };
+    }
 
     removeRoom(rRoom) {
         var index = this.rooms.indexOf(rRoom.id);
 
-        if (index != -1) {
+        if (index !== -1) {
             this.roomms.splice(index, 1);
         }
     }
 
     static getRoomManagerUser(firstname, lastname, username, pw) {
-	    var user = new User(firstname, lastname, username, pw, "roomManager");
-	    return user;
+        var user = new User(firstname, lastname, username, pw, 'roomManager');
+        return user;
     }
 
     static getGateKeeperUser(firstname, lastname, username, pw) {
-	    var user = new User(firstname, lastname, username, pw, "gateKeeper");
-	    return user;
+        var user = new User(firstname, lastname, username, pw, 'gateKeeper');
+        return user;
     }
 }

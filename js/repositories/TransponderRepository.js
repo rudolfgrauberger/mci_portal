@@ -1,3 +1,5 @@
+'use strict'
+
 const TRANSPONDER_TABLE = "TRANSPONDER";
 
 class TransponderRepository {
@@ -15,7 +17,7 @@ class TransponderRepository {
 
         var index = this.getIndexByTransponderId(transponder.id);
 
-        if (index != -1) {
+        if (index !== -1) {
             transponders.splice(index, 1);
         }
 
@@ -26,7 +28,7 @@ class TransponderRepository {
         var transponders = this.getAll();
 
         for (var i = 0; i < transponders.length; ++i) {
-            if (transponders[index].id == transponderId)
+            if (transponders[i].id === transponderId)
                 return i;
         }
 
@@ -38,7 +40,7 @@ class TransponderRepository {
 
         var t = [];
 
-        if (transponders != null) {
+        if (transponders !== null) {
             for (var i = 0; i < transponders.length; ++i) {
                 t.push(Object.assign(new Transponder, transponders[i]));
             }
@@ -55,7 +57,7 @@ class TransponderRepository {
         var transponders = this.getAll();
 
         for (var i = 0; i < transponders.length; ++i) {
-            if (transponders[i].id == transponderId) {
+            if (transponders[i].id === transponderId) {
                 return transponders[i];
             }
         }

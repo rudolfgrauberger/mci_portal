@@ -1,3 +1,5 @@
+'use strict'
+
 $(document).ready( function() {
 
     if (SessionService.getCurrentSession() == null) {
@@ -5,25 +7,25 @@ $(document).ready( function() {
         return;
     }
 
-    var searchInput = document.getElementById("searchInput");
+    var searchInput = document.getElementById('searchInput');
 
     // Execute a function when the user releases a key on the keyboard
-    searchInput.addEventListener("keyup", function(event) {
+    searchInput.addEventListener('keyup', function(event) {
         // Cancel the default action, if needed
         event.preventDefault();
         // Number 13 is the "Enter" key on the keyboard
         if (event.keyCode === 13) {
             // Trigger the button element with a click
-            document.getElementById("searchbuttonRoom").click();
+            document.getElementById('searchbuttonRoom').click();
         }
     });
 
     let searchParams = new URLSearchParams(window.location.search);
 
-    var currentPerson = PersonService.getPersonById(searchParams.get("personid"));
+    var currentPerson = PersonService.getPersonById(searchParams.get('personid'));
 
-    $("#personDetailName").text(currentPerson.firstname + " " + currentPerson.lastname);
-    $("#personDetailNumber").text(currentPerson.matrikelno ? currentPerson.matrikelno : currentPerson.company);
+    $('#personDetailName').text(currentPerson.firstname + ' ' + currentPerson.lastname);
+    $('#personDetailNumber').text(currentPerson.matrikelno ? currentPerson.matrikelno : currentPerson.company);
 
     refreshOutputTable();
 
@@ -32,8 +34,8 @@ $(document).ready( function() {
     });
 
     function getPermissionToDisplay() {
-        var searchValue = document.getElementById("searchInput").value;
-  
+        var searchValue = document.getElementById('searchInput').value;
+
         return PermissionService.filterPermissionsForPerson(currentPerson, searchValue);
     }
 
@@ -41,19 +43,19 @@ $(document).ready( function() {
     function cleanOutputTable() {
         var table = document.getElementById('permissionTable');
         var rowCount = table.rows.length;
-    
+
         for (var index = 1; index < rowCount; ++index) {
             table.deleteRow(1);
         }
     }
 
     function refreshOutputTable() {
-        $("#resultfieldperson").show();
+        $('#resultfieldperson').show();
         cleanOutputTable();
         var permissions = getPermissionToDisplay();
-  
-        var table = document.getElementById("permissionTable");
-  
+
+        var table = document.getElementById('permissionTable');
+
         for (var i = 0; i < permissions.length; i++) {
             var room = RoomService.getRoomById(permissions[i].room);
             var roomManager =  UserService.getUserById(room.getRoomManager())
@@ -65,7 +67,7 @@ $(document).ready( function() {
             cell2.innerHTML = room.name;
 
             if (roomManager) {
-                cell3.innerHTML = roomManager.firstname + " " + roomManager.lastname;
+                cell3.innerHTML = roomManager.firstname + ' ' + roomManager.lastname;
             }
         }
     }

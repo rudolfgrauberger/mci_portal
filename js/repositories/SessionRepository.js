@@ -1,4 +1,6 @@
-const SESSION_TABLE = "SESSION";
+'use strict'
+
+const SESSION_TABLE = 'SESSION';
 
 class SessionRepository {
 

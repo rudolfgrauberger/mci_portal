@@ -1,3 +1,4 @@
+'use strict'
 
 const  USER_TABLE = "USER";
 class UserRepository {
@@ -15,7 +16,7 @@ class UserRepository {
 
         var index = this.getIndexByUserId(user.id);
 
-        if (index != -1) {
+        if (index !== -1) {
             users.splice(index, 1);
         }
 
@@ -26,7 +27,7 @@ class UserRepository {
         var users = this.getAll();
 
         for (var i = 0; i < users.length; ++i) {
-            if (users[index].id == userId)
+            if (users[i].id === userId)
                 return i;
         }
 
@@ -43,7 +44,7 @@ class UserRepository {
                 u.push(Object.assign(new User, users[i]));
             }
         }
-        
+
         return u;
     }
 
@@ -55,7 +56,9 @@ class UserRepository {
         var users = this.getAll();
 
         for (var index = 0; index < users.length; ++index) {
-            if (users[index].username == username && users[index].pw == password) {
+            if (users[index].username === username &&
+                users[index].pw === password)
+            {
                 return users[index];
             }
         }
@@ -67,7 +70,7 @@ class UserRepository {
         var users = this.getAll();
 
         for (var i = 0; i < users.length; ++i) {
-            if (users[i].id == userId) {
+            if (users[i].id === userId) {
                 return users[i];
             }
         }

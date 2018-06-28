@@ -1,3 +1,5 @@
+'use strict'
+
 class TransponderService {
 
     static getTransponderById(transponderId) {
@@ -9,11 +11,11 @@ class TransponderService {
     }
 
     static filterTransponderBySearchValue(transponderlist, searchValue) {
-        var filterOn = !(searchValue == null || searchValue == "");
+        var filterOn = !(searchValue === null || searchValue === '');
         var selectedTransponder = [];
         for (var i = 0; i < transponderlist.length; ++i) {
-            if (filterOn == true) {
-                if (transponderlist[i].no.search(new RegExp(searchValue, 'i')) != -1) 
+            if (filterOn === true) {
+                if (transponderlist[i].no.search(new RegExp(searchValue, 'i')) !== -1)
                 {
                     selectedTransponder.push(transponderlist[i]);
                 }
@@ -21,7 +23,7 @@ class TransponderService {
                 selectedTransponder.push(transponderlist[i]);
             }
         }
-        
+
         return selectedTransponder;
     }
 }

@@ -1,3 +1,5 @@
+'use strict'
+
 $(document).ready( function() {
 
     if (SessionService.getCurrentSession() == null) {
@@ -5,25 +7,25 @@ $(document).ready( function() {
         return;
     }
 
-    var searchInput = document.getElementById("searchInput");
+    var searchInput = document.getElementById('searchInput');
 
     // Execute a function when the user releases a key on the keyboard
-    searchInput.addEventListener("keyup", function(event) {
+    searchInput.addEventListener('keyup', function(event) {
         // Cancel the default action, if needed
         event.preventDefault();
         // Number 13 is the "Enter" key on the keyboard
         if (event.keyCode === 13) {
             // Trigger the button element with a click
-            document.getElementById("searchbuttonroomdetail").click();
+            document.getElementById('searchbuttonroomdetail').click();
         }
     });
 
     let searchParams = new URLSearchParams(window.location.search);
 
-    var currentRoom = RoomService.getRoomById(searchParams.get("roomid"));
+    var currentRoom = RoomService.getRoomById(searchParams.get('roomid'));
 
-    $("#roomDetailNumber").text(currentRoom.number);
-    $("#roomDetailName").text(currentRoom.name);
+    $('#roomDetailNumber').text(currentRoom.number);
+    $('#roomDetailName').text(currentRoom.name);
 
     refreshOutputTable();
 
@@ -32,8 +34,8 @@ $(document).ready( function() {
     });
 
     function getPermissionToDisplay() {
-        var searchValue = document.getElementById("searchInput").value;
-  
+        var searchValue = document.getElementById('searchInput').value;
+
         return PermissionService.filterPermissionsForRoom(currentRoom, searchValue);
     }
 
@@ -41,18 +43,18 @@ $(document).ready( function() {
     function cleanOutputTable() {
         var table = document.getElementById('roomdetailTable');
         var rowCount = table.rows.length;
-    
+
         for (var index = 1; index < rowCount; ++index) {
             table.deleteRow(1);
         }
     }
 
     function refreshOutputTable() {
-        $("#resultfieldperson").show();
+        $('#resultfieldperson').show();
         cleanOutputTable();
         var permissions = getPermissionToDisplay();
 
-        var table = document.getElementById("roomdetailTable");
+        var table = document.getElementById('roomdetailTable');
 
         for (var i = 0; i < permissions.length; i++) {
             var id = permissions[i].id;
@@ -64,17 +66,17 @@ $(document).ready( function() {
             var cell1 = row.insertCell(0);
             var cell2 = row.insertCell(1);
             var cell3 = row.insertCell(2);
-            cell1.innerHTML = person.firstname + " " + person.nachname + (person.matrikelno ? " (" + person.matrikelno + ")": " (" + person.company + ")");
-            
+            cell1.innerHTML = person.firstname + ' ' + person.nachname + (person.matrikelno ? ' (' + person.matrikelno + ')': ' (' + person.company + ')');
+
             if (roomManager) {
-                cell2.innerHTML = roomManager.firstname + " " + roomManager.lastname;
+                cell2.innerHTML = roomManager.firstname + ' ' + roomManager.lastname;
             }
 
-            var x = document.createElement("INPUT");
-            x.setAttribute("type", "button");
-            x.setAttribute("value", "Ausleihen");
-            x.setAttribute("class", "btn btn-success");
-            x.setAttribute("id", "details_" + id);
+            var x = document.createElement('INPUT');
+            x.setAttribute('type', 'button');
+            x.setAttribute('value', 'Ausleihen');
+            x.setAttribute('class', 'btn btn-success');
+            x.setAttribute('id', 'details_' + id);
             x.onclick = (function(interne_id) {lent(interne_id) }).bind(this, id);
             cell3.appendChild(x);
         }

@@ -1,4 +1,6 @@
-const ROOM_TABLE = "ROOM";
+'use strict'
+
+const ROOM_TABLE = 'ROOM';
 
 class RoomRepository {
 
@@ -15,7 +17,7 @@ class RoomRepository {
 
         var index = this.getIndexByRoomId(room.id);
 
-        if (index != -1) {
+        if (index !== -1) {
             rooms.splice(index, 1);
         }
 
@@ -27,7 +29,7 @@ class RoomRepository {
 
         var index = this.getIndexByRoomId(room.id);
 
-        if (index != -1) {
+        if (index !== -1) {
             rooms[index] = room;
         }
 
@@ -38,7 +40,7 @@ class RoomRepository {
         var rooms = this.getAll();
 
         for (var i = 0; i < rooms.length; ++i) {
-            if (rooms[i].id == roomId)
+            if (rooms[i].id === roomId)
                 return i;
         }
 
@@ -50,12 +52,12 @@ class RoomRepository {
 
         var r = [];
 
-        if (rooms != null) {
+        if (rooms !== null) {
             for (var i = 0; i < rooms.length; ++i) {
                 r.push(Object.assign(new Room, rooms[i]));
             }
         }
-        
+
         return r;
     }
 
@@ -67,7 +69,7 @@ class RoomRepository {
         var rooms = this.getAll();
 
         for (var i = 0; i < rooms.length; ++i) {
-            if (rooms[i].id == roomId) {
+            if (rooms[i].id === roomId) {
                 return rooms[i];
             }
         }

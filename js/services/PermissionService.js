@@ -1,24 +1,26 @@
+'use strict'
+
 class PermissionService {
 
     static filterPermissionsForRoom(currentRoom, searchValue) {
         var permissions = PermissionRepository.getPermissionsByRoomId(currentRoom.id);
-        var filterOn = !(searchValue == null || searchValue == "");
+        var filterOn = !(searchValue === null || searchValue === '');
 
         var selectedPermissions = [];
         for (var i = 0; i < permissions.length; ++i) {
             var person = PersonService.getPersonById(permissions[i].person);
 
-            if (filterOn == false) {
+            if (filterOn === false) {
                 selectedPermissions.push(permissions[i]);
                 continue;
             }
 
             var searchReg = new RegExp(searchValue, 'i');
 
-            if (person.firstname.search(searchReg) != -1 ||
-                person.lastname.search(searchReg) != -1 ||
-                person.matrikelno.search(searchReg) != -1 ||
-                person.company.search(searchReg) != -1) 
+            if (person.firstname.search(searchReg) !== -1 ||
+                person.lastname.search(searchReg) !== -1 ||
+                person.matrikelno.search(searchReg) !== -1 ||
+                person.company.search(searchReg) !== -1)
             {
                 selectedPermissions.push(permissions[i]);
             }
@@ -29,12 +31,12 @@ class PermissionService {
 
     static filterPermissionsForPerson(currentPerson, searchValue) {
         var permissions = PermissionRepository.getPermissionsByPersonId(currentPerson.id);
-        var filterOn = !(searchValue == null || searchValue == "");
+        var filterOn = !(searchValue === null || searchValue === '');
 
         var selectedPermissions = [];
-        
+
         for (var i = 0; i < permissions.length; ++i) {
-            if (filterOn == false) {
+            if (filterOn === false) {
                 selectedPermissions.push(permissions[i]);
                 continue;
             }
@@ -44,11 +46,11 @@ class PermissionService {
 
             var searchReg = new RegExp(searchValue, 'i');
 
-            if (room.number.search(searchReg) != -1 ||
-                room.name.search(searchReg) != -1 ||
-                manager.firstname.search(searchReg) != -1 ||
-                manager.lastname.search(searchReg) != -1 ||
-                manager.username.search(searchReg) != -1)
+            if (room.number.search(searchReg) !== -1 ||
+                room.name.search(searchReg) !== -1 ||
+                manager.firstname.search(searchReg) !== -1 ||
+                manager.lastname.search(searchReg) !== -1 ||
+                manager.username.search(searchReg) !== -1)
             {
                 selectedPermissions.push(permissions[i]);
             }
@@ -77,7 +79,7 @@ class PermissionService {
 
         for (var i = 0; i < permissionsForRoom.length; ++i) {
             var personWithPermission = PersonRepository.findById(permissionsForRoom[i].person);
-            if (personWithPermission.id == person.id) {
+            if (personWithPermission.id === person.id) {
                 return;
             }
         }

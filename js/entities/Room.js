@@ -1,9 +1,11 @@
+'use strict'
+
 class Room {
     constructor(number, name) {
         this.id = newGuid();
         this.number = number;
         this.name = name;
-        this.roomManager = "";
+        this.roomManager = '';
         this.transponders = [];
         this.permissions = [];
     }
@@ -11,6 +13,7 @@ class Room {
     setRoomManager(roomManager) {
         this.roomManager = roomManager.id;
     }
+
     getRoomManager() {
         return this.roomManager;
     }
@@ -22,7 +25,7 @@ class Room {
     removeTransponder(transponder) {
         var index = this.transponders.indexOf(transponder.id);
 
-        if (index != -1) {
+        if (index !== -1) {
             this.transponders.splice(index, 1);
         }
     }
@@ -33,8 +36,8 @@ class Room {
 
     removePermission(personPermission) {
         var index = this.permissions.indexOf(personPermission.id);
-        
-        if (index != -1) {
+
+        if (index !== -1) {
             this.permissions.splice(index, 1);
         }
     }

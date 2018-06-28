@@ -1,4 +1,6 @@
-const PERSON_TABLE = "PERSON";
+'use strict'
+
+const PERSON_TABLE = 'PERSON';
 
 class PersonRepository {
 
@@ -12,10 +14,10 @@ class PersonRepository {
 
     static remove(people) {
         var peoples = this.getAll();
-        
+
         var index = this.getIndexByPersonId(people.id);
-        
-        if (index != -1) {
+
+        if (index !== -1) {
             peoples.splice(index, 1);
         }
 
@@ -27,7 +29,7 @@ class PersonRepository {
 
         var index = this.getIndexByPersonId(person.id);
 
-        if (index != -1) {
+        if (index !== -1) {
             persons[index] = person;
         }
 
@@ -38,7 +40,7 @@ class PersonRepository {
         var persons = this.getAll();
 
         for (var i = 0; i < persons.length; ++i) {
-            if (persons[i].id == personID)
+            if (persons[i].id === personID)
             return i;
         }
 
@@ -50,7 +52,7 @@ class PersonRepository {
 
         var p = [];
 
-        if (persons != null) {
+        if (persons !== null) {
             for (var i = 0; i < persons.length; ++i) {
                 p.push(Object.assign(new Person, persons[i]));
             }
@@ -67,7 +69,7 @@ class PersonRepository {
         var persons = this.getAll();
 
         for (var i = 0; i < persons.length; ++i) {
-            if (persons[i].id == personId) {
+            if (persons[i].id === personId) {
                 return persons[i];
             }
         }
@@ -79,8 +81,8 @@ class PersonRepository {
         var persons = this.getAll();
 
         for (var i = 0; i < persons.length; ++i) {
-            if (persons[i].firstname == firstname &&
-                persons[i].lastname == lastname)
+            if (persons[i].firstname === firstname &&
+                persons[i].lastname === lastname)
                 {
                     return persons[i];
                 }
@@ -88,5 +90,4 @@ class PersonRepository {
 
         return null;
     }
-
 }

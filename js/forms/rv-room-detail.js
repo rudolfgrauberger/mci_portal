@@ -1,3 +1,5 @@
+'use strict'
+
 $(document).ready( function() {
 
     if (SessionService.getCurrentSession() == null) {
@@ -5,28 +7,28 @@ $(document).ready( function() {
         return;
     }
 
-    var searchInput = document.getElementById("searchInput");
+    var searchInput = document.getElementById('searchInput');
 
     // Execute a function when the user releases a key on the keyboard
-    searchInput.addEventListener("keyup", function(event) {
+    searchInput.addEventListener('keyup', function(event) {
         // Cancel the default action, if needed
         event.preventDefault();
         // Number 13 is the "Enter" key on the keyboard
         if (event.keyCode === 13) {
             // Trigger the button element with a click
-            document.getElementById("searchbuttonrvroom").click();
+            $('#searchbuttonrvroom').click();
         }
     });
 
     let searchParams = new URLSearchParams(window.location.search);
 
-    var currentRoom = RoomService.getRoomById(searchParams.get("roomid"));
+    var currentRoom = RoomService.getRoomById(searchParams.get('roomid'));
 
-    autocomplete(document.getElementById("student-name"), PersonService.getAllPersonsAsStringArray());
+    autocomplete(document.getElementById('student-name'), PersonService.getAllPersonsAsStringArray());
 
-    $("#rvaddbuttonsave").click(function() {
-        var personString = document.getElementById("student-name").value;
-        var expires = document.getElementById("date-tex").value;
+    $('#rvaddbuttonsave').click(function() {
+        var personString = document.getElementById('student-name').value;
+        var expires = document.getElementById('date-tex').value;
 
         var person = PersonService.getPersonByFirstNameLastNameAndAdditionalInformation(personString);
 
@@ -36,22 +38,22 @@ $(document).ready( function() {
 
         PermissionService.addPermissionForPersonToRoom(person, currentRoom, expires ? new Date(expires) : null);
         refreshOutputTable();
-        document.getElementById("student-name").value = '';
-        document.getElementById("date-tex").value = '';
-        $("#exampleModal").modal('toggle');
+        document.getElementById('student-name').value = '';
+        document.getElementById('date-tex').value = '';
+        $('#exampleModal').modal('toggle');
     });
 
-    $("#roomDetailNumber").text(currentRoom.number);
-    $("#roomDetailName").text(currentRoom.name);
+    $('#roomDetailNumber').text(currentRoom.number);
+    $('#roomDetailName').text(currentRoom.name);
 
     refreshOutputTable();
 
-    $("#searchbuttonrvroom").click(function() {
+    $('#searchbuttonrvroom').click(function() {
         refreshOutputTable();
     });
 
     function getPermissionToDisplay() {
-      var searchValue = document.getElementById("searchInput").value;
+      var searchValue = document.getElementById('searchInput').value;
 
       return PermissionService.filterPermissionsForRoom(currentRoom, searchValue);
     }
@@ -69,7 +71,7 @@ $(document).ready( function() {
       cleanOutputTable();
       var permissions = getPermissionToDisplay();
 
-      var table = document.getElementById("rvpersonTable");
+      var table = document.getElementById('rvpersonTable');
 
       for (var i = 0; i < permissions.length; i++) {
           var id = permissions[i].id;
@@ -80,13 +82,13 @@ $(document).ready( function() {
           var cell3 = row.insertCell(2);
           var cell4 = row.insertCell(3);
           cell1.innerHTML = person.matrikelno;
-          cell2.innerHTML = person.firstname + " " + person.lastname + (person.company ? " (" + person.company + ")" : "");
-          cell3.innerHTML = permissions[i].expires ? permissions[i].expires : "unbegrenzt";
-          var x = document.createElement("INPUT");
-          x.setAttribute("type", "button");
-          x.setAttribute("value", "Löschen");
-          x.setAttribute("class", "btn btn-success");
-          x.setAttribute("id", "permission_" + id);
+          cell2.innerHTML = person.firstname + ' ' + person.lastname + (person.company ? ' (' + person.company + ')' : '');
+          cell3.innerHTML = permissions[i].expires ? permissions[i].expires : 'unbegrenzt';
+          var x = document.createElement('INPUT');
+          x.setAttribute('type', 'button');
+          x.setAttribute('value', 'Löschen');
+          x.setAttribute('class', 'btn btn-success');
+          x.setAttribute('id', 'permission_' + id);
           x.onclick = (function(permission_id) {remove_permission(permission_id) }).bind(this, id);
           cell4.appendChild(x);
     }
@@ -103,16 +105,16 @@ $(document).ready( function() {
         the text field element and an array of possible autocompleted values:*/
         var currentFocus;
         /*execute a function when someone writes in the text field:*/
-        inp.addEventListener("input", function(e) {
+        inp.addEventListener('input', function(e) {
             var a, b, i, val = this.value;
             /*close any already open lists of autocompleted values*/
             closeAllLists();
             if (!val) { return false;}
             currentFocus = -1;
             /*create a DIV element that will contain the items (values):*/
-            a = document.createElement("DIV");
-            a.setAttribute("id", this.id + "autocomplete-list");
-            a.setAttribute("class", "autocomplete-items");
+            a = document.createElement('DIV');
+            a.setAttribute('id', this.id + 'autocomplete-list');
+            a.setAttribute('class', 'autocomplete-items');
             /*append the DIV element as a child of the autocomplete container:*/
             this.parentNode.appendChild(a);
             /*for each item in the array...*/
@@ -120,16 +122,16 @@ $(document).ready( function() {
                 /*check if the item starts with the same letters as the text field value:*/
                 if (arr[i].substr(0, val.length).toUpperCase() == val.toUpperCase()) {
                 /*create a DIV element for each matching element:*/
-                b = document.createElement("DIV");
+                b = document.createElement('DIV');
                 /*make the matching letters bold:*/
-                b.innerHTML = "<strong>" + arr[i].substr(0, val.length) + "</strong>";
+                b.innerHTML = '<strong>' + arr[i].substr(0, val.length) + '</strong>';
                 b.innerHTML += arr[i].substr(val.length);
                 /*insert a input field that will hold the current array item's value:*/
-                b.innerHTML += "<input type='hidden' value='" + arr[i] + "'>";
+                b.innerHTML += '<input type="hidden" value="' + arr[i] + '">';
                 /*execute a function when someone clicks on the item value (DIV element):*/
-                    b.addEventListener("click", function(e) {
+                    b.addEventListener('click', function(e) {
                     /*insert the value for the autocomplete text field:*/
-                    inp.value = this.getElementsByTagName("input")[0].value;
+                    inp.value = this.getElementsByTagName('input')[0].value;
                     /*close the list of autocompleted values,
                     (or any other open lists of autocompleted values:*/
                     closeAllLists();
@@ -139,9 +141,9 @@ $(document).ready( function() {
             }
         });
         /*execute a function presses a key on the keyboard:*/
-        inp.addEventListener("keydown", function(e) {
-            var x = document.getElementById(this.id + "autocomplete-list");
-            if (x) x = x.getElementsByTagName("div");
+        inp.addEventListener('keydown', function(e) {
+            var x = document.getElementById(this.id + 'autocomplete-list');
+            if (x) x = x.getElementsByTagName('div');
             if (e.keyCode == 40) {
                 /*If the arrow DOWN key is pressed,
                 increase the currentFocus variable:*/
@@ -171,18 +173,18 @@ $(document).ready( function() {
             if (currentFocus >= x.length) currentFocus = 0;
             if (currentFocus < 0) currentFocus = (x.length - 1);
             /*add class "autocomplete-active":*/
-            x[currentFocus].classList.add("autocomplete-active");
+            x[currentFocus].classList.add('autocomplete-active');
         }
         function removeActive(x) {
             /*a function to remove the "active" class from all autocomplete items:*/
             for (var i = 0; i < x.length; i++) {
-            x[i].classList.remove("autocomplete-active");
+            x[i].classList.remove('autocomplete-active');
             }
         }
         function closeAllLists(elmnt) {
             /*close all autocomplete lists in the document,
             except the one passed as an argument:*/
-            var x = document.getElementsByClassName("autocomplete-items");
+            var x = document.getElementsByClassName('autocomplete-items');
             for (var i = 0; i < x.length; i++) {
             if (elmnt != x[i] && elmnt != inp) {
             x[i].parentNode.removeChild(x[i]);
@@ -190,7 +192,7 @@ $(document).ready( function() {
         }
         }
         /*execute a function when someone clicks in the document:*/
-        document.addEventListener("click", function (e) {
+        document.addEventListener('click', function (e) {
             closeAllLists(e.target);
         });
     }

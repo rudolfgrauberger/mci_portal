@@ -1,3 +1,5 @@
+'use strict'
+
 $(document).ready( function() {
 
     if (SessionService.getCurrentSession() != null) {
@@ -7,10 +9,10 @@ $(document).ready( function() {
         return;
     }
 
-    $("form").submit(function(e) {
+    $('form').submit(function (e) {
         e.preventDefault();
         var userService = new UserService();
-        var currentUser = userService.loginUser(document.getElementById("inputName").value, document.getElementById("inputPassword").value);
+        var currentUser = userService.loginUser(document.getElementById('inputName').value, document.getElementById('inputPassword').value);
 
         if (currentUser == null) {
             window.location.reload(false);
@@ -21,5 +23,4 @@ $(document).ready( function() {
         SessionService.setCurrentSession(session);
         window.location.assign(userService.getSuccessLoginRedirectPage(currentUser));
     });
-
 });
