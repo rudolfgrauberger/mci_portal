@@ -33,12 +33,26 @@ function initDatabase() {
             var t35 = new Transponder('T35');
             var f06 = new Transponder('F06');
             var h09 = new Transponder('H09');
+            var u01 = new Transponder('Universall 1');
 
-            var perDreiEinsNullSechs1 = PermissionFactory.create(dreieinsnullsechs, studentSvenMueller, new Date('2020-01-01'));
-            var perDreiEinsNullSechs2 = PermissionFactory.create(dreieinsnullsechs, studentTimoMueller, null);
-            var perStefanie1 = PermissionFactory.create(zweidreinullzwei, studentStefanieStudia, null);
-            var perStefanie2 = PermissionFactory.create(einsnulleinisdrei, studentStefanieStudia, null);
-            var perStefanie3 = PermissionFactory.create(dreizweizweizwei, studentStefanieStudia, null);
+            TransponderRelationManager.addLinkBetweenTransponderAndRoom(t35, usabilityStudio);
+            TransponderRelationManager.addLinkBetweenTransponderAndRoom(t35, dreizweizweizwei);
+            TransponderRelationManager.addLinkBetweenTransponderAndRoom(t35, zweidreinullzwei);
+            TransponderRelationManager.addLinkBetweenTransponderAndRoom(f06, kienbaumSaal);
+            TransponderRelationManager.addLinkBetweenTransponderAndRoom(f06, dreieinsnullsechs);
+            TransponderRelationManager.addLinkBetweenTransponderAndRoom(h09, einsnulleinisdrei);
+            TransponderRelationManager.addLinkBetweenTransponderAndRoom(u01, usabilityStudio);
+            TransponderRelationManager.addLinkBetweenTransponderAndRoom(u01, dreieinsnullsechs);
+            TransponderRelationManager.addLinkBetweenTransponderAndRoom(u01, kienbaumSaal);
+            TransponderRelationManager.addLinkBetweenTransponderAndRoom(u01, zweidreinullzwei);
+            TransponderRelationManager.addLinkBetweenTransponderAndRoom(u01, einsnulleinisdrei);
+            TransponderRelationManager.addLinkBetweenTransponderAndRoom(u01, dreizweizweizwei);
+
+
+            var perDreiEinsNullSechs1 = PermissionFactory.create(f06, studentSvenMueller, new Date('2020-01-01'));
+            var perDreiEinsNullSechs2 = PermissionFactory.create(f06, studentTimoMueller, null);
+            var perStefanie1 = PermissionFactory.create(t35, studentStefanieStudia, null);
+            var perStefanie2 = PermissionFactory.create(h09, studentStefanieStudia, null);
 
             // Einfache 1:n-/n:1- und n:m-Verknüpfungen müssen vor dem Speichern den Objekten zugewiesen werden,
             // damit beim Speichern diese direkt in den Objekten mitgespeichert werden.
@@ -46,15 +60,11 @@ function initDatabase() {
             RoomManagerRelationManager.addLinkBetweenRoomManagerAndRoom(userManfredMustermi, dreieinsnullsechs);
             RoomManagerRelationManager.addLinkBetweenRoomManagerAndRoom(userManfredMustermi, kienbaumSaal);
 
-            TransponderRelationManager.addLinkBetweenTransponderAndRoom(t35, zweidreinullzwei);
-            TransponderRelationManager.addLinkBetweenTransponderAndRoom(f06, zweidreinullzwei);
-            TransponderRelationManager.addLinkBetweenTransponderAndRoom(h09, zweidreinullzwei);
 
             PermissionRepository.add(perDreiEinsNullSechs1);
             PermissionRepository.add(perDreiEinsNullSechs2);
             PermissionRepository.add(perStefanie1);
             PermissionRepository.add(perStefanie2);
-            PermissionRepository.add(perStefanie3);
 
             // Entities
             UserRepository.add(userImmanuelPforte);
@@ -75,6 +85,7 @@ function initDatabase() {
             TransponderRepository.add(t35);
             TransponderRepository.add(f06);
             TransponderRepository.add(h09);
+            TransponderRepository.add(u01);
 
             sessionStorage.setItem('isInit', 'true');
         }
