@@ -59,7 +59,7 @@ body {
     height: 5%;
     width: 80%;
     margin-top: 3%;
-    margin-left: 4%;
+    margin-left: 30%;
     box-sizing: border-box;
 }
 
@@ -92,9 +92,9 @@ body {
 
 #resultfielddetail{
     height: 60%;
-    width: 38%;
+    width: 60%;
     margin-top: 1%;
-    margin-left: 5%;
+    margin-left: 20%;
     box-sizing: border-box;
     background-color: white;
 }
@@ -121,7 +121,7 @@ body {
     height: 10%;
     width: 38%;
     margin-top: 1%;
-    margin-left: 5%;
+    margin-left: 20%;
     box-sizing: border-box;
     background-color: white;
 }
