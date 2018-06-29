@@ -66,7 +66,7 @@ $(document).ready( function() {
             var cell1 = row.insertCell(0);
             var cell2 = row.insertCell(1);
             var cell3 = row.insertCell(2);
-            cell1.innerHTML = person.firstname + ' ' + person.nachname + (person.matrikelno ? ' (' + person.matrikelno + ')': ' (' + person.company + ')');
+            cell1.innerHTML = PersonService.getPersonInfoAsString(person);
 
             if (roomManager) {
                 cell2.innerHTML = roomManager.firstname + ' ' + roomManager.lastname;

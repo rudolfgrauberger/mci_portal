@@ -6,15 +6,8 @@ class PersonService {
         return PersonRepository.findById(personId);
     }
 
-    static getAllPersonsAsStringArray() {
-        var personsString = [];
-        var persons = PersonRepository.getAll();
-
-        for (var i = 0; i < persons.length; ++i) {
-            personsString.push(persons[i].firstname + ' ' + persons[i].lastname + ' (' + (persons[i].matrikelno ? persons[i].matrikelno : persons[i].company) + ')');
-        }
-
-        return personsString;
+    static getPersonInfoAsString(person) {
+        return person.firstname + ' ' + person.lastname + ' (' + (person.matrikelno ? person.matrikelno : person.company) + ')';
     }
 
     static getPersonByFirstNameLastNameAndAdditionalInformation(mergesString) {
