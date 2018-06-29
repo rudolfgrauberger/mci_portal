@@ -7,9 +7,9 @@ class UserService {
     }
 
     getSuccessLoginRedirectPage(user) {
-        if (user.role == 'roomManager'){
+        if (user.role === 'roomManager'){
             return 'rv-start.html';
-        } else if(user.role == 'gateKeeper'){
+        } else if(user.role === 'gateKeeper'){
             return 'search.html';
         }
 

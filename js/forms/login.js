@@ -14,7 +14,7 @@ $(document).ready( function() {
         var userService = new UserService();
         var currentUser = userService.loginUser(document.getElementById('inputName').value, document.getElementById('inputPassword').value);
 
-        if (currentUser == null) {
+        if (currentUser === null) {
             window.location.reload(false);
             return;
         }

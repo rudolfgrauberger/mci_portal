@@ -2,7 +2,7 @@
 
 $(document).ready( function() {
 
-    if (SessionService.getCurrentSession() == null) {
+    if (SessionService.getCurrentSession() === null) {
         window.location.href = 'login.html';
         return;
     }

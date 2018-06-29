@@ -1,5 +1,4 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
+<!DOCTYPE html>
 
 <head>
     <title>Prototype</title>
@@ -20,42 +19,44 @@
     <script type="text/javascript" src="js/repositories/PersonRepository.js"></script>
     <script type="text/javascript" src="js/repositories/RoomRepository.js"></script>
     <script type="text/javascript" src="js/repositories/PermissionRepository.js"></script>
+    <script type="text/javascript" src="js/boostrap-combobox.js"></script>
     <link rel="stylesheet" type="text/css" href="css/main.css">
     <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="css/boostrap-combobox.css">
     <link rel="stylesheet" type="text/css" href="css/autocomplete.css">
 </head>
 <body>
     <div id="content">
-            <div id="header" class="navbar navbar-default navbar-fixed-top">
-                    <div class="navblockCurrent btn-group-lg">
-                            <button type="button" class="btn btn-default buttonclear" onclick="location.href = 'rv-start.html';"><span class="glyphicon glyphicon-credit-card" aria-hidden="true"> </span> Räume</button>
-                    </div>
-                    <div class="navblock btn-group-lg buttonright ">
-                            <button class="btn  btn-default btn-block buttonright buttonclear" id="logoutButton" type="submit">Ausloggen</button>
-                    </div>
-             </div>
-
-    <div id="main">
-        <div id="detailNameBlock">
-            <span class="bigspan" id="roomDetailNumber"></span><br>
-            <span class="smallspan" id="roomDetailName"></span>
+        <div id="header" class="navbar navbar-default navbar-fixed-top">
+            <div class="navblockCurrent btn-group-lg">
+                <button type="button" class="btn btn-default buttonclear" onclick="location.href = 'rv-start.html';"><span class="glyphicon glyphicon-credit-card" aria-hidden="true"> </span> Räume</button>
+            </div>
+            <div class="navblock btn-group-lg buttonright ">
+                <button class="btn  btn-default btn-block buttonright buttonclear" id="logoutButton" type="submit">Ausloggen</button>
+            </div>
         </div>
-        <div id="searchfielddetail">
+
+        <div id="main">
+            <div id="detailNameBlock">
+                <span class="bigspan" id="roomDetailNumber"></span><br>
+                <span class="smallspan" id="roomDetailName"></span>
+            </div>
+            <div id="searchfielddetail">
                 <div class="col-lg-6">
                     <div class="input-group">
                         <input type="text" id="searchInput" class="form-control" placeholder="Name" autofocus>
-                            <span class="input-group-btn">
-                                <button id="searchbuttonrvroom" class="btn btn-default" type="button">Suche</button>
-                            </span>
+                        <span class="input-group-btn">
+                            <button id="searchbuttonrvroom" class="btn btn-default" type="button">Suche</button>
+                        </span>
                     </div><!-- /input-group -->
                 </div><!-- /.col-lg-6 -->
-        </div>
+            </div>
 
-        <!--person table-->
-        <div id="resultfielddetail">
+            <!--person table-->
+            <div id="resultfielddetail">
                 <table class="table table-striped" id="rvpersonTable">
                     <thead>
-                        <tr><th><button id="addbuttonrvroom" class="btn btn-success" data-toggle="modal" data-target="#exampleModal"  type="button">Hinzufügen</button></th></tr>
+                        <tr><th><button id="addbuttonrvroom" class="btn btn-success" data-toggle="modal" data-target="#exampleModal" type="button">Hinzufügen</button></th></tr>
                         <tr>
                             <th>Matrikelnummer</th>
                             <th>Name</th>
@@ -66,48 +67,49 @@
                     <tbody>
                     </tbody>
                 </table>
+            </div>
         </div>
+
+        <div id="footer" class="navbar navbar-fixed-bottom">
+            <div id="fakespace">
+                <center>
+                    <span class="copylink">Copyright TH Köln</span>
+                </center>
+            </div>
+        </div>
+    </div>
+
     <!-- Modal -->
     <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog" role="document">
-              <div class="modal-content">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
                 <div class="modal-header">
-                  <h3 class="modal-title" id="exampleModalLabel">Berechtigung eintragen</h3>
-                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                  </button>
+                    <h3 class="modal-title" id="exampleModalLabel">Berechtigung eintragen</h3>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
                 </div>
                 <div class="modal-body">
-                  <form>
-                    <div class="form-group">
-                      <label for="student-name" class="col-form-label">Name:</label>
-                      <input type="text" class="form-control" id="student-name" />
-                    </div>
-                    <div class="form-group">
-                      <label for="date-text" class="col-form-label">Gültig bis:</label>
-                      <input type="date" class="form-control" id="date-tex" />
-                    </div>
-                  </form>
-                  
+                    <form>
+                        <div class="form-group">
+                            <label for="student-name" class="col-form-label">Name:</label>
+                            <select class="combobox" id="student-name" autofocus >
+                                <option defaultSelected="true" selected="selected"></option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                        <label for="date-text" class="col-form-label">Gültig bis:</label>
+                        <input type="date" class="form-control" id="date-tex" />
+                        </div>
+                    </form>
                 </div>
                 <div class="modal-footer">
-                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Abbrechen</button>
-                  <button type="submit" id="rvaddbuttonsave" class="btn btn-primary">Speichern</button>
+                    <button type="button" id="rvaddbuttonsave" class="btn btn-primary">Speichern</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Abbrechen</button>
                 </div>
-              </div>
             </div>
-          </div>
-
-    </div>
-
-    <div id="footer" class="navbar navbar-fixed-bottom">
-        <div id="fakespace">
-                <center>
-                        <span class="copylink">Copyright TH Köln</span>
-                </center>
         </div>
     </div>
 
-</div>
 </body>
 </html>

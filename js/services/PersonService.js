@@ -45,4 +45,8 @@ class PersonService {
 
         return selectedPersons;
     }
+
+    static getAllPersons() {
+        return PersonRepository.getAll();
+    }
 }
