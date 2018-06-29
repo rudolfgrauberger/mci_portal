@@ -2,10 +2,10 @@
 
 class PermissionFactory {
 
-    static create(room, person, expires) {
-        var perm = new Permission(person, room, expires);
+    static create(transponder, person, expires) {
+        var perm = new Permission(person, transponder, expires);
 
-        room.addPermission(perm);
+        transponder.addPermission(perm);
         person.addPermission(perm);
         return perm;
     }

@@ -11,12 +11,12 @@ class Person {
         this.permissions = [];
     }
 
-    addPermission(roomPermission) {
-        this.permissions.push(roomPermission.id);
+    addPermission(transponderPermission) {
+        this.permissions.push(transponderPermission.id);
     }
 
-    removePermission(room) {
-        var index = this.permissions.indexOf(room.id);
+    removePermission(transponder) {
+        var index = this.permissions.indexOf(transponder.id);
 
         if (index !== -1) {
             this.permissions.splice(index, 1);

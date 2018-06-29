@@ -2,8 +2,8 @@
 
 class PermissionService {
 
-    static filterPermissionsForRoom(currentRoom, searchValue) {
-        var permissions = PermissionRepository.getPermissionsByRoomId(currentRoom.id);
+    static filterPermissionsForTransponder(transponder, searchValue) {
+        var permissions = PermissionRepository.getPermissionsByTransponderId(transponder.id);
         var filterOn = !(searchValue === null || searchValue === '');
 
         var selectedPermissions = [];
@@ -41,7 +41,7 @@ class PermissionService {
                 continue;
             }
 
-            var room = RoomService.getRoomById(permissions[i].room);
+            var room = TransponderRepository.getPermissionsByTransponderId(permissions[i].transponder);
             var manager = UserService.getUserById(room.roomManager);
 
             var searchReg = new RegExp(searchValue, 'i');
@@ -63,30 +63,30 @@ class PermissionService {
     static removePermissionById(permissionId) {
         var permission = PermissionRepository.findById(permissionId);
         var person = PersonRepository.findById(permission.person);
-        var room = RoomRepository.findById(permission.room);
+        var transponder = TransponderRepository.findById(permission.transponder);
 
         person.removePermission(permission);
-        room.removePermission(permission);
+        transponder.removePermission(permission);
 
         PersonRepository.update(person);
-        RoomRepository.update(room);
+        TransponderRepository.update(transponder);
         PermissionRepository.remove(permission);
     }
 
-    static addPermissionForPersonToRoom(person, room, expires) {
+    static addPermissionForPersonToTransponder(person, transponder, expires) {
 
-        var permissionsForRoom = this.filterPermissionsForRoom(room);
+        var permissionsForTransponder = this.filterPermissionsForTransponder(transponder);
 
-        for (var i = 0; i < permissionsForRoom.length; ++i) {
-            var personWithPermission = PersonRepository.findById(permissionsForRoom[i].person);
+        for (var i = 0; i < permissionsForTransponder.length; ++i) {
+            var personWithPermission = PersonRepository.findById(permissionsForTransponder[i].person);
             if (personWithPermission.id === person.id) {
                 return;
             }
         }
 
-        var permission = PermissionFactory.create(room, person, expires);
+        var permission = PermissionFactory.create(transponder, person, expires);
         PersonRepository.update(person);
-        RoomRepository.update(room);
+        TransponderRepository.update(transponder);
         PermissionRepository.add(permission);
     }
 }

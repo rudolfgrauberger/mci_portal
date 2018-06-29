@@ -2,10 +2,10 @@
 
 class Permission {
 
-    constructor (person, room, expires) {
+    constructor (person, transponder, expires) {
         this.id = newGuid();
         this.person = person.id;
-        this.room = room.id;
+        this.transponder = transponder.id;
         this.expires = expires;
     }
 }

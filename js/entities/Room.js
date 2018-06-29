@@ -7,7 +7,6 @@ class Room {
         this.name = name;
         this.roomManager = '';
         this.transponders = [];
-        this.permissions = [];
     }
 
     setRoomManager(roomManager) {
@@ -27,18 +26,6 @@ class Room {
 
         if (index !== -1) {
             this.transponders.splice(index, 1);
-        }
-    }
-
-    addPermission(personPermission) {
-        this.permissions.push(personPermission.id);
-    }
-
-    removePermission(personPermission) {
-        var index = this.permissions.indexOf(personPermission.id);
-
-        if (index !== -1) {
-            this.permissions.splice(index, 1);
         }
     }
 }

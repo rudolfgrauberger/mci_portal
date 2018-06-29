@@ -49,6 +49,18 @@ class TransponderRepository {
         return t;
     }
 
+    static update(transponder) {
+        var transponders = this.getAll();
+
+        var index = this.getIndexByTransponderId(transponder.id);
+
+        if (index !== -1) {
+            transponders[index] = transponder;
+        }
+
+        this.save(transponders);
+    }
+
     static save(transponders) {
         sessionStorage.setItem(TRANSPONDER_TABLE, JSON.stringify(transponders));
     }
