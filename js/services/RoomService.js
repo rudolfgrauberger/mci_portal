@@ -40,6 +40,16 @@ class RoomService {
         return selectedRooms;
     }
 
+    static filterRoomsByTransponder(transponder) {
+        var selectedRooms = [];
+        for (var i = 0; i < transponder.rooms.length; ++i) {
+            var room = RoomRepository.findById(transponder.rooms[i]);
+            selectedRooms.push(room);
+        }
+
+        return selectedRooms;
+    }
+
     static filterRoomsBySearchString(searchValue) {
         return this.filterRoomsBySearchValue(RoomRepository.getAll(), searchValue);
     }
