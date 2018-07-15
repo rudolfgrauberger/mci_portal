@@ -15,12 +15,10 @@ class PermissionService {
                 continue;
             }
 
-            var searchReg = new RegExp(searchValue, 'i');
-
-            if (person.firstname.search(searchReg) !== -1 ||
-                person.lastname.search(searchReg) !== -1 ||
-                person.matrikelno.search(searchReg) !== -1 ||
-                person.company.search(searchReg) !== -1)
+            if (searchEqualityCompare(person.firstname, searchValue) ||
+                searchEqualityCompare(person.lastname, searchValue) ||
+                searchEqualityCompare(person.matrikelno, searchValue) ||
+                searchEqualityCompare(person.company, searchValue))
             {
                 selectedPermissions.push(permissions[i]);
             }
@@ -46,11 +44,11 @@ class PermissionService {
 
             var searchReg = new RegExp(searchValue, 'i');
 
-            if (room.number.search(searchReg) !== -1 ||
-                room.name.search(searchReg) !== -1 ||
-                manager.firstname.search(searchReg) !== -1 ||
-                manager.lastname.search(searchReg) !== -1 ||
-                manager.username.search(searchReg) !== -1)
+            if (searchEqualityCompare(room.number, searchValue) ||
+                searchEqualityCompare(room.name, searchValue) ||
+                searchEqualityCompare(manager.firstname, searchValue) ||
+                searchEqualityCompare(manager.lastname, searchValue) ||
+                searchEqualityCompare(manager.username, searchValue))
             {
                 selectedPermissions.push(permissions[i]);
             }

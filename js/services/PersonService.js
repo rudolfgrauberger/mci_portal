@@ -29,12 +29,10 @@ class PersonService {
         var selectedPersons = [];
         for (var i = 0; i < personlist.length; ++i) {
             if (filterOn === true) {
-                var searchReg = new RegExp(searchValue, 'i');
-
-                if (personlist[i].firstname.search(searchReg) !== -1 ||
-                    personlist[i].lastname.search(searchReg) !== -1 ||
-                    personlist[i].matrikelno.search(searchReg) !== -1 ||
-                    personlist[i].company.search(searchReg) !== -1)
+                if (searchEqualityCompare(personlist[i].firstname, searchValue) ||
+                    searchEqualityCompare(personlist[i].lastname, searchValue) ||
+                    searchEqualityCompare(personlist[i].matrikelno, searchValue) ||
+                    searchEqualityCompare(personlist[i].company, searchValue))
                 {
                     selectedPersons.push(personlist[i]);
                 }

@@ -27,8 +27,8 @@ class RoomService {
         var selectedRooms = [];
         for (var i = 0; i < roomlist.length; ++i) {
             if (filterOn === true) {
-                if (roomlist[i].number.search(new RegExp(searchValue, 'i')) !== -1 ||
-                    roomlist[i].name.search(new RegExp(searchValue, 'i')) !== -1)
+                if (searchEqualityCompare(roomlist[i].number, searchValue) ||
+                    searchEqualityCompare(roomlist[i].name, searchValue))
                 {
                     selectedRooms.push(roomlist[i]);
                 }
