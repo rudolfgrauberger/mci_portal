@@ -8,10 +8,13 @@
    <script type="text/javascript" src="js/entities/User.js"></script>
    <script type="text/javascript" src="js/entities/Session.js"></script>
    <script type="text/javascript" src="js/entities/Room.js"></script>
+   <script type="text/javascript" src="js/entities/Transponder.js"></script>
    <script type="text/javascript" src="js/repositories/SessionRepository.js"></script>
+   <script type="text/javascript" src="js/repositories/TransponderRepository.js"></script>
    <script type="text/javascript" src="js/repositories/RoomRepository.js"></script>
    <script type="text/javascript" src="js/services/SessionService.js"></script>
    <script type="text/javascript" src="js/services/RoomService.js"></script>
+   <script type="text/javascript" src="js/services/TransponderService.js"></script>
    <script type="text/javascript" src="js/forms/rv-start.js"></script>
    <script type="text/javascript" src="js/forms/global.js"></script>
    <script type="text/javascript" src="js/bootstrap.js"></script>
@@ -24,7 +27,7 @@
     <div id="content">
       <div id="header" class="navbar navbar-default navbar-fixed-top">
             <div class="navblockCurrent btn-group-lg">
-                    <button type="button" class="btn btn-default buttonclear" onclick="location.href = 'rv-start.html';"><span class="glyphicon glyphicon-credit-card" aria-hidden="true"> </span> Räume</button>
+                    <button type="button" class="btn btn-default buttonclear" onclick="location.href = 'rv-start.html';"><span class="glyphicon glyphicon-credit-card" aria-hidden="true"> </span> Transponder</button>
             </div>
             <div class="navblock btn-group-lg buttonright ">
                     <button class="btn  btn-default btn-block buttonright buttonclear" id="logoutButton" type="submit">Ausloggen</button>
@@ -35,7 +38,7 @@
         <div id="searchfield">
                 <div class="col-lg-6">
                     <div class="input-group">
-                        <input type="text" id="searchInput" class="form-control" placeholder="Raumnummer oder Raumname" autofocus />
+                        <input type="text" id="searchInput" class="form-control" placeholder="Transponder, Raumnummer oder Raumname" autofocus />
                             <span class="input-group-btn">
                                 <button id="searchbuttonrvstart" class="btn btn-default" type="button">Suche</button>
                             </span>
@@ -45,12 +48,12 @@
 
         <!--room table-->
         <div id="resultfieldrvstart">
-                <table class="table table-striped" id="rvroomTable">
+                <table class="table table-striped" id="rvtransponderRoomTable">
                         <thead>
                             <tr><th><span class="verantwortlichspan">Verantwortlich für </span></th></tr>
                             <tr>
-                                <th>Raum</th>
-                                <th>Raumname</th>
+                                <th>Transponder</th>
+                                <th>Raum/Räume</th>
                                 <th></th><!--Button-->
                             </tr>
                         </thead>

@@ -7,7 +7,7 @@ class PersonService {
     }
 
     static getPersonInfoAsString(person) {
-        return person.firstname + ' ' + person.lastname + ' (' + (person.matrikelno ? person.matrikelno : person.company) + ')';
+        return person.firstname + ' ' + person.lastname;
     }
 
     static getPersonByFirstNameLastNameAndAdditionalInformation(mergesString) {

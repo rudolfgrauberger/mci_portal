@@ -73,7 +73,7 @@ class PermissionService {
 
     static addPermissionForPersonToTransponder(person, transponder, expires) {
 
-        var permissionsForTransponder = this.filterPermissionsForTransponder(transponder);
+        var permissionsForTransponder = PermissionRepository.getPermissionsByTransponderId(transponder.id);
 
         for (var i = 0; i < permissionsForTransponder.length; ++i) {
             var personWithPermission = PersonRepository.findById(permissionsForTransponder[i].person);

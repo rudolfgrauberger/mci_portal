@@ -53,6 +53,8 @@ function initDatabase() {
             var perDreiEinsNullSechs2 = PermissionFactory.create(f06, studentTimoMueller, null);
             var perStefanie1 = PermissionFactory.create(t35, studentStefanieStudia, null);
             var perStefanie2 = PermissionFactory.create(h09, studentStefanieStudia, null);
+            var perKienbaumSaal = PermissionFactory.create(u01, ausleihendeExternHaraldHardWorker, null);
+            var perDreiEinsNullSechs3 = PermissionFactory.create(f06, ausleihendeExternHaraldHardWorker, null);
 
             // Einfache 1:n-/n:1- und n:m-Verknüpfungen müssen vor dem Speichern den Objekten zugewiesen werden,
             // damit beim Speichern diese direkt in den Objekten mitgespeichert werden.
@@ -65,6 +67,8 @@ function initDatabase() {
             PermissionRepository.add(perDreiEinsNullSechs2);
             PermissionRepository.add(perStefanie1);
             PermissionRepository.add(perStefanie2);
+            PermissionRepository.add(perKienbaumSaal);
+            PermissionRepository.add(perDreiEinsNullSechs3);
 
             // Entities
             UserRepository.add(userImmanuelPforte);

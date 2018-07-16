@@ -50,7 +50,6 @@ $(document).ready( function() {
         var table = document.getElementById('transponderTable');
 
         for (var i = 0; i < transponders.length; i++) {
-            var id = transponders[i].id;
             var row = table.insertRow(1);
             var cell1 = row.insertCell(0);
             var cell2 = row.insertCell(1);
@@ -58,12 +57,11 @@ $(document).ready( function() {
 
             var rooms = RoomService.filterRoomsByTransponder(transponders[i]);
 
-            var roomString = '';
-            roomString += rooms.map(function(x) {
+            var roomString = rooms.map(function(x) {
                 return x.number;
             });
 
-            cell2.innerHTML = roomString;
+            cell2.innerHTML = roomString.join(', ');
         }
     }
 });

@@ -42,7 +42,7 @@ $(document).ready( function() {
 
     let searchParams = new URLSearchParams(window.location.search);
 
-    var currentRoom = RoomService.getRoomById(searchParams.get('roomid'));
+    var currentTransponder = TransponderService.getTransponderById(searchParams.get('transponderid'));
 
     $('#rvaddbuttonsave').click(function() {
         var personId = document.getElementById('student-name').value;
@@ -60,7 +60,7 @@ $(document).ready( function() {
         document.getElementById('date-tex').value = '';
         $('#exampleModal').modal('toggle');
 
-        PermissionService.addPermissionForPersonToRoom(person, currentRoom, expires ? new Date(expires) : null);
+        PermissionService.addPermissionForPersonToTransponder(person, currentTransponder, expires ? new Date(expires) : null);
         refreshOutputTable();
     });
 
@@ -68,8 +68,8 @@ $(document).ready( function() {
         $("#exampleModal :text").focus();
     });
 
-    $('#roomDetailNumber').text(currentRoom.number);
-    $('#roomDetailName').text(currentRoom.name);
+    $('#transponderDetailNumber').text(currentTransponder.no);
+    $('#transponderDetailName').text('');
 
     refreshOutputTable();
 
@@ -80,7 +80,7 @@ $(document).ready( function() {
     function getPermissionToDisplay() {
       var searchValue = document.getElementById('searchInput').value;
 
-      return PermissionService.filterPermissionsForRoom(currentRoom, searchValue);
+      return PermissionService.filterPermissionsForTransponder(currentTransponder, searchValue);
     }
 
     function cleanOutputTable() {
@@ -106,7 +106,7 @@ $(document).ready( function() {
           var cell2 = row.insertCell(1);
           var cell3 = row.insertCell(2);
           var cell4 = row.insertCell(3);
-          cell1.innerHTML = person.matrikelno;
+          cell1.innerHTML = person.matrikelno ? person.matrikelno : person.company;
           cell2.innerHTML = PersonService.getPersonInfoAsString(person);
           cell3.innerHTML = permissions[i].expires ? permissions[i].expires : 'unbegrenzt';
           var x = document.createElement('INPUT');
