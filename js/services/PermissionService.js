@@ -58,6 +58,44 @@ class PermissionService {
 
     }
 
+    static getPermissionForPersonAndRoom(person, room) {
+        var permissions = PermissionRepository.getAll();
+        var transponders = room.transponders;
+
+        for (var i = 0; i < permissions.length; ++i) {
+            if (permissions[i].person === person && transponders.some(x => x === permissions[i].transponder)) {
+                return permissions[i];
+            }
+        }
+
+        return null;
+    }
+
+    static getPermissionForPersonAndTransponder(person, transponder) {
+        var permissions = PermissionRepository.getAll();
+
+        for (var i = 0; i < permissions.length; ++i) {
+            if (person === permissions[i].person && transponder === permissions[i].transponder) {
+                return permissions[i];
+            }
+        }
+
+        return null;
+    }
+
+    static getPermissionsForTransponder(transponder) {
+        var permissions = PermissionRepository.getAll();
+        var selectedPermissions = [];
+
+        for (var i = 0; i < permissions.length; ++i) {
+            if (transponder ===  permissions[i].transponder) {
+                selectedPermissions.push(permissions[i]);
+            }
+        }
+
+        return selectedPermissions;
+    }
+
     static removePermissionById(permissionId) {
         var permission = PermissionRepository.findById(permissionId);
         var person = PersonRepository.findById(permission.person);

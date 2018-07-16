@@ -61,6 +61,7 @@ $(document).ready( function() {
             x.setAttribute('value', 'Details');
             x.setAttribute('class', 'btn btn-success');
             x.setAttribute('id', 'details_' + id);
+            x.setAttribute('style', 'float: right;');
             x.onclick = (function(interne_id) {room_details(interne_id) }).bind(this, id);
             cell3.appendChild(x);
         }

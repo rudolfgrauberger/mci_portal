@@ -20,6 +20,41 @@ class PersonService {
         return PersonRepository.findByFirstNameAndLastName(firstname, lastname);
     }
 
+    static filterPersonsWithPermissionForRoomAndBySearchString(room, searchString) {
+        var persons = PersonRepository.getAll();
+        var transponder = room.transponders;
+        var selectedPersons = [];
+
+        for (var t = 0; t < transponder.length; ++t) {
+            var permissions = PermissionService.getPermissionsForTransponder(transponder[t]);
+
+            for (var p = 0; p < permissions.length; ++p) {
+                var person = PersonRepository.findById(permissions[p].person);
+                if (!selectedPersons.some(x => x.id === person.id)) {
+                    selectedPersons.push(PersonRepository.findById(permissions[p].person));
+                }
+            }
+        }
+
+        return this.filterPersonsBySearchValue(selectedPersons, searchString);
+    }
+
+    static filterPersonsForTransponderAndBySearchString(transponder, searchString) {
+        var persons = PersonRepository.getAll();
+        var permissions = PermissionService.getPermissionsForTransponder(transponder.id);
+        var selectedPersons = [];
+
+        for (var i = 0; i < persons.length; ++i) {
+            for (var p = 0; p < permissions.length; ++p) {
+                if (permissions[p].person === persons[i].id) {
+                    selectedPersons.push(persons[i]);
+                }
+            }
+        }
+
+        return this.filterPersonsBySearchValue(selectedPersons, searchString);
+    }
+
     static filterPersonsBySearchString(searchValue) {
         return this.filterPersonsBySearchValue(PersonRepository.getAll(), searchValue);
     }

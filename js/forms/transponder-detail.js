@@ -16,32 +16,31 @@ $(document).ready( function() {
         // Number 13 is the "Enter" key on the keyboard
         if (event.keyCode === 13) {
             // Trigger the button element with a click
-            document.getElementById('searchbuttonroomdetail').click();
+            document.getElementById('searchbuttontransponderdetail').click();
         }
     });
 
     let searchParams = new URLSearchParams(window.location.search);
 
-    var currentRoom = RoomService.getRoomById(searchParams.get('roomid'));
+    var currentTransponder = TransponderService.getTransponderById(searchParams.get('transponderid'));
 
-    $('#roomDetailNumber').text(currentRoom.number);
-    $('#roomDetailName').text(currentRoom.name);
+    $('#transponderDetailNumber').text(currentTransponder.no);
+    $('#transponderDetailName').text('');
 
     refreshOutputTable();
 
-    $('#searchbuttonroomdetail').click(function () {
+    $('#searchbuttontransponderdetail').click(function () {
         refreshOutputTable();
     });
 
-    function getPermissionToDisplay() {
+    function getPersonsToDisplay() {
         var searchValue = document.getElementById('searchInput').value;
-
-        return PermissionService.filterPermissionsForRoom(currentRoom, searchValue);
+        
+        return PersonService.filterPersonsForTransponderAndBySearchString(currentTransponder, searchValue);
     }
 
-
     function cleanOutputTable() {
-        var table = document.getElementById('roomdetailTable');
+        var table = document.getElementById('transonderdetailTable');
         var rowCount = table.rows.length;
 
         for (var index = 1; index < rowCount; ++index) {
@@ -52,38 +51,39 @@ $(document).ready( function() {
     function refreshOutputTable() {
         $('#resultfieldperson').show();
         cleanOutputTable();
-        var permissions = getPermissionToDisplay();
+        var persons = getPersonsToDisplay();
 
-        var table = document.getElementById('roomdetailTable');
+        var table = document.getElementById('transonderdetailTable');
 
-        for (var i = 0; i < permissions.length; i++) {
-            var id = permissions[i].id;
-            var room = RoomService.getRoomById(permissions[i].room);
-            var person = PersonService.getPersonById(permissions[i].person);
-            var roomManager =  UserService.getUserById(room.getRoomManager())
+        for (var i = 0; i < persons.length; i++) {
+            var transponderID = currentTransponder.id;
+            var permissions = PermissionService.getPermissionForPersonAndTransponder(persons[i].id, currentTransponder.id);
+            var manager = permissions.manager ? UserService.getUserById(permissions.manager) : null;
 
             var row = table.insertRow(1);
             var cell1 = row.insertCell(0);
             var cell2 = row.insertCell(1);
             var cell3 = row.insertCell(2);
-            cell1.innerHTML = PersonService.getPersonInfoAsString(person);
-
-            if (roomManager) {
-                cell2.innerHTML = roomManager.firstname + ' ' + roomManager.lastname;
+            cell1.innerHTML = persons[i].matrikelno ? persons[i].matrikelno : persons[i].company;;
+            cell2.innerHTML = PersonService.getPersonInfoAsString(persons[i]);
+            var cell3 = row.insertCell(2);
+            if (manager) {
+                cell3.innerHTML = UserService.getUserInfoAsString(manager);
             }
-
+            var cell4 = row.insertCell(3);
+            
             var x = document.createElement('INPUT');
             x.setAttribute('type', 'button');
             x.setAttribute('value', 'Ausleihen');
             x.setAttribute('class', 'btn btn-success');
-            x.setAttribute('id', 'details_' + id);
-            x.onclick = (function(interne_id) {lent(interne_id) }).bind(this, id);
-            cell3.appendChild(x);
+            x.setAttribute('id', 'details_' + transponderID);
+            x.setAttribute('style', 'float: right;');
+            x.onclick = (function(interne_id) {lent(interne_id) }).bind(this, transponderID);
+            cell4.appendChild(x);
         }
     }
 
     function lent(guid) {
         alert(guid);
-        //window.location.href = 'room-detail.html?roomid=' + guid;
     }
 });

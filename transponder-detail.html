@@ -34,10 +34,10 @@
            <div class="navblock btn-group-lg">
                 <button type="button" class="btn btn-default buttonclear" onclick="location.href = 'persons.html';"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> Personen</button>
             </div>
-            <div class="navblockCurrent btn-group-lg">
+            <div class="navblock btn-group-lg">
                     <button type="button" class="btn btn-default buttonclear" onclick="location.href = 'rooms.html';"><span class="glyphicon glyphicon-credit-card" aria-hidden="true"> </span> Räume</button>
             </div>
-            <div class="navblock btn-group-lg">
+            <div class="navblockCurrent btn-group-lg">
                     <button type="button" class="btn btn-default buttonclear" onclick="location.href = 'transponders.html';"><span class="glyphicon glyphicon-link" aria-hidden="true"></span> Transponder</button>
             </div>
             <div class="navblock btn-group-lg buttonright ">
@@ -47,15 +47,15 @@
     </div>
     <div id="main">
         <div id="detailNameBlock">
-                <span class="bigspan" id="roomDetailNumber"></span><br>
-                <span class="smallspan" id="roomDetailName"></span>
+                <span class="bigspan" id="transponderDetailNumber"></span><br>
+                <span class="smallspan" id="transponderDetailName"></span>
         </div>
         <div id="searchfielddetail">
                 <div class="col-lg-6">
                     <div class="input-group">
                         <input type="text" id="searchInput" class="form-control" placeholder="Vorname, Nachname, Matrikelnummer oder Firma" autofocus />
                             <span class="input-group-btn">
-                                <button id="searchbuttonroomdetail" class="btn btn-default" type="button">Suche</button>
+                                <button id="searchbuttontransponderdetail" class="btn btn-default" type="button">Suche</button>
                             </span>
                     </div><!-- /input-group -->
                 </div><!-- /.col-lg-6 -->
@@ -63,7 +63,7 @@
 
         <!--person table-->
         <div id="resultfielddetail">
-            <table class="table table-striped" id="roomdetailTable">
+            <table class="table table-striped" id="transonderdetailTable">
                 <thead>
                     <tr>
                         <th>Berechtigte Person</th>

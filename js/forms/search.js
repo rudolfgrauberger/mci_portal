@@ -38,6 +38,12 @@ $(document).ready( function() {
         return PersonService.filterPersonsBySearchString(searchValue);
     }
 
+    function getTranspondersToDisplay() {
+        var searchValue = document.getElementById('searchInput').value;
+
+        return TransponderService.filterTransponderBySearchString(searchValue);
+    }
+
     function cleanOutputTable(tablename) {
         var table = document.getElementById(tablename);
         var rowCount = table.rows.length;
@@ -50,12 +56,15 @@ $(document).ready( function() {
     function refreshOutputTable() {
         $('#resultfieldperson').show();
         $('#resultfieldroom').show();
+        $('#resultfieldtransponder').show();
 
         cleanOutputTable('personTable');
         cleanOutputTable('roomTable');
+        cleanOutputTable('transponderTable');
 
         var rooms = getRoomsToDisplay();
         var persons = getPersonsToDisplay();
+        var transponders = getTranspondersToDisplay();
 
         var roomTable = document.getElementById('roomTable');
 
@@ -64,16 +73,15 @@ $(document).ready( function() {
             var row = roomTable.insertRow(1);
             var cell1 = row.insertCell(0);
             var cell2 = row.insertCell(1);
-            var cell3 = row.insertCell(2);
-            cell1.innerHTML = rooms[i].number;
-            cell2.innerHTML = rooms[i].name;
+            cell1.innerHTML = rooms[i].number + (rooms[i].name ? ' (' + rooms[i].name + ')' : '');
             var x = document.createElement('INPUT');
             x.setAttribute('type', 'button');
             x.setAttribute('value', 'Details');
             x.setAttribute('class', 'btn btn-success');
             x.setAttribute('id', 'details_' + id);
+            x.setAttribute('style', 'float: right;')
             x.onclick = (function(interne_id) {room_details(interne_id) }).bind(this, id);
-            cell3.appendChild(x);
+            cell2.appendChild(x);
         }
 
         var personTable = document.getElementById('personTable');
@@ -83,16 +91,35 @@ $(document).ready( function() {
             var row = personTable.insertRow(1);
             var cell1 = row.insertCell(0);
             var cell2 = row.insertCell(1);
-            var cell3 = row.insertCell(2);
-            cell1.innerHTML = persons[i].matrikelno ? persons[i].matrikelno : persons[i].company;
-            cell2.innerHTML = persons[i].firstname + ' ' + persons[i].lastname;
+            var name_str = persons[i].matrikelno ? persons[i].matrikelno : persons[i].company;
+            name_str += '/ ' + persons[i].firstname + ' ' + persons[i].lastname 
+            cell1.innerHTML = name_str;
             var x = document.createElement('INPUT');
             x.setAttribute('type', 'button');
             x.setAttribute('value', 'Details');
             x.setAttribute('class', 'btn btn-success');
             x.setAttribute('id', 'details_' + id);
+            x.setAttribute('style', 'float: right;')
             x.onclick =  (function(interne_id) {person_details(interne_id) }).bind(this, id);
-            cell3.appendChild(x);
+            cell2.appendChild(x);
+        }
+
+        var transponderTable = document.getElementById('transponderTable');
+
+        for (var i = 0; i < transponders.length; ++i) {
+            var id = transponders[i].id;
+            var row = transponderTable.insertRow(1);
+            var cell1 = row.insertCell(0);
+            var cell2 = row.insertCell(1);
+            cell1.innerHTML = transponders[i].no;
+            var x = document.createElement('INPUT');
+            x.setAttribute('type', 'button');
+            x.setAttribute('value', 'Details');
+            x.setAttribute('class', 'btn btn-success');
+            x.setAttribute('id', 'details_' + id);
+            x.setAttribute('style', 'float: right;');
+            x.onclick =  (function(interne_id) {transponder_details(interne_id) }).bind(this, id);
+            cell2.appendChild(x);
         }
     }
 
@@ -102,5 +129,9 @@ $(document).ready( function() {
 
     function room_details(guid) {
         window.location.href = 'room-detail.html?roomid=' + guid;
+    }
+
+    function transponder_details(guid) {
+        window.location.href = 'transponder-detail.html?transponderid=' + guid;
     }
 });

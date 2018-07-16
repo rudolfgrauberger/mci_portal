@@ -42,9 +42,17 @@ class RoomService {
 
     static filterRoomsByTransponder(transponder) {
         var selectedRooms = [];
-        for (var i = 0; i < transponder.rooms.length; ++i) {
-            var room = RoomRepository.findById(transponder.rooms[i]);
-            selectedRooms.push(room);
+        var allRooms = RoomRepository.getAll();
+
+        for (var i = 0; i < allRooms.length; ++i) {
+            var allTransponders = allRooms[i].transponders;
+            for (var t = 0; t < allTransponders.length; t++) {
+                if (allTransponders[t] === transponder) {
+                    if (!selectedRooms.some(x => { return x.number === allRooms[i].number })) {
+                        selectedRooms.push(allRooms[i]);
+                    }
+                }
+            }
         }
 
         return selectedRooms;

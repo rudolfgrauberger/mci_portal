@@ -49,12 +49,12 @@ function initDatabase() {
             TransponderRelationManager.addLinkBetweenTransponderAndRoom(u01, dreizweizweizwei);
 
 
-            var perDreiEinsNullSechs1 = PermissionFactory.create(f06, studentSvenMueller, new Date('2020-01-01'));
-            var perDreiEinsNullSechs2 = PermissionFactory.create(f06, studentTimoMueller, null);
-            var perStefanie1 = PermissionFactory.create(t35, studentStefanieStudia, null);
-            var perStefanie2 = PermissionFactory.create(h09, studentStefanieStudia, null);
-            var perKienbaumSaal = PermissionFactory.create(u01, ausleihendeExternHaraldHardWorker, null);
-            var perDreiEinsNullSechs3 = PermissionFactory.create(f06, ausleihendeExternHaraldHardWorker, null);
+            var perDreiEinsNullSechs1 = PermissionFactory.create(f06, studentSvenMueller, new Date('2020-01-01'), userManfredMustermi);
+            var perDreiEinsNullSechs2 = PermissionFactory.create(f06, studentTimoMueller, null, userManfredMustermi);
+            var perStefanie1 = PermissionFactory.create(t35, studentStefanieStudia, null, null);
+            var perStefanie2 = PermissionFactory.create(h09, studentStefanieStudia, null, null);
+            var perKienbaumSaal = PermissionFactory.create(u01, ausleihendeExternHaraldHardWorker, null, userManfredMustermi);
+            var perDreiEinsNullSechs3 = PermissionFactory.create(f06, ausleihendeExternHaraldHardWorker, null, userManfredMustermi);
 
             // Einfache 1:n-/n:1- und n:m-Verknüpfungen müssen vor dem Speichern den Objekten zugewiesen werden,
             // damit beim Speichern diese direkt in den Objekten mitgespeichert werden.

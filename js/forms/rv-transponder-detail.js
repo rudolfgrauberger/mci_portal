@@ -114,6 +114,7 @@ $(document).ready( function() {
           x.setAttribute('value', 'Löschen');
           x.setAttribute('class', 'btn btn-success');
           x.setAttribute('id', 'permission_' + id);
+          x.setAttribute('style', 'float: right;');
           x.onclick = (function(permission_id) {remove_permission(permission_id) }).bind(this, id);
           cell4.appendChild(x);
     }

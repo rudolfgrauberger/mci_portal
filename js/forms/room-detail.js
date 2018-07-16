@@ -33,12 +33,11 @@ $(document).ready( function() {
         refreshOutputTable();
     });
 
-    function getTransponderToDisplay() {
+    function getPersonsToDisplay() {
         var searchValue = document.getElementById('searchInput').value;
 
-        return TransponderService.filterTransponderBySearchString(searchValue);
+        return PersonService.filterPersonsWithPermissionForRoomAndBySearchString(currentRoom, searchValue);
     }
-
 
     function cleanOutputTable() {
         var table = document.getElementById('roomdetailTable');
@@ -52,26 +51,35 @@ $(document).ready( function() {
     function refreshOutputTable() {
         $('#resultfieldperson').show();
         cleanOutputTable();
-        var transponder = getTransponderToDisplay();
+        var persons = getPersonsToDisplay();
 
         var table = document.getElementById('roomdetailTable');
 
-        for (var i = 0; i < transponder.length; i++) {
-            var id = transponder[i].id;
-            var no = transponder[i].no;
+        for (var i = 0; i < persons.length; i++) {
+            var permissions = PermissionService.getPermissionForPersonAndRoom(persons[i].id, currentRoom);
+            var manager = permissions.manager ? UserService.getUserById(permissions.manager) : null;
+            var transponderID = permissions.transponder;
 
             var row = table.insertRow(1);
             var cell1 = row.insertCell(0);
-            cell1.innerHTML = no;
+            cell1.innerHTML = persons[i].matrikelno ? persons[i].matrikelno : persons[i].company;
             var cell2 = row.insertCell(1);
+            cell2.innerHTML = PersonService.getPersonInfoAsString(persons[i]);
+            var cell3 = row.insertCell(2);
+            if (manager) {
+                cell3.innerHTML = UserService.getUserInfoAsString(manager);
+            }
+
+            var cell4 = row.insertCell(3);
 
             var x = document.createElement('INPUT');
             x.setAttribute('type', 'button');
             x.setAttribute('value', 'Ausleihen');
             x.setAttribute('class', 'btn btn-success');
-            x.setAttribute('id', 'details_' + id);
-            x.onclick = (function(interne_id) {lent(interne_id) }).bind(this, id);
-            cell2.appendChild(x);
+            x.setAttribute('style', 'float: right;');
+            x.setAttribute('id', 'details_' + transponderID);
+            x.onclick = (function(interne_id) {lent(interne_id) }).bind(this, transponderID);
+            cell4.appendChild(x);
         }
     }
 
