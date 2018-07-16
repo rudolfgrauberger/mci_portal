@@ -50,12 +50,32 @@ $(document).ready( function() {
         var table = document.getElementById('transponderTable');
 
         for (var i = 0; i < transponders.length; i++) {
-            var id = transponders[i].id;
             var row = table.insertRow(1);
             var cell1 = row.insertCell(0);
             var cell2 = row.insertCell(1);
+            var cell3 = row.insertCell(2);
             cell1.innerHTML = transponders[i].no;
-            cell2.innerHTML = 'Keine Ahnung';
+
+            var rooms = RoomService.filterRoomsByTransponder(transponders[i].id);
+
+            var roomString = rooms.map(function(x) {
+                return x.number;
+            });
+
+            cell2.innerHTML = roomString.join(', ');
+
+            var x = document.createElement('INPUT');
+            x.setAttribute('type', 'button');
+            x.setAttribute('value', 'Details');
+            x.setAttribute('class', 'btn btn-success');
+            x.setAttribute('id', 'details_' + transponders[i].id);
+            x.setAttribute('style', 'float: right;');
+            x.onclick = (function(interne_id) {transponder_details(interne_id) }).bind(this, transponders[i].id);
+            cell3.appendChild(x);
         }
+    }
+
+    function transponder_details(guid) {
+        window.location.href = 'transponder-detail.html?transponderid=' + guid;
     }
 });

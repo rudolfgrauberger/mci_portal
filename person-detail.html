@@ -10,16 +10,19 @@
     <script type="text/javascript" src="js/bootstrap.js"></script>
     <script type="text/javascript" src="js/entities/Person.js"></script>
     <script type="text/javascript" src="js/entities/Room.js"></script>
+    <script type="text/javascript" src="js/entities/Transponder.js"></script>
     <script type="text/javascript" src="js/entities/User.js"></script>
     <script type="text/javascript" src="js/services/SessionService.js"></script>
     <script type="text/javascript" src="js/services/PersonService.js"></script>
     <script type="text/javascript" src="js/services/PermissionService.js"></script>
     <script type="text/javascript" src="js/services/RoomService.js"></script>
+    <script type="text/javascript" src="js/services/TransponderService.js"></script>
     <script type="text/javascript" src="js/services/UserService.js"></script>
     <script type="text/javascript" src="js/repositories/SessionRepository.js"></script>
     <script type="text/javascript" src="js/repositories/PersonRepository.js"></script>
     <script type="text/javascript" src="js/repositories/PermissionRepository.js"></script>
     <script type="text/javascript" src="js/repositories/RoomRepository.js"></script>
+    <script type="text/javascript" src="js/repositories/TransponderRepository.js"></script>
     <script type="text/javascript" src="js/repositories/UserRepository.js"></script>
     <link rel="stylesheet" type="text/css" href="css/main.css">
     <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
@@ -67,9 +70,10 @@
             <table class="table table-striped" id="permissionTable">
                 <thead>
                     <tr>
-                        <th>Raum</th>
-                        <th>Raumname</th>
+                        <th>Transponder</th>
+                        <th>Raum/Raumname</th>
                         <th>Berechtig durch</th>
+                        <th></th>
                     </tr>
                 </thead>
                 <tbody>

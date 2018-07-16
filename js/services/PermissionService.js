@@ -2,8 +2,8 @@
 
 class PermissionService {
 
-    static filterPermissionsForRoom(currentRoom, searchValue) {
-        var permissions = PermissionRepository.getPermissionsByRoomId(currentRoom.id);
+    static filterPermissionsForTransponder(transponder, searchValue) {
+        var permissions = PermissionRepository.getPermissionsByTransponderId(transponder.id);
         var filterOn = !(searchValue === null || searchValue === '');
 
         var selectedPermissions = [];
@@ -15,12 +15,10 @@ class PermissionService {
                 continue;
             }
 
-            var searchReg = new RegExp(searchValue, 'i');
-
-            if (person.firstname.search(searchReg) !== -1 ||
-                person.lastname.search(searchReg) !== -1 ||
-                person.matrikelno.search(searchReg) !== -1 ||
-                person.company.search(searchReg) !== -1)
+            if (searchEqualityCompare(person.firstname, searchValue) ||
+                searchEqualityCompare(person.lastname, searchValue) ||
+                searchEqualityCompare(person.matrikelno, searchValue) ||
+                searchEqualityCompare(person.company, searchValue))
             {
                 selectedPermissions.push(permissions[i]);
             }
@@ -41,16 +39,16 @@ class PermissionService {
                 continue;
             }
 
-            var room = RoomService.getRoomById(permissions[i].room);
+            var room = TransponderRepository.getPermissionsByTransponderId(permissions[i].transponder);
             var manager = UserService.getUserById(room.roomManager);
 
             var searchReg = new RegExp(searchValue, 'i');
 
-            if (room.number.search(searchReg) !== -1 ||
-                room.name.search(searchReg) !== -1 ||
-                manager.firstname.search(searchReg) !== -1 ||
-                manager.lastname.search(searchReg) !== -1 ||
-                manager.username.search(searchReg) !== -1)
+            if (searchEqualityCompare(room.number, searchValue) ||
+                searchEqualityCompare(room.name, searchValue) ||
+                searchEqualityCompare(manager.firstname, searchValue) ||
+                searchEqualityCompare(manager.lastname, searchValue) ||
+                searchEqualityCompare(manager.username, searchValue))
             {
                 selectedPermissions.push(permissions[i]);
             }
@@ -60,33 +58,71 @@ class PermissionService {
 
     }
 
+    static getPermissionForPersonAndRoom(person, room) {
+        var permissions = PermissionRepository.getAll();
+        var transponders = room.transponders;
+
+        for (var i = 0; i < permissions.length; ++i) {
+            if (permissions[i].person === person && transponders.some(x => x === permissions[i].transponder)) {
+                return permissions[i];
+            }
+        }
+
+        return null;
+    }
+
+    static getPermissionForPersonAndTransponder(person, transponder) {
+        var permissions = PermissionRepository.getAll();
+
+        for (var i = 0; i < permissions.length; ++i) {
+            if (person === permissions[i].person && transponder === permissions[i].transponder) {
+                return permissions[i];
+            }
+        }
+
+        return null;
+    }
+
+    static getPermissionsForTransponder(transponder) {
+        var permissions = PermissionRepository.getAll();
+        var selectedPermissions = [];
+
+        for (var i = 0; i < permissions.length; ++i) {
+            if (transponder ===  permissions[i].transponder) {
+                selectedPermissions.push(permissions[i]);
+            }
+        }
+
+        return selectedPermissions;
+    }
+
     static removePermissionById(permissionId) {
         var permission = PermissionRepository.findById(permissionId);
         var person = PersonRepository.findById(permission.person);
-        var room = RoomRepository.findById(permission.room);
+        var transponder = TransponderRepository.findById(permission.transponder);
 
         person.removePermission(permission);
-        room.removePermission(permission);
+        transponder.removePermission(permission);
 
         PersonRepository.update(person);
-        RoomRepository.update(room);
+        TransponderRepository.update(transponder);
         PermissionRepository.remove(permission);
     }
 
-    static addPermissionForPersonToRoom(person, room, expires) {
+    static addPermissionForPersonToTransponder(person, transponder, expires) {
 
-        var permissionsForRoom = this.filterPermissionsForRoom(room);
+        var permissionsForTransponder = PermissionRepository.getPermissionsByTransponderId(transponder.id);
 
-        for (var i = 0; i < permissionsForRoom.length; ++i) {
-            var personWithPermission = PersonRepository.findById(permissionsForRoom[i].person);
+        for (var i = 0; i < permissionsForTransponder.length; ++i) {
+            var personWithPermission = PersonRepository.findById(permissionsForTransponder[i].person);
             if (personWithPermission.id === person.id) {
                 return;
             }
         }
 
-        var permission = PermissionFactory.create(room, person, expires);
+        var permission = PermissionFactory.create(transponder, person, expires);
         PersonRepository.update(person);
-        RoomRepository.update(room);
+        TransponderRepository.update(transponder);
         PermissionRepository.add(permission);
     }
 }

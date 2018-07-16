@@ -10,12 +10,15 @@
     <script type="text/javascript" src="js/bootstrap.js"></script>
     <script type="text/javascript" src="js/entities/Room.js"></script>
     <script type="text/javascript" src="js/entities/Person.js"></script>
+    <script type="text/javascript" src="js/entities/Transponder.js"></script>
     <script type="text/javascript" src="js/services/SessionService.js"></script>
     <script type="text/javascript" src="js/services/RoomService.js"></script>
     <script type="text/javascript" src="js/services/PersonService.js"></script>
+    <script type="text/javascript" src="js/services/TransponderService.js"></script>
     <script type="text/javascript" src="js/repositories/SessionRepository.js"></script>
     <script type="text/javascript" src="js/repositories/RoomRepository.js"></script>
     <script type="text/javascript" src="js/repositories/PersonRepository.js"></script>
+    <script type="text/javascript" src="js/repositories/TransponderRepository.js"></script>
     <link rel="stylesheet" type="text/css" href="css/main.css">
     <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
 </head>
@@ -39,7 +42,6 @@
             <div class="navblock btn-group-lg buttonright ">
                     <button class="btn  btn-default btn-block buttonright buttonclear" id="logoutButton" type="submit">Ausloggen</button>
             </div>
-
     </div>
 
     <div id="main" class="container">
@@ -60,7 +62,6 @@
             <table class="table table-striped" id="personTable" >
                 <thead>
                     <tr>
-                        <th>Matrikelnummer oder Firma</th>
                         <th>Name</th>
                         <th></th>
                     </tr>
@@ -77,7 +78,6 @@
                 <thead>
                     <tr>
                         <th>Raum</th>
-                        <th>Raumname</th>
                         <th></th>
                     </tr>
                 </thead>
@@ -93,8 +93,7 @@
                 <thead>
                     <tr>
                         <th>Transponder</th>
-                        <th>Nummer</th>
-                        <th>(Button)</th>
+                        <th></th>
                     </tr>
                 </thead>
                 <tbody>

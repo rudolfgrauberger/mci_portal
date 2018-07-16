@@ -6,24 +6,20 @@
     <meta charset="UTF-8">
     <script type="text/javascript" src="js/jquery-3.3.1.min.js"></script>
     <script type="text/javascript" src="js/forms/global.js"></script>
-    <script type="text/javascript" src="js/forms/room-detail.js"></script>
+    <script type="text/javascript" src="js/forms/transponder-detail.js"></script>
     <script type="text/javascript" src="js/bootstrap.js"></script>
     <script type="text/javascript" src="js/services/SessionService.js"></script>
     <script type="text/javascript" src="js/entities/Transponder.js"></script>
     <script type="text/javascript" src="js/entities/Person.js"></script>
     <script type="text/javascript" src="js/entities/User.js"></script>
-    <script type="text/javascript" src="js/entities/Room.js"></script>
-    <script type="text/javascript" src="js/entities/Permission.js"></script>
     <script type="text/javascript" src="js/services/TransponderService.js"></script>
     <script type="text/javascript" src="js/services/UserService.js"></script>
     <script type="text/javascript" src="js/services/PersonService.js"></script>
-    <script type="text/javascript" src="js/services/RoomService.js"></script>
     <script type="text/javascript" src="js/services/PermissionService.js"></script>
     <script type="text/javascript" src="js/repositories/SessionRepository.js"></script>
     <script type="text/javascript" src="js/repositories/TransponderRepository.js"></script>
     <script type="text/javascript" src="js/repositories/PersonRepository.js"></script>
     <script type="text/javascript" src="js/repositories/UserRepository.js"></script>
-    <script type="text/javascript" src="js/repositories/RoomRepository.js"></script>
     <script type="text/javascript" src="js/repositories/PermissionRepository.js"></script>
     <link rel="stylesheet" type="text/css" href="css/main.css">
     <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
@@ -38,10 +34,10 @@
            <div class="navblock btn-group-lg">
                 <button type="button" class="btn btn-default buttonclear" onclick="location.href = 'persons.html';"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> Personen</button>
             </div>
-            <div class="navblockCurrent btn-group-lg">
+            <div class="navblock btn-group-lg">
                     <button type="button" class="btn btn-default buttonclear" onclick="location.href = 'rooms.html';"><span class="glyphicon glyphicon-credit-card" aria-hidden="true"> </span> Räume</button>
             </div>
-            <div class="navblock btn-group-lg">
+            <div class="navblockCurrent btn-group-lg">
                     <button type="button" class="btn btn-default buttonclear" onclick="location.href = 'transponders.html';"><span class="glyphicon glyphicon-link" aria-hidden="true"></span> Transponder</button>
             </div>
             <div class="navblock btn-group-lg buttonright ">
@@ -51,27 +47,26 @@
     </div>
     <div id="main">
         <div id="detailNameBlock">
-                <span class="bigspan" id="roomDetailNumber"></span><br>
-                <span class="smallspan" id="roomDetailName"></span>
+                <span class="bigspan" id="transponderDetailNumber"></span><br>
+                <span class="smallspan" id="transponderDetailName"></span>
         </div>
         <div id="searchfielddetail">
                 <div class="col-lg-6">
                     <div class="input-group">
-                        <input type="text" id="searchInput" class="form-control" placeholder="Matrikelnummer, Firma, Name oder Vorname" autofocus />
+                        <input type="text" id="searchInput" class="form-control" placeholder="Vorname, Nachname, Matrikelnummer oder Firma" autofocus />
                             <span class="input-group-btn">
-                                <button id="searchbuttonroomdetail" class="btn btn-default" type="button">Suche</button>
+                                <button id="searchbuttontransponderdetail" class="btn btn-default" type="button">Suche</button>
                             </span>
                     </div><!-- /input-group -->
                 </div><!-- /.col-lg-6 -->
         </div>
 
-        <!--transponder table-->
+        <!--person table-->
         <div id="resultfielddetail">
-            <table class="table table-striped" id="roomdetailTable">
+            <table class="table table-striped" id="transonderdetailTable">
                 <thead>
                     <tr>
-                        <th>Matrikelnummer/Firma</th>
-                        <th>Name</th>
+                        <th>Berechtigte Person</th>
                         <th>Berechtig durch</th>
                         <th></th>
                     </tr>
@@ -80,6 +75,35 @@
                 </tbody>
             </table>
         </div>
+
+        <!-- Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h3 class="modal-title" id="exampleModalLabel">Berechtigung eintragen</h3>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                        <div class="input-group-btn">
+                                <button type="button" id="dropdownbutton" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Transponder <span class="caret"></span></button>
+                                <ul class="dropdown-menu">
+                                <li><a href="#">Transponder T35</a></li>
+                                <li><a href="#">Transponder F06</a></li>
+                                <li><a href="#">Transponder H09</a></li>
+                                </ul>
+                            </div><!-- /btn-group -->
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Abbrechen</button>
+                  <button type="button" id="rvaddbuttonsave" class="btn btn-primary">Speichern</button>
+                </div>
+              </div>
+            </div>
+          </div>
+
 
     </div>
 

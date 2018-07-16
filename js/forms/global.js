@@ -14,3 +14,13 @@ function newGuid() {
        return v.toString(16);
     });
  }
+
+ /*
+  - Ignores upper and lower case
+  - Ignores dot
+*/
+ function searchEqualityCompare(attribute, searchString) {
+     attribute = attribute.replace('.', '');
+     searchString = searchString.replace('.', '');
+     return attribute.search(new RegExp(searchString, 'i')) !== -1;
+ }

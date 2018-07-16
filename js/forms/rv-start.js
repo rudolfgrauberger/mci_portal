@@ -27,14 +27,14 @@ $(document).ready( function() {
         refreshOutputTable();
     });
 
-    function getRoomsToDisplay() {
+    function getTranspondersToDisplay() {
         var searchValue = document.getElementById('searchInput').value;
 
-        return RoomService.filterAssignedRoomsForUser(SessionService.getCurrentSession().user, searchValue);
+        return TransponderService.filterTransponderBySearchStringForUser(SessionService.getCurrentSession().user, searchValue);
     }
 
     function cleanOutputTable() {
-        var table = document.getElementById('rvroomTable');
+        var table = document.getElementById('rvtransponderRoomTable');
         var rowCount = table.rows.length;
 
         for (var index = 2; index < rowCount; ++index) {
@@ -44,29 +44,43 @@ $(document).ready( function() {
 
     function refreshOutputTable() {
         cleanOutputTable();
-        var rooms = getRoomsToDisplay();
+        var transponder = getTranspondersToDisplay();
 
-        var table = document.getElementById('rvroomTable');
+        var table = document.getElementById('rvtransponderRoomTable');
 
-        for (var i = 0; i < rooms.length; i++) {
-            var id = rooms[i].id;
+        var userRooms = RoomService.getAllAssignedRoomsForUser(SessionService.getCurrentSession().user);
+
+        for (var i = 0; i < transponder.length; i++) {
+            var id = transponder[i].id;
+            var rooms = transponder[i].rooms.filter(function(x) {
+                var room = RoomService.getRoomById(x);
+
+                return userRooms.some(e => e.id === room.id);
+
+            }).map(function(x) {
+                var room = RoomService.getRoomById(x);
+                var name = room.name ? '(' + room.name + ')' : '';
+                return room.number + name;
+            });
+
             var row = table.insertRow(2);
             var cell1 = row.insertCell(0);
             var cell2 = row.insertCell(1);
             var cell3 = row.insertCell(2);
-            cell1.innerHTML = rooms[i].number;
-            cell2.innerHTML = rooms[i].name;
+            cell1.innerHTML = transponder[i].no;
+            cell2.innerHTML = rooms.join(', ');
             var x = document.createElement('INPUT');
             x.setAttribute('type', 'button');
             x.setAttribute('value', 'Details');
             x.setAttribute('class', 'btn btn-success');
             x.setAttribute('id', 'details_' + id);
-            x.onclick = (function(interne_id) {room_details(interne_id) }).bind(this, id);
+            x.setAttribute('style', 'float: right;');
+            x.onclick = (function(interne_id) {transponder_details(interne_id) }).bind(this, id);
             cell3.appendChild(x);
         }
     }
 
-  function room_details(guid) {
-      window.location.href = 'rv-room-detail.html?roomid=' + guid;
+  function transponder_details(guid) {
+      window.location.href = 'rv-transponder-detail.html?transponderid=' + guid;
   }
 });

@@ -4,20 +4,20 @@
     <title>Prototype</title>
     <meta charset="UTF-8">
     <script type="text/javascript" src="js/jquery-3.3.1.min.js"></script>
-    <script type="text/javascript" src="js/forms/rv-room-detail.js"></script>
+    <script type="text/javascript" src="js/forms/rv-transponder-detail.js"></script>
     <script type="text/javascript" src="js/forms/global.js"></script>
     <script type="text/javascript" src="js/bootstrap.js"></script>
-    <script type="text/javascript" src="js/entities/Room.js"></script>
+    <script type="text/javascript" src="js/entities/Transponder.js"></script>
     <script type="text/javascript" src="js/entities/Person.js"></script>
     <script type="text/javascript" src="js/entities/Permission.js"></script>
     <script type="text/javascript" src="js/factories/PermissionFactory.js"></script>
     <script type="text/javascript" src="js/services/SessionService.js"></script>
-    <script type="text/javascript" src="js/services/RoomService.js"></script>
+    <script type="text/javascript" src="js/services/TransponderService.js"></script>
     <script type="text/javascript" src="js/services/PersonService.js"></script>
     <script type="text/javascript" src="js/services/PermissionService.js"></script>
     <script type="text/javascript" src="js/repositories/SessionRepository.js"></script>
     <script type="text/javascript" src="js/repositories/PersonRepository.js"></script>
-    <script type="text/javascript" src="js/repositories/RoomRepository.js"></script>
+    <script type="text/javascript" src="js/repositories/TransponderRepository.js"></script>
     <script type="text/javascript" src="js/repositories/PermissionRepository.js"></script>
     <script type="text/javascript" src="js/boostrap-combobox.js"></script>
     <link rel="stylesheet" type="text/css" href="css/main.css">
@@ -29,7 +29,7 @@
     <div id="content">
         <div id="header" class="navbar navbar-default navbar-fixed-top">
             <div class="navblockCurrent btn-group-lg">
-                <button type="button" class="btn btn-default buttonclear" onclick="location.href = 'rv-start.html';"><span class="glyphicon glyphicon-credit-card" aria-hidden="true"> </span> Räume</button>
+                <button type="button" class="btn btn-default buttonclear" onclick="location.href = 'rv-start.html';"><span class="glyphicon glyphicon-credit-card" aria-hidden="true"> </span> Transponder</button>
             </div>
             <div class="navblock btn-group-lg buttonright ">
                 <button class="btn  btn-default btn-block buttonright buttonclear" id="logoutButton" type="submit">Ausloggen</button>
@@ -38,8 +38,8 @@
 
         <div id="main">
             <div id="detailNameBlock">
-                <span class="bigspan" id="roomDetailNumber"></span><br>
-                <span class="smallspan" id="roomDetailName"></span>
+                <span class="bigspan" id="transponderDetailNumber"></span><br>
+                <span class="smallspan" id="transponderDetailName"></span>
             </div>
             <div id="searchfielddetail">
                 <div class="col-lg-6">
@@ -58,7 +58,7 @@
                     <thead>
                         <tr><th><button id="addbuttonrvroom" class="btn btn-success" data-toggle="modal" data-target="#exampleModal" type="button">Hinzufügen</button></th></tr>
                         <tr>
-                            <th>Matrikelnummer</th>
+                            <th>Matrikelnummer/Firma</th>
                             <th>Name</th>
                             <th>Gültig bis</th>
                             <th></th>

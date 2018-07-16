@@ -59,12 +59,12 @@ class PermissionRepository {
         return this.getAll()[permissionIndex];
     }
 
-    static getPermissionsByRoomId(roomId) {
+    static getPermissionsByTransponderId(transponderId) {
         var permissions = this.getAll();
 
         var perm = []
         for (var i = 0; i < permissions.length; ++i) {
-            if (permissions[i].room === roomId) {
+            if (permissions[i].transponder === transponderId) {
                 perm.push(permissions[i]);
             }
         }

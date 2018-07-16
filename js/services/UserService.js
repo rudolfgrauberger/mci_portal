@@ -19,4 +19,8 @@ class UserService {
     static getUserById(userid) {
         return UserRepository.findById(userid);
     }
+
+    static getUserInfoAsString(user) {
+        return user.firstname + ' ' + user.lastname + ' (' + user.username + ')';
+    }
 }

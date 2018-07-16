@@ -27,13 +27,31 @@ class RoomService {
         var selectedRooms = [];
         for (var i = 0; i < roomlist.length; ++i) {
             if (filterOn === true) {
-                if (roomlist[i].number.search(new RegExp(searchValue, 'i')) !== -1 ||
-                    roomlist[i].name.search(new RegExp(searchValue, 'i')) !== -1)
+                if (searchEqualityCompare(roomlist[i].number, searchValue) ||
+                    searchEqualityCompare(roomlist[i].name, searchValue))
                 {
                     selectedRooms.push(roomlist[i]);
                 }
             } else {
                 selectedRooms.push(roomlist[i]);
+            }
+        }
+
+        return selectedRooms;
+    }
+
+    static filterRoomsByTransponder(transponder) {
+        var selectedRooms = [];
+        var allRooms = RoomRepository.getAll();
+
+        for (var i = 0; i < allRooms.length; ++i) {
+            var allTransponders = allRooms[i].transponders;
+            for (var t = 0; t < allTransponders.length; t++) {
+                if (allTransponders[t] === transponder) {
+                    if (!selectedRooms.some(x => { return x.number === allRooms[i].number })) {
+                        selectedRooms.push(allRooms[i]);
+                    }
+                }
             }
         }
 

@@ -16,32 +16,31 @@ $(document).ready( function() {
         // Number 13 is the "Enter" key on the keyboard
         if (event.keyCode === 13) {
             // Trigger the button element with a click
-            document.getElementById('searchbuttonRoom').click();
+            document.getElementById('searchbuttontransponderdetail').click();
         }
     });
 
     let searchParams = new URLSearchParams(window.location.search);
 
-    var currentPerson = PersonService.getPersonById(searchParams.get('personid'));
+    var currentTransponder = TransponderService.getTransponderById(searchParams.get('transponderid'));
 
-    $('#personDetailName').text(currentPerson.firstname + ' ' + currentPerson.lastname);
-    $('#personDetailNumber').text(currentPerson.matrikelno ? currentPerson.matrikelno : currentPerson.company);
+    $('#transponderDetailNumber').text(currentTransponder.no);
+    $('#transponderDetailName').text('');
 
     refreshOutputTable();
 
-    $('#searchbuttonRoom').click(function () {
+    $('#searchbuttontransponderdetail').click(function () {
         refreshOutputTable();
     });
 
-    function getPermissionToDisplay() {
+    function getPersonsToDisplay() {
         var searchValue = document.getElementById('searchInput').value;
-
-        return PermissionService.filterPermissionsForPerson(currentPerson, searchValue);
+        
+        return PersonService.filterPersonsForTransponderAndBySearchString(currentTransponder, searchValue);
     }
 
-
     function cleanOutputTable() {
-        var table = document.getElementById('permissionTable');
+        var table = document.getElementById('transonderdetailTable');
         var rowCount = table.rows.length;
 
         for (var index = 1; index < rowCount; ++index) {
@@ -52,32 +51,27 @@ $(document).ready( function() {
     function refreshOutputTable() {
         $('#resultfieldperson').show();
         cleanOutputTable();
-        var permissions = getPermissionToDisplay();
+        var persons = getPersonsToDisplay();
 
-        var table = document.getElementById('permissionTable');
+        var table = document.getElementById('transonderdetailTable');
 
-        for (var i = 0; i < permissions.length; i++) {
-            var transponderID = permissions[i].transponder;
-            var rooms = RoomService.filterRoomsByTransponder(permissions[i].transponder);
-            var transponder = TransponderService.getTransponderById(permissions[i].transponder);
-            var manager = UserService.getUserById(permissions[i].manager);
+        for (var i = 0; i < persons.length; i++) {
+            var transponderID = currentTransponder.id;
+            var permissions = PermissionService.getPermissionForPersonAndTransponder(persons[i].id, currentTransponder.id);
+            var manager = permissions.manager ? UserService.getUserById(permissions.manager) : null;
+
             var row = table.insertRow(1);
             var cell1 = row.insertCell(0);
             var cell2 = row.insertCell(1);
             var cell3 = row.insertCell(2);
-            cell1.innerHTML = transponder.no;
-
-            var selectedRooms = rooms.map(x => {
-                var name = x.name ? '(' + x.name + ')' : '';
-                return x.number + name;
-            });
-
-            cell2.innerHTML = selectedRooms.join(', ');
-
-            cell3.innerHTML = UserService.getUserInfoAsString(manager);
-
+            cell1.innerHTML = persons[i].matrikelno ? persons[i].matrikelno : persons[i].company;;
+            cell2.innerHTML = PersonService.getPersonInfoAsString(persons[i]);
+            var cell3 = row.insertCell(2);
+            if (manager) {
+                cell3.innerHTML = UserService.getUserInfoAsString(manager);
+            }
             var cell4 = row.insertCell(3);
-
+            
             var x = document.createElement('INPUT');
             x.setAttribute('type', 'button');
             x.setAttribute('value', 'Ausleihen');
