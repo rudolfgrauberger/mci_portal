@@ -45,8 +45,16 @@ $(document).ready( function() {
     var currentTransponder = TransponderService.getTransponderById(searchParams.get('transponderid'));
 
     $('#rvaddbuttonsave').click(function() {
+        var externalPerson = document.getElementById('external-user').value;
         var personId = document.getElementById('student-name').value;
+
+        if(externalPerson) {
+            
+        }
+
+        
         var expires = document.getElementById('date-tex').value;
+        
 
         var person = PersonService.getPersonById(personId);
 
