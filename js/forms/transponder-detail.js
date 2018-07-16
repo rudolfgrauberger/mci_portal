@@ -20,6 +20,15 @@ $(document).ready( function() {
         }
     });
 
+    function injectSignaturePad() {
+        var scriptInit = document.createElement('script');
+        scriptInit.setAttribute('src', 'js/signature-pad.min.js');
+        document.getElementById('signatureBody').appendChild(scriptInit);
+    }
+
+    injectSignaturePad();
+
+
     let searchParams = new URLSearchParams(window.location.search);
 
     var currentTransponder = TransponderService.getTransponderById(searchParams.get('transponderid'));
@@ -31,6 +40,26 @@ $(document).ready( function() {
 
     $('#searchbuttontransponderdetail').click(function () {
         refreshOutputTable();
+    });
+
+    $( '#lentModal' ).on( 'keypress', function( e ) {
+        if( e.keyCode === 13 ) {
+            e.preventDefault();
+            $('#transponderlent').click();
+        }
+    });
+
+    $('#transponderlent').click(function() {
+
+        var sigBody = document.getElementById('signatureBody');
+
+        while (sigBody.hasChildNodes()) {   
+            sigBody.removeChild(sigBody.firstChild);
+        }
+
+        injectSignaturePad();
+        
+        $('#lentModal').modal('toggle');
     });
 
     function getPersonsToDisplay() {
@@ -77,12 +106,9 @@ $(document).ready( function() {
             x.setAttribute('class', 'btn btn-success');
             x.setAttribute('id', 'details_' + transponderID);
             x.setAttribute('style', 'float: right;');
-            x.onclick = (function(interne_id) {lent(interne_id) }).bind(this, transponderID);
+            x.setAttribute('data-toggle', 'modal');
+            x.setAttribute('data-target', '#lentModal');
             cell3.appendChild(x);
         }
-    }
-
-    function lent(guid) {
-        alert(guid);
     }
 });

@@ -20,6 +20,14 @@ $(document).ready( function() {
         }
     });
 
+    function injectSignaturePad() {
+        var scriptInit = document.createElement('script');
+        scriptInit.setAttribute('src', 'js/signature-pad.min.js');
+        document.getElementById('signatureBody').appendChild(scriptInit);
+    }
+
+    injectSignaturePad();
+
     let searchParams = new URLSearchParams(window.location.search);
 
     var currentRoom = RoomService.getRoomById(searchParams.get('roomid'));
@@ -32,6 +40,27 @@ $(document).ready( function() {
     $('#searchbuttonroomdetail').click(function () {
         refreshOutputTable();
     });
+
+    $( '#lentModal' ).on( 'keypress', function( e ) {
+        if( e.keyCode === 13 ) {
+            e.preventDefault();
+            $('#transponderlent').click();
+        }
+    });
+
+    $('#transponderlent').click(function() {
+
+        var sigBody = document.getElementById('signatureBody');
+
+        while (sigBody.hasChildNodes()) {   
+            sigBody.removeChild(sigBody.firstChild);
+        }
+
+        injectSignaturePad();
+        
+        $('#lentModal').modal('toggle');
+    });
+
 
     function getPersonsToDisplay() {
         var searchValue = document.getElementById('searchInput').value;
@@ -78,13 +107,9 @@ $(document).ready( function() {
             x.setAttribute('class', 'btn btn-success');
             x.setAttribute('style', 'float: right;');
             x.setAttribute('id', 'details_' + transponderID);
-            x.onclick = (function(interne_id) {lent(interne_id) }).bind(this, transponderID);
+            x.setAttribute('data-toggle', 'modal');
+            x.setAttribute('data-target', '#lentModal');
             cell4.appendChild(x);
         }
-    }
-
-    function lent(guid) {
-        alert(guid);
-        //window.location.href = 'room-detail.html?roomid=' + guid;
     }
 });

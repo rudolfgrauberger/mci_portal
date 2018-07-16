@@ -20,6 +20,14 @@ $(document).ready( function() {
         }
     });
 
+    function injectSignaturePad() {
+        var scriptInit = document.createElement('script');
+        scriptInit.setAttribute('src', 'js/signature-pad.min.js');
+        document.getElementById('signatureBody').appendChild(scriptInit);
+    }
+
+    injectSignaturePad();
+
     let searchParams = new URLSearchParams(window.location.search);
 
     var currentPerson = PersonService.getPersonById(searchParams.get('personid'));
@@ -31,6 +39,26 @@ $(document).ready( function() {
 
     $('#searchbuttonRoom').click(function () {
         refreshOutputTable();
+    });
+
+    $( '#lentModal' ).on( 'keypress', function( e ) {
+        if( e.keyCode === 13 ) {
+            e.preventDefault();
+            $('#transponderlent').click();
+        }
+    });
+
+    $('#transponderlent').click(function() {
+
+        var sigBody = document.getElementById('signatureBody');
+
+        while (sigBody.hasChildNodes()) {   
+            sigBody.removeChild(sigBody.firstChild);
+        }
+
+        injectSignaturePad();
+        
+        $('#lentModal').modal('toggle');
     });
 
     function getPermissionToDisplay() {
@@ -84,25 +112,9 @@ $(document).ready( function() {
             x.setAttribute('class', 'btn btn-success');
             x.setAttribute('id', 'details_' + transponderID);
             x.setAttribute('style', 'float: right;');
-            x.onclick = (function(interne_id) {lent(interne_id) }).bind(this, transponderID);
+            x.setAttribute('data-toggle', 'modal');
+            x.setAttribute('data-target', '#lentModal');
             cell4.appendChild(x);
         }
     }
-
-    function lent(guid) {
-
-        JavaScript.load("js/signature-pad.js");
-
-        alert(guid);
-    }
 });
-
-var JavaScript = {
-    load: function(src, callback) {
-      var script = document.createElement('script'),
-          loaded;
-      script.setAttribute('src', src);
-
-      document.getElementsByTagName('head')[0].appendChild(script);
-    }
-  };
