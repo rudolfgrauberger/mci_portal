@@ -8,6 +8,7 @@
     <script type="text/javascript" src="js/forms/global.js"></script>
     <script type="text/javascript" src="js/forms/room-detail.js"></script>
     <script type="text/javascript" src="js/bootstrap.js"></script>
+    <script type="text/javascript" src="js/boostrap-combobox.js"></script>
     <script type="text/javascript" src="js/services/SessionService.js"></script>
     <script type="text/javascript" src="js/entities/Transponder.js"></script>
     <script type="text/javascript" src="js/entities/Person.js"></script>
@@ -27,6 +28,7 @@
     <script type="text/javascript" src="js/repositories/PermissionRepository.js"></script>
     <link rel="stylesheet" type="text/css" href="css/main.css">
     <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="css/boostrap-combobox.css">
 </head>
 
 <body>
@@ -92,6 +94,12 @@
                     </button>
                 </div>
                 <div class="modal-body">
+                    <div class="form-group">
+                        <label for="transponder" class="col-form-label">Transponder:</label>
+                        <select class="combobox form-control" id="transponder" autofocus >
+                            <option defaultSelected="true" selected="selected"></option>
+                        </select>
+                    </div>
                     <center id="signatureBody">
                     </center>
                 </div>

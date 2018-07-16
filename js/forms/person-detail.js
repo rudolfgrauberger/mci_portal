@@ -9,6 +9,8 @@ $(document).ready( function() {
 
     var searchInput = document.getElementById('searchInput');
 
+    var lastButtonId = '';
+
     // Execute a function when the user releases a key on the keyboard
     searchInput.addEventListener('keyup', function(event) {
         // Cancel the default action, if needed
@@ -57,6 +59,8 @@ $(document).ready( function() {
         }
 
         injectSignaturePad();
+
+        $('#' + lastButtonId).prop("disabled",true);
         
         $('#lentModal').modal('toggle');
     });
@@ -114,7 +118,12 @@ $(document).ready( function() {
             x.setAttribute('style', 'float: right;');
             x.setAttribute('data-toggle', 'modal');
             x.setAttribute('data-target', '#lentModal');
+            x.onclick = (function(interne_id) {lent(interne_id) }).bind(this, transponderID);
             cell4.appendChild(x);
         }
+    }
+
+    function lent(guid) {
+        lastButtonId = 'details_' + guid;
     }
 });

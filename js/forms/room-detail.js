@@ -9,6 +9,27 @@ $(document).ready( function() {
 
     var searchInput = document.getElementById('searchInput');
 
+    var lastButtonId = '';
+
+    let searchParams = new URLSearchParams(window.location.search);
+
+    var currentRoom = RoomService.getRoomById(searchParams.get('roomid'));
+
+
+    var transponders = currentRoom.transponders.map(x => {
+        return TransponderService.getTransponderById(x);
+    });
+    var transponderComboBox = document.getElementById('transponder');
+
+    for (var transponderIndex = 0; transponderIndex < transponders.length; ++transponderIndex) {
+        var x = document.createElement('OPTION');
+        x.setAttribute('value', transponders[transponderIndex].id);
+        x.textContent = transponders[transponderIndex].no;
+        transponderComboBox.appendChild(x);
+    }
+
+    $('.combobox').combobox();
+
     // Execute a function when the user releases a key on the keyboard
     searchInput.addEventListener('keyup', function(event) {
         // Cancel the default action, if needed
@@ -27,10 +48,6 @@ $(document).ready( function() {
     }
 
     injectSignaturePad();
-
-    let searchParams = new URLSearchParams(window.location.search);
-
-    var currentRoom = RoomService.getRoomById(searchParams.get('roomid'));
 
     $('#roomDetailNumber').text(currentRoom.number);
     $('#roomDetailName').text(currentRoom.name);
@@ -57,6 +74,7 @@ $(document).ready( function() {
         }
 
         injectSignaturePad();
+        $('#' + lastButtonId).prop("disabled",true);
         
         $('#lentModal').modal('toggle');
     });
@@ -109,7 +127,12 @@ $(document).ready( function() {
             x.setAttribute('id', 'details_' + transponderID);
             x.setAttribute('data-toggle', 'modal');
             x.setAttribute('data-target', '#lentModal');
+            x.onclick = (function(interne_id) {lent(interne_id) }).bind(this, transponderID);
             cell4.appendChild(x);
         }
+    }
+
+    function lent(guid) {
+        lastButtonId = 'details_' + guid;
     }
 });
