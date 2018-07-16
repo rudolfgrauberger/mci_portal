@@ -90,6 +90,19 @@ $(document).ready( function() {
     }
 
     function lent(guid) {
+
+        JavaScript.load("js/signature-pad.js");
+
         alert(guid);
     }
 });
+
+var JavaScript = {
+    load: function(src, callback) {
+      var script = document.createElement('script'),
+          loaded;
+      script.setAttribute('src', src);
+
+      document.getElementsByTagName('head')[0].appendChild(script);
+    }
+  };
