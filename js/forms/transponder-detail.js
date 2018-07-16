@@ -63,14 +63,13 @@ $(document).ready( function() {
             var row = table.insertRow(1);
             var cell1 = row.insertCell(0);
             var cell2 = row.insertCell(1);
-            var cell3 = row.insertCell(2);
-            cell1.innerHTML = persons[i].matrikelno ? persons[i].matrikelno : persons[i].company;;
-            cell2.innerHTML = PersonService.getPersonInfoAsString(persons[i]);
-            var cell3 = row.insertCell(2);
+            cell1.innerHTML = PersonService.getPersonInfoAsString(persons[i]);
+            cell1.innerHTML += ' ('+(persons[i].matrikelno ? persons[i].matrikelno : persons[i].company)+')';
+            
             if (manager) {
-                cell3.innerHTML = UserService.getUserInfoAsString(manager);
+                cell2.innerHTML = UserService.getUserInfoAsString(manager);
             }
-            var cell4 = row.insertCell(3);
+            var cell3 = row.insertCell(2);
             
             var x = document.createElement('INPUT');
             x.setAttribute('type', 'button');
@@ -79,7 +78,7 @@ $(document).ready( function() {
             x.setAttribute('id', 'details_' + transponderID);
             x.setAttribute('style', 'float: right;');
             x.onclick = (function(interne_id) {lent(interne_id) }).bind(this, transponderID);
-            cell4.appendChild(x);
+            cell3.appendChild(x);
         }
     }
 
