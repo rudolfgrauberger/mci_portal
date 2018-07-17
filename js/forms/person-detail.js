@@ -106,8 +106,10 @@ $(document).ready( function() {
 
             cell2.innerHTML = selectedRooms.join(', ');
 
-            cell3.innerHTML = UserService.getUserInfoAsString(manager);
-
+            if (manager) {
+                cell3.innerHTML = UserService.getUserInfoAsString(manager);
+            }
+            
             var cell4 = row.insertCell(3);
 
             var x = document.createElement('INPUT');
