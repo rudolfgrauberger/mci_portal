@@ -79,6 +79,7 @@ function initDatabase() {
             RoomManagerRelationManager.addLinkBetweenRoomManagerAndRoom(userManfredMustermi, kienbaumSaal);
             RoomManagerRelationManager.addLinkBetweenRoomManagerAndRoom(userManfredMustermi, einsnulleinisdrei);
             RoomManagerRelationManager.addLinkBetweenRoomManagerAndRoom(userManfredMustermi, nullviernulldrei);
+            RoomManagerRelationManager.addLinkBetweenRoomManagerAndRoom(userManfredMustermi, dreieinseinsnull);
 
 
             PermissionRepository.add(perDreiEinsNullSechs1);
