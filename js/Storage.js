@@ -20,6 +20,7 @@ function initDatabase() {
             var studentSvenMueller = Person.getStudent('Sven', 'Müller', '11145031');
             var studentTimoMueller = Person.getStudent('Timo', 'Müller', '11155701');
             var studentStefanieStudia = Person.getStudent('Stefanie', 'Studia', '11111111');
+            var employeeManfredMi = Person.getStudent('Manfred', 'Mustermi', '');
 
             // Räume
             var usabilityStudio = new Room('0.503', 'Usability Studio');
@@ -56,8 +57,9 @@ function initDatabase() {
             var perDreiEinsNullSechs1 = PermissionFactory.create(f06, studentSvenMueller, new Date('2020-01-01'), userManfredMustermi);
             var perDreiEinsNullSechs2 = PermissionFactory.create(f06, studentTimoMueller, null, userManfredMustermi);
             var perStefanie1 = PermissionFactory.create(t35, studentStefanieStudia, null, null);
-            var perStefanie2 = PermissionFactory.create(h09, studentStefanieStudia, null, null);
-            var perStefanie3 = PermissionFactory.create(t58, studentStefanieStudia, null, userManfredMustermi);
+            var perStefanie2 = PermissionFactory.create(h09, studentStefanieStudia, null, userManfredMustermi);
+            var perStefanie3 = PermissionFactory.create(t58, studentStefanieStudia, null, null);
+            var perManfred = PermissionFactory.create(t58, employeeManfredMi, null, null);
             var perKienbaumSaal = PermissionFactory.create(u01, ausleihendeExternHaraldHardWorker, null, userManfredMustermi);
             var perDreiEinsNullSechs3 = PermissionFactory.create(f06, ausleihendeExternHaraldHardWorker, null, userManfredMustermi);
 
@@ -66,7 +68,7 @@ function initDatabase() {
             RoomManagerRelationManager.addLinkBetweenRoomManagerAndRoom(userManfredMustermi, usabilityStudio);
             RoomManagerRelationManager.addLinkBetweenRoomManagerAndRoom(userManfredMustermi, dreieinsnullsechs);
             RoomManagerRelationManager.addLinkBetweenRoomManagerAndRoom(userManfredMustermi, kienbaumSaal);
-            RoomManagerRelationManager.addLinkBetweenRoomManagerAndRoom(userManfredMustermi, zweinulleinsdrei);
+            RoomManagerRelationManager.addLinkBetweenRoomManagerAndRoom(userManfredMustermi, einsnulleinisdrei);
 
 
             PermissionRepository.add(perDreiEinsNullSechs1);
@@ -74,6 +76,7 @@ function initDatabase() {
             PermissionRepository.add(perStefanie1);
             PermissionRepository.add(perStefanie2);
             PermissionRepository.add(perStefanie3);
+            PermissionRepository.add(perManfred);
             PermissionRepository.add(perKienbaumSaal);
             PermissionRepository.add(perDreiEinsNullSechs3);
 
@@ -93,6 +96,7 @@ function initDatabase() {
             PersonRepository.add(studentSvenMueller);
             PersonRepository.add(studentTimoMueller);
             PersonRepository.add(ausleihendeExternHaraldHardWorker);
+            PersonRepository.add(employeeManfredMi);
 
             TransponderRepository.add(t35);
             TransponderRepository.add(f06);
