@@ -22,6 +22,7 @@ function initDatabase() {
             var studentStefanieStudia = Person.getStudent('Stefanie', 'Studia', '11111111');
             var employeeManfredMi = Person.getStudent('Manfred', 'Mustermi', '');
             var studentPeterStudi = Person.getStudent('Peter', 'Studi', '11118932');
+            var studentSandraBlume = Person.getStudent('Sandra', 'Blume', '11118754');
 
             // Räume
             var usabilityStudio = new Room('0.503', 'Usability Studio');
@@ -32,6 +33,7 @@ function initDatabase() {
             var dreizweizweizwei = new Room('3.222', '');
             var zweinulleinsdrei = new Room('2.013', '');
             var dreieinseinsnull = new Room('3.110', '');
+            var nullviernulldrei = new Room('0.403', '');
 
             // Transponder
             var t35 = new Transponder('T35');
@@ -46,6 +48,7 @@ function initDatabase() {
             TransponderRelationManager.addLinkBetweenTransponderAndRoom(f06, kienbaumSaal);
             TransponderRelationManager.addLinkBetweenTransponderAndRoom(f06, dreieinsnullsechs);
             TransponderRelationManager.addLinkBetweenTransponderAndRoom(h09, einsnulleinisdrei);
+            TransponderRelationManager.addLinkBetweenTransponderAndRoom(h09, nullviernulldrei);
             TransponderRelationManager.addLinkBetweenTransponderAndRoom(t58, zweinulleinsdrei);
             TransponderRelationManager.addLinkBetweenTransponderAndRoom(f06, dreieinseinsnull);
             TransponderRelationManager.addLinkBetweenTransponderAndRoom(u01, usabilityStudio);
@@ -65,6 +68,7 @@ function initDatabase() {
             var perManfred = PermissionFactory.create(t58, employeeManfredMi, null, null);
             var perKienbaumSaal = PermissionFactory.create(u01, ausleihendeExternHaraldHardWorker, null, userManfredMustermi);
             var perDreiEinsNullSechs3 = PermissionFactory.create(f06, ausleihendeExternHaraldHardWorker, null, userManfredMustermi);
+            var perSandraBlue = PermissionFactory.create(h09, studentSandraBlume, new Date('2018-08-01'), userManfredMustermi);
 
             // Einfache 1:n-/n:1- und n:m-Verknüpfungen müssen vor dem Speichern den Objekten zugewiesen werden,
             // damit beim Speichern diese direkt in den Objekten mitgespeichert werden.
@@ -72,6 +76,7 @@ function initDatabase() {
             RoomManagerRelationManager.addLinkBetweenRoomManagerAndRoom(userManfredMustermi, dreieinsnullsechs);
             RoomManagerRelationManager.addLinkBetweenRoomManagerAndRoom(userManfredMustermi, kienbaumSaal);
             RoomManagerRelationManager.addLinkBetweenRoomManagerAndRoom(userManfredMustermi, einsnulleinisdrei);
+            RoomManagerRelationManager.addLinkBetweenRoomManagerAndRoom(userManfredMustermi, nullviernulldrei);
 
 
             PermissionRepository.add(perDreiEinsNullSechs1);
@@ -82,6 +87,7 @@ function initDatabase() {
             PermissionRepository.add(perManfred);
             PermissionRepository.add(perKienbaumSaal);
             PermissionRepository.add(perDreiEinsNullSechs3);
+            PermissionRepository.add(perSandraBlue);
 
             // Entities
             UserRepository.add(userImmanuelPforte);
@@ -95,6 +101,7 @@ function initDatabase() {
             RoomRepository.add(dreizweizweizwei);
             RoomRepository.add(zweinulleinsdrei);
             RoomRepository.add(dreieinseinsnull);
+            RoomRepository.add(nullviernulldrei);
 
             PersonRepository.add(studentStefanieStudia);
             PersonRepository.add(studentSvenMueller);
@@ -102,6 +109,7 @@ function initDatabase() {
             PersonRepository.add(ausleihendeExternHaraldHardWorker);
             PersonRepository.add(employeeManfredMi);
             PersonRepository.add(studentPeterStudi);
+            PersonRepository.add(studentSandraBlume);
 
             TransponderRepository.add(t35);
             TransponderRepository.add(f06);
