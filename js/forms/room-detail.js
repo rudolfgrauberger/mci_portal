@@ -47,8 +47,6 @@ $(document).ready( function() {
         document.getElementById('signatureBody').appendChild(scriptInit);
     }
 
-    injectSignaturePad();
-
     $('#roomDetailNumber').text(currentRoom.number);
     $('#roomDetailName').text(currentRoom.name);
 
@@ -65,7 +63,14 @@ $(document).ready( function() {
         }
     });
 
-    $('#transponderlent').click(function() {
+    $('#transponderlentdismiss').click(function() {
+        resetModalDialog();
+    });
+
+    function resetModalDialog() {
+        $('#lentModalLabel').text('Transponder auswählen...');
+        $('.form-group').show();
+        $('#transponderlent').prop('disabled', true);
 
         var sigBody = document.getElementById('signatureBody');
 
@@ -73,10 +78,36 @@ $(document).ready( function() {
             sigBody.removeChild(sigBody.firstChild);
         }
 
+        $('#transponder').data('combobox').clearTarget();
+        $('#transponder').data('combobox').clearElement();
+    }
+
+    $('select').on('change', function(e){
+        /*console.log(this.value,
+                    this.options[this.selectedIndex].value,
+                    $(this).find("option:selected").val(),);*/
+        $('#lentModalLabel').text('Warte auf Unterschrift...');
         injectSignaturePad();
+        $('.form-group').hide();
+        $('#transponderlent').removeAttr('disabled');
+      });
+
+    $('#transponderlent').click(function() {
+        var selectedTransponder = document.getElementById('transponder').value;
+
+        if (!selectedTransponder) {
+            return;
+        }
+
         $('#' + lastButtonId).prop("disabled",true);
-        
+        resetModalDialog();
         $('#lentModal').modal('toggle');
+    });
+
+    resetModalDialog();
+
+    $('#lentModal').on('shown.bs.modal', function(e) {
+        $("#lentModal :text").focus();
     });
 
 
@@ -105,7 +136,6 @@ $(document).ready( function() {
         for (var i = 0; i < persons.length; i++) {
             var permissions = PermissionService.getPermissionForPersonAndRoom(persons[i].id, currentRoom);
             var manager = permissions.manager ? UserService.getUserById(permissions.manager) : null;
-            var transponderID = permissions.transponder;
 
             var row = table.insertRow(1);
             var cell1 = row.insertCell(0);
@@ -124,10 +154,10 @@ $(document).ready( function() {
             x.setAttribute('value', 'Ausleihen');
             x.setAttribute('class', 'btn btn-success');
             x.setAttribute('style', 'float: right;');
-            x.setAttribute('id', 'details_' + transponderID);
+            x.setAttribute('id', 'details_' + persons[i].id);
             x.setAttribute('data-toggle', 'modal');
             x.setAttribute('data-target', '#lentModal');
-            x.onclick = (function(interne_id) {lent(interne_id) }).bind(this, transponderID);
+            x.onclick = (function(interne_id) {lent(interne_id) }).bind(this, persons[i].id);
             cell4.appendChild(x);
         }
     }
