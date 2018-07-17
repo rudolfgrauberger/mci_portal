@@ -21,6 +21,7 @@ function initDatabase() {
             var studentTimoMueller = Person.getStudent('Timo', 'Müller', '11155701');
             var studentStefanieStudia = Person.getStudent('Stefanie', 'Studia', '11111111');
             var employeeManfredMi = Person.getStudent('Manfred', 'Mustermi', '');
+            var studentPeterStudi = Person.getStudent('Peter', 'Studi', '11118932');
 
             // Räume
             var usabilityStudio = new Room('0.503', 'Usability Studio');
@@ -30,6 +31,7 @@ function initDatabase() {
             var einsnulleinisdrei = new Room('1.013', '');
             var dreizweizweizwei = new Room('3.222', '');
             var zweinulleinsdrei = new Room('2.013', '');
+            var dreieinseinsnull = new Room('3.110', '');
 
             // Transponder
             var t35 = new Transponder('T35');
@@ -45,6 +47,7 @@ function initDatabase() {
             TransponderRelationManager.addLinkBetweenTransponderAndRoom(f06, dreieinsnullsechs);
             TransponderRelationManager.addLinkBetweenTransponderAndRoom(h09, einsnulleinisdrei);
             TransponderRelationManager.addLinkBetweenTransponderAndRoom(t58, zweinulleinsdrei);
+            TransponderRelationManager.addLinkBetweenTransponderAndRoom(f06, dreieinseinsnull);
             TransponderRelationManager.addLinkBetweenTransponderAndRoom(u01, usabilityStudio);
             TransponderRelationManager.addLinkBetweenTransponderAndRoom(u01, dreieinsnullsechs);
             TransponderRelationManager.addLinkBetweenTransponderAndRoom(u01, kienbaumSaal);
@@ -91,12 +94,14 @@ function initDatabase() {
             RoomRepository.add(einsnulleinisdrei);
             RoomRepository.add(dreizweizweizwei);
             RoomRepository.add(zweinulleinsdrei);
+            RoomRepository.add(dreieinseinsnull);
 
             PersonRepository.add(studentStefanieStudia);
             PersonRepository.add(studentSvenMueller);
             PersonRepository.add(studentTimoMueller);
             PersonRepository.add(ausleihendeExternHaraldHardWorker);
             PersonRepository.add(employeeManfredMi);
+            PersonRepository.add(studentPeterStudi);
 
             TransponderRepository.add(t35);
             TransponderRepository.add(f06);

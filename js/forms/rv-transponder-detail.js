@@ -12,9 +12,10 @@ $(document).ready( function() {
     var persons = PersonService.getAllPersons();
 
     for (var personIndex = 0; personIndex < persons.length; ++personIndex) {
+        var person = persons[personIndex];
         var x = document.createElement('OPTION');
-        x.setAttribute('value', persons[personIndex].id);
-        x.textContent = PersonService.getPersonInfoAsString(persons[personIndex]);
+        x.setAttribute('value', person.id);
+        x.textContent = PersonService.getPersonInfoAsString(person) + (person.matrikelno ? ' (' + person.matrikelno + ')' : person.company ? ' (' + person.company + ')' : '');
         input.appendChild(x);
     }
 
