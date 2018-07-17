@@ -39,18 +39,25 @@ class PermissionService {
                 continue;
             }
 
-            var room = TransponderRepository.getPermissionsByTransponderId(permissions[i].transponder);
-            var manager = UserService.getUserById(room.roomManager);
+            var transponder = TransponderService.getTransponderById(permissions[i].transponder);
 
-            var searchReg = new RegExp(searchValue, 'i');
+            for (var t = 0; t < transponder.rooms.length; ++t) {
+                var room = RoomService.getRoomById(transponder.rooms[t]);
+                var manager = UserService.getUserById(room.roomManager);
 
-            if (searchEqualityCompare(room.number, searchValue) ||
-                searchEqualityCompare(room.name, searchValue) ||
-                searchEqualityCompare(manager.firstname, searchValue) ||
-                searchEqualityCompare(manager.lastname, searchValue) ||
-                searchEqualityCompare(manager.username, searchValue))
-            {
-                selectedPermissions.push(permissions[i]);
+                if (searchEqualityCompare(room.number, searchValue) ||
+                    searchEqualityCompare(room.name, searchValue))
+                {
+                    selectedPermissions.push(permissions[i]);
+                }
+                else if (manager) {
+                    if (searchEqualityCompare(manager.firstname, searchValue) ||
+                        searchEqualityCompare(manager.lastname, searchValue) ||
+                        searchEqualityCompare(manager.username, searchValue)) 
+                    {
+                        selectedPermissions.push(permissions[i]);
+                    }
+                }
             }
         }
 
