@@ -58,6 +58,8 @@ function initDatabase() {
             TransponderRelationManager.addLinkBetweenTransponderAndRoom(u01, einsnulleinisdrei);
             TransponderRelationManager.addLinkBetweenTransponderAndRoom(u01, dreizweizweizwei);
             TransponderRelationManager.addLinkBetweenTransponderAndRoom(u01, zweinulleinsdrei);
+            TransponderRelationManager.addLinkBetweenTransponderAndRoom(u01, dreieinseinsnull);
+            TransponderRelationManager.addLinkBetweenTransponderAndRoom(u01, nullviernulldrei);
 
 
             var perDreiEinsNullSechs1 = PermissionFactory.create(f06, studentSvenMueller, new Date('2020-01-01'), userManfredMustermi);
